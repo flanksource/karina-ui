@@ -11,11 +11,11 @@
           class="mr-3"
           size="24"
         >
-          mdi-cpu-64-bit
+          mdi-memory
         </v-icon>
      
         <div class="caption grey--text text-uppercase">
-          CPU Usage
+          Memory Usage
         </div>
         <div>
           <span

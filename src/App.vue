@@ -15,7 +15,7 @@
 
     <v-main class="grey lighten-5">
       <v-container class="grey lighten-5" fluid>
-        <v-row align="left" justify="center" no-gutters>
+        <v-row align="left" justify="center">
           <v-col cols="12" sm="9">
 
             <v-card class="pa-2" outlined tile>
