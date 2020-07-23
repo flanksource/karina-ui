@@ -1,5 +1,7 @@
 # sysmonitor
 
+This is a Real-time CPU and Memory Usage interface design. It uses the Vuetify component library.
+
 ## Project setup
 ```
 npm install
