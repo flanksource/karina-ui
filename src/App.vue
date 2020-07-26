@@ -36,10 +36,19 @@
 
               <h3>Real-time CPU and Memory Usage</h3>
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <p>
+                 <v-layout row wrap>
+              <ItemIcon/>
+               <ItemIcon/>
+             <ItemIcon/>
+           </v-layout></p>
+
           
              </v-banner>
             </v-card>
+            <IndicatorPanel/>
           </v-col>
           <v-col cols="12"  sm="3" class="text-center">
             <MemoryCard/>
@@ -63,11 +72,13 @@
 //Calls two components for memory usage and for CPU usage
 import MemoryCard from './components/MemoryCard.vue'
 import CPUCard from './components/CPUCard.vue'
+import IndicatorPanel from './components/IndicatorPanel.vue'
+import ItemIcon from './components/ItemIcon.vue'
 
 export default {
 
   components:{
-  MemoryCard, CPUCard
+  MemoryCard, CPUCard, IndicatorPanel, ItemIcon
   },
     props: {
       source: String,
