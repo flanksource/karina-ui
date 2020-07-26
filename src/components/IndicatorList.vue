@@ -1,13 +1,33 @@
 <template>
 
-
+ 
       <v-row dense>
-        <v-col
-          v-for="(item, i) in items"
-          :key="i"
-          cols="12"
-        >
-          <IndicatorCard/>
+    <v-col
+       v-for="(item, i) in indicators"
+       :key="i"
+       cols="12"
+     > 
+
+          <v-card flat>
+            <v-card-text>
+       
+              <IndicatorCard 
+                :indicatorx="item.indicator_icons"/>
+            
+                <v-avatar
+                class="ma-3"
+                size="64"
+                tile
+              >
+                <v-img v-bind:src="item.indicator_icon_lg"></v-img>
+
+
+              </v-avatar>
+
+             
+
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
    
@@ -23,24 +43,9 @@ import IndicatorCard from './IndicatorCard.vue'
       IndicatorCard
 
     },
-    data: () => ({
-       items: [
-        {
-          color: '#fff',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-          indicator_icon: 'smile',
-        },
-        {
-          color: '#fff',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-          indicator_icon: 'test'
-        },
-      ],
-    }),
+    props:{
+       indicators: Object,
+    }
   }
 </script>
 

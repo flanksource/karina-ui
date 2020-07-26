@@ -10,7 +10,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Sysmonitor</v-toolbar-title>
+      <v-toolbar-title>Karina</v-toolbar-title>
     </v-app-bar>
 
     <v-main class="grey lighten-5">

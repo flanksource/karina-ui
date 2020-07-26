@@ -1,6 +1,10 @@
 <template>
   <div class="smile-icon">
-    <svg-icon icon="smile" :hasFill="true"></svg-icon>
+ 
+
+ 
+    <svg-icon :icon="shape" :hasFill="false" :color="color" class="smile-icon"></svg-icon>
+
   </div>
 </template>
 
@@ -9,34 +13,35 @@ import SvgIcon from './SVGIcon.vue';
 
 export default {
   name: 'my-component',
+  props: {
+    id: String,
+    color: String,
+    shape: String,
+    overlay: String,
+    indy: Object,
+
+  },
+  computed: {
+    style () {
+       return {
+       fill: this.colorx
+    }
+    }
+  },
   components: {
     'svg-icon': SvgIcon,
   },
-      data: () => ({
-       items: [
-        {
-          color: '#1F7087',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-          indicator_icon: 'smile',
-        },
-        {
-          color: '#952175',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-          indicator_icon: 'test'
-        },
-      ],
+     data: () => ({
+      drawer: null,
     }),
 }
 </script>
 
-<style scoped>
+<style >
 .smile-icon {
-  font-size: 24px;
-  color: #000; 
-
+  font-size: 32px;
+  color: #000;
+  fill: #0F0;
+ 
 }
 </style>

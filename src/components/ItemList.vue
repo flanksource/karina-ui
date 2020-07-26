@@ -3,29 +3,31 @@
 
 
 
+<div class="vr">
 
-  
 
-        <v-list shaped>
-      <v-list-item-group v-model="item" color="primary">
-       <!--  <v-list-item
-         v-for="(item, i) in items"
-         :key="i"
-       >
-         <v-list-item-icon>
-           <v-icon v-text="item.icon"></v-icon>
-         </v-list-item-icon>
-         <v-list-item-content>
-           <v-list-item-title v-text="item.text"></v-list-item-title>
-       
-         </v-list-item-content>
-       </v-list-item> -->
+ <v-list shaped>
+           <v-list-item-group v-model="item" color="primary">
+            <v-list-item
+      v-for="(item, i) in items"
+      :key="i"
+      >
+            <v-tab>
 
-          <ItemCard/>
-      </v-list-item-group>
-    </v-list>
-     
-            
+       <ItemCard :label="item.label" :icon="item.icon" :content="item.badge"/>
+    </v-tab>
+      
+            </v-list-item>
+    
+           </v-list-item-group>
+         </v-list> 
+
+
+
+
+    
+            </div>
+
 </template>
 
 
@@ -41,20 +43,21 @@ export default {
 
   },
     props: {
-      source: String,
+      items: Object,
+      /*icon: String,
+      label: String,
+      badge: String,*/
     },
-    data: () => ({
-      drawer: null,
-    }),
+     
   }
 </script>
 
 
 
 <style>
- .v-tabs .v-tab {
+ .vr  {
     background-color: #ffffff !important;
-    border-right: 5px solid red !important
+    border-right: 2px solid black !important
 }
 
 </style>

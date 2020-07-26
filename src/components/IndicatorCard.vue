@@ -2,35 +2,34 @@
 
 
  
-          <v-card
-            color="#fff"
-            dark
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-                <v-avatar
-                class="ma-3"
-                size="64"
-                tile
-              >
-                <v-img src="https://cdn.vuetifyjs.com/images/cards/foster.jpg"></v-img>
-              </v-avatar>
+      <div class="d-flex flex-no-wrap justify-space-between indie">
+
+
+
+{{ indicatorx}}
+        <div  v-for="(item, i) in indicatorx"
+       :key="i"
+       cols="12">
+
+
+        
             
+         <!--    {{ indicatoricons }} -->
               <v-layout row>
                       <v-item
-          v-for="n in 42"
-          :key="n"
-    
+        
+          
         >
-       
-           <IndicatorIcon/>
+
+           <IndicatorIcon :indy="indicatorx"/> 
         
         </v-item>
       </v-layout>
              
 
-            
             </div>
-          </v-card>
+            </div>
+        
         
 
 </template>
@@ -38,33 +37,32 @@
 
 <script>
 
-import IndicatorIcon from './IndicatorIcon.vue'
+//import IndicatorIcon from './IndicatorIcon.vue'
   export default {
     components: {
-      IndicatorIcon
+      //IndicatorIcon
 
     },
+    props: {
+
+      indicatorx: Object,
+   /*   shape: String,
+      color: String,
+      overlay: String,*/
+    },
     data: () => ({
-       items: [
-        {
-          color: '#fff',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-          indicator_icon: 'smile',
-        },
-        {
-          color: '#fff',
-          icon: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-          indicator_icon: 'test'
-        },
-      ],
+      drawer: null,
     }),
   }
 </script>
 
 
+
+<style>
+ .indie  {
+    border-bottom: 1px dashed black !important
+}
+
+</style>
 
 
