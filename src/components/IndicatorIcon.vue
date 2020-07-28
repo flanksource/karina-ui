@@ -1,11 +1,11 @@
 <template>
-  <div class="smile-icon">
- 
-
- 
+  <span class="smile-icon">
     <svg-icon :icon="shape" :hasFill="false" :color="color" class="smile-icon"></svg-icon>
-
-  </div>
+   <!--  <v-icon icon="" color="black" size="14">
+     {{ overlay }}
+   </v-icon> -->
+ 
+  </span>
 </template>
 
 <script>
@@ -39,8 +39,8 @@ export default {
 
 <style >
 .smile-icon {
-  font-size: 32px;
-  color: #000;
+  font-size: 20px;
+  color: #FC0;
   fill: #0F0;
  
 }

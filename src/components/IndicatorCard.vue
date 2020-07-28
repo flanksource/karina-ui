@@ -1,54 +1,56 @@
 <template>
-
-
- 
-      <div class="d-flex flex-no-wrap justify-space-between indie">
-
-
-
-{{ indicatorx}}
-        <div  v-for="(item, i) in indicatorx"
-       :key="i"
-       cols="12">
-
+  <v-card flat class="righty tops">
+    <v-row align="center" no-gutters>
+      <v-col
+        cols="12" md="2"
+      >
+        <img v-bind:src="iconlg" alt="" width=48/>
+      </v-col>
+      <v-col
+        cols="12" md="10" class="indie"
+      >
+        <v-row align="center" no-gutters>
 
         
-            
-         <!--    {{ indicatoricons }} -->
-              <v-layout row>
-                      <v-item
-        
-          
+        <v-col
+          v-for="(item, i) in indicatorx"
+          :key="i"
+          cols="12" md="1" class="icona"
         >
 
-           <IndicatorIcon :indy="indicatorx"/> 
-        
-        </v-item>
-      </v-layout>
-             
 
-            </div>
-            </div>
-        
-        
+          <IndicatorIcon :shape="item.shape" :color="item.color" :overlay="item.overlay"/> 
 
+      </v-col>
+      
+
+  </v-row>
+
+  </v-col>
+    </v-row>
+
+  </v-card>
 </template>
 
 
 <script>
 
-//import IndicatorIcon from './IndicatorIcon.vue'
+import IndicatorIcon from './IndicatorIcon.vue'
   export default {
     components: {
-      //IndicatorIcon
+      IndicatorIcon
 
     },
     props: {
 
       indicatorx: Object,
-   /*   shape: String,
-      color: String,
-      overlay: String,*/
+      iconlg: String,
+    },
+    computed: {
+      getIcon: function (icon) {
+  return require(icon)
+}
+
     },
     data: () => ({
       drawer: null,
@@ -61,6 +63,14 @@
 <style>
  .indie  {
     border-bottom: 1px dashed black !important
+}
+
+ .icona {
+    min-width: 10%;
+}
+
+.righty{
+  margin: 10px 10px 10px 10px;
 }
 
 </style>

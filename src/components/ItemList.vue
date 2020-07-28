@@ -5,8 +5,7 @@
 
 <div class="vr">
 
-
- <v-list shaped>
+ <v-list>
            <v-list-item-group v-model="item" color="primary">
             <v-list-item
       v-for="(item, i) in items"
@@ -14,7 +13,7 @@
       >
             <v-tab>
 
-       <ItemCard :label="item.label" :icon="item.icon" :content="item.badge"/>
+           <ItemCard :label="item.label" :icon="item.icon" :content="item.badge"/>
     </v-tab>
       
             </v-list-item>
@@ -56,8 +55,9 @@ export default {
 
 <style>
  .vr  {
-    background-color: #ffffff !important;
-    border-right: 2px solid black !important
+    
+    border-right: 2px solid black !important;
+
 }
 
 </style>
