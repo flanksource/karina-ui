@@ -1,32 +1,18 @@
 <template>
-
- 
-      <span>
+  <span>
     <span
        v-for="(item, i) in indicators"
        :key="i"
        cols="12"
-     > 
-
-          
-               
-
-              <IndicatorCard 
-                :indicatorx="item.indicator_icons" :iconlg="item.indicator_icon_lg"/>
-        
-           
-             
-
-   </span>
-      </span>
-   
-
+    >
+      <IndicatorCard :indicatorx="item.indicator_icons" :iconlg="item.indicator_icon_lg"/>
+    </span>
+  </span>
 </template>
 
-
 <script>
+  import IndicatorCard from './IndicatorCard.vue'
 
-import IndicatorCard from './IndicatorCard.vue'
   export default {
     components: {
       IndicatorCard
@@ -37,7 +23,3 @@ import IndicatorCard from './IndicatorCard.vue'
     }
   }
 </script>
-
-
-
-

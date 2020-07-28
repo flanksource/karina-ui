@@ -1,20 +1,13 @@
 <template>
-  
+  <span class="centre">
+    <div v-if="count === '0'">
+      <v-avatar :color="colour" size="64">
+        <v-icon dark>{{icon}}</v-icon>
+      </v-avatar>
+    </div>
 
-     <span class="centre">
-
-<div
- v-if="count === '0'">
-
-   <v-avatar :color="colour" size="64">
-           <v-icon dark>{{icon}}</v-icon>
-
-        </v-avatar>
-</div>
-
-<div v-else>
-
-    <v-badge
+    <div v-else>
+      <v-badge
         bordered
         bottom
         color="deep-purple accent-4"
@@ -24,21 +17,15 @@
         overlap="true"
       >
         <v-avatar :color="colour" size="64">
-           <v-icon dark>{{icon}}</v-icon>
-
+          <v-icon dark>{{icon}}</v-icon>
         </v-avatar>
       </v-badge>
-</div>
+    </div>
 
-<div>
-
-     
-
-    <span class="pb-0">{{label}}</span>
-  </div>
+    <div>
+      <span class="pb-0">{{label}}</span>
+    </div>
   </span>
-
-
 </template>
 
 <script>
@@ -50,12 +37,9 @@
       colour: String,
     }
   }
-
 </script>
 
-
 <style>
-  
   .centre{
     align-content: center;
     padding: 0px 20px;

@@ -6,32 +6,29 @@
   >
     <v-card-title>
       <v-row align="start">
-        <v-icon
-          :color="indigo"
-          class="mr-3"
-          size="24"
-        >
+        <v-icon :color="indigo" class="mr-3" size="24">
           mdi-memory
         </v-icon>
      
         <div class="caption grey--text text-uppercase">
           Memory Usage
         </div>
+
         <div>
           <span
             class="display-2 font-weight-black"
             v-text="avg || '—'"
           ></span>
+
           <span v-if="avg">%</span>
         </div>
+
         <v-spacer></v-spacer>
 
-      <v-btn icon class="align-self-start" size="28">
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-      </v-row>
-
-    
+        <v-btn icon class="align-self-start" size="28">
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn>
+      </v-row>    
     </v-card-title>
 
     <v-sheet color="transparent">
