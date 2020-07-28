@@ -1,5 +1,11 @@
-# feat: add components to dashboard#
 
-# add components arising from issues one (1) through seven (7) i.e.; IndicatorCard, IndicatorIcon, IndicatorList, IndicatorPanel, ItemCard, ItemIcon, ItemList) and add SVG import method via SVGIcon component#
+
+# feat: add components to dashboard#
+feat: add dataflow and organise layout
+
+# add components arising from issues one (1) through seven (7) i.e.; IndicatorCard, IndicatorIcon, IndicatorList, IndicatorPanel,
+# ItemCard, ItemIcon, ItemList) and add SVG import method via SVGIcon component#
+add dataflow to components in previous commits. organise layout to suit wireframe.
 
 # Fixes Isssues; 1, 2, 3, 4, 5, 6 and 7
+Close issues; 1, 2, 3, 4, 5, 6 and 7

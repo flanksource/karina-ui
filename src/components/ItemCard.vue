@@ -1,24 +1,38 @@
 <template>
 
+<span>
+  <div v-if="content === '0'">
+
+
+    <svg-icon :icon="icon" :hasFill="false" :color="color" class="smile-icon">
+          </svg-icon>
+
+
+  {{label}}
+               
+
+</div>
+<div v-else>
 
        <v-badge
  color="deep-purple accent-4"
  :content="content"
  inline="true"
 >
-<v-list-item-icon>
+
 
     <svg-icon :icon="icon" :hasFill="false" :color="color" class="smile-icon">
           </svg-icon>
 
         
-         </v-list-item-icon>
-   
-  <v-list-item-content>
-           <v-list-item-title v-text="label"></v-list-item-title>
+         
+ {{label}}
                
-         </v-list-item-content>
+       
 </v-badge>  
+</div>
+</span>
+
 
 
 </template>

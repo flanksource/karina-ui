@@ -19,7 +19,7 @@
         >
 
 
-          <IndicatorIcon :shape="item.shape" :color="item.color" :overlay="item.overlay"/> 
+          <IndicatorIcon :shape="item.shape" :colour="item.color" :overlay="item.overlay"/> 
 
       </v-col>
       

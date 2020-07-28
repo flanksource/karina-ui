@@ -1,9 +1,9 @@
 <template>
-  <span class="smile-icon">
-    <svg-icon :icon="shape" :hasFill="false" :color="color" class="smile-icon"></svg-icon>
-   <!--  <v-icon icon="" color="black" size="14">
+  <span class="smile-icon parent">
+    <svg-icon :icon="shape" :hasFill="true" :style="iconStyles" class="smile-icon image1 "></svg-icon>
+     <v-icon icon="" color="white" size="14" class="overlay">
      {{ overlay }}
-   </v-icon> -->
+   </v-icon> 
  
   </span>
 </template>
@@ -15,17 +15,20 @@ export default {
   name: 'my-component',
   props: {
     id: String,
-    color: String,
+    colour: {
+      type: String,
+      /*default: "#24ea1f"*/
+    },
     shape: String,
     overlay: String,
     indy: Object,
 
   },
-  computed: {
-    style () {
-       return {
-       fill: this.colorx
-    }
+   computed: {
+    iconStyles() {
+      return {
+        "color": this.colour,
+      };
     }
   },
   components: {
@@ -40,8 +43,25 @@ export default {
 <style >
 .smile-icon {
   font-size: 20px;
-  color: #FC0;
-  fill: #0F0;
+
+ 
+}
+
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+ 
+}
+.overlay {
+  position: absolute;
+  top: -3px;
+  left: 3px;
  
 }
 </style>

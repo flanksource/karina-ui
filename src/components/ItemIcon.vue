@@ -3,7 +3,17 @@
 
      <span class="centre">
 
-<div>
+<div
+ v-if="count === '0'">
+
+   <v-avatar :color="colour" size="64">
+           <v-icon dark>{{icon}}</v-icon>
+
+        </v-avatar>
+</div>
+
+<div v-else>
+
     <v-badge
         bordered
         bottom
@@ -19,6 +29,7 @@
         </v-avatar>
       </v-badge>
 </div>
+
 <div>
 
      
