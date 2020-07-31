@@ -15,11 +15,11 @@
           <v-col cols="12" sm="9">
             <div>
               <v-card class="pa-2" outlined tile>
-                <v-layout row>
-                  <ItemIcon icon="mdi-github" colour="#f8cecc" label="Change Config" count="5"/>
-                  <ItemIcon icon="mdi-github" colour="#666666" label="Downgrade Version" count="2"/>
-                  <ItemIcon icon="mdi-github" colour="#d5e8d4" label="Bump Replicas" count="0"/>
-                </v-layout>
+                <v-row>
+                  <ItemIcon icon="git" colour="#f8cecc" label="Change Config" count="5"/>
+                  <ItemIcon icon="git" colour="#666666" label="Downgrade Version" count="2"/>
+                  <ItemIcon icon="git" colour="#d5e8d4" label="Bump Replicas" count="0"/>
+                </v-row>
               </v-card>
             </div>
 
