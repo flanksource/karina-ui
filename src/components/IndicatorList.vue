@@ -1,13 +1,15 @@
 <template>
-  <span>
-    <span
-       v-for="(item, i) in indicators"
-       :key="i"
-       cols="12"
-    >
-      <IndicatorCard :indicatorx="item.indicator_icons" :iconlg="item.indicator_icon_lg"/>
-    </span>
-  </span>
+  <v-list class="indcator-list pa-0" width="75%">
+    <v-list-item-group>
+      <v-list-item
+        v-for="(item, i) in indicators"
+        :key="i"
+        class="px-0"
+      > 
+        <IndicatorCard :iconlg="item.indicator_icon_lg" :indicatoricons="item.indicator_icons"/>
+      </v-list-item>
+    </v-list-item-group>
+  </v-list> 
 </template>
 
 <script>
@@ -16,10 +18,16 @@
   export default {
     components: {
       IndicatorCard
-
     },
+
     props:{
-       indicators: Object,
+      indicators: Object,
     }
   }
 </script>
+
+<style>
+  .indicator-list  {
+    width: 73%;
+  }
+</style>

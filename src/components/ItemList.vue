@@ -1,18 +1,14 @@
 <template>
-  <div class="vr">
-    <v-list>
+    <v-list class="item-list">
       <v-list-item-group v-model="item" color="primary">
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
         >
-          <v-tab>
-            <ItemCard :label="item.label" :icon="item.icon" :content="item.badge"/>
-          </v-tab>
+          <ItemCard :label="item.label" :icon="item.icon" :content="item.badge"/>
         </v-list-item>
       </v-list-item-group>
     </v-list>
-  </div>
 </template>
 
 <script>
@@ -29,7 +25,8 @@
 </script>
 
 <style>
- .vr  {
-  border-right: 2px solid black !important;
+  .item-list  {
+    border-right: 2px solid black !important;
+    width: 25%;
   }
 </style>
