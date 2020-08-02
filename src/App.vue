@@ -13,16 +13,16 @@
       <v-container class="grey lighten-5" fluid>
         <v-row align="left" justify="center">
           <v-col cols="12" sm="9">
-            <div>
-              <v-card class="pa-2" outlined tile>
-                <v-row>
-                  <ItemIcon icon="git" colour="#f8cecc" label="Change Config" count="5"/>
-                  <ItemIcon icon="git" colour="#666666" label="Downgrade Version" count="2"/>
-                  <ItemIcon icon="git" colour="#d5e8d4" label="Bump Replicas" count="0"/>
-                </v-row>
-              </v-card>
-            </div>
-
+         <!--    <div>
+           <v-card class="pa-2" outlined tile>
+             <v-row>
+               <ItemIcon icon="git" colour="#f8cecc" label="Change Config" count="5"/>
+               <ItemIcon icon="git" colour="#666666" label="Downgrade Version" count="2"/>
+               <ItemIcon icon="git" colour="#d5e8d4" label="Bump Replicas" count="0"/>
+             </v-row>
+           </v-card>
+         </div>
+          -->
             <v-row >
               <v-col cols="12" sm="4">
                 <v-card class="" max-width="" height="410">
@@ -76,11 +76,11 @@
   import MemoryCard from './components/MemoryCard.vue'
   import CPUCard from './components/CPUCard.vue'
   import IndicatorPanel from './components/IndicatorPanel.vue'
-  import ItemIcon from './components/ItemIcon.vue'
+ // import ItemIcon from './components/ItemIcon.vue'
 
   export default {
     components:{
-      MemoryCard, CPUCard, IndicatorPanel, ItemIcon
+      MemoryCard, CPUCard, IndicatorPanel,/* ItemIcon*/
     },
   }
 </script>
