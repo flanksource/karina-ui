@@ -1,5 +1,5 @@
 <template>
-  <v-list class="indcator-list pa-0" width="75%">
+  <v-list class="indcator-list pa-0" width="73%">
     <v-list-item-group>
       <v-list-item
         v-for="(item, i) in indicators"
