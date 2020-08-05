@@ -36,6 +36,7 @@
 
 
   export default {
+    name: 'IndicatorPanel',
     components:{
       ItemList, IndicatorList, ItemIcon
     },
@@ -159,5 +160,4 @@
     width:100%;
     margin: 10px;
   }
-
 </style>

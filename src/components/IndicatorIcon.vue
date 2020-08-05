@@ -1,6 +1,6 @@
 <template>
   <span class="parent">
-    <svg-icon :icon="shape" :hasFill="true" :style="iconStyles" class="icon "></svg-icon>
+    <svg-icon :icon="shape" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
     
     <v-icon icon="" color="white" size="14" class="overlay">
       {{ overlay }}
@@ -12,31 +12,25 @@
   import SvgIcon from './SVGIcon.vue';
 
   export default {
-    name: 'my-component',
+    name: 'IndicatorIcon',
+    components: {
+      SvgIcon,
+    },
     props: {
       id: String,
       colour: {
         type: String,
-        /*default: "#24ea1f"*/
       },
       shape: String,
       overlay: String,
-      indy: Object,
-
     },
-     computed: {
+    computed: {
       iconStyles() {
         return {
           "color": this.colour,
         };
       }
     },
-    components: {
-      'svg-icon': SvgIcon,
-    },
-       data: () => ({
-        drawer: null,
-      }),
   }
 </script>
 
@@ -52,12 +46,10 @@
     top: 0;
     left: 0;
     font-size: 20px;
-   
   }
   .overlay {
     position: absolute;
-    top: -3px;
+    top: 0;
     left: 3px;
-   
   }
 </style>

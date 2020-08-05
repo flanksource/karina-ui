@@ -1,5 +1,5 @@
 <template>
-    <div v-html="require(`!html-loader!../assets/svg/${icon}.svg`)" class="svg-container"></div>
+    <div v-html="require(`!html-loader!../assets/svg/${icon}.svg`)"></div>
 </template>
 
 
@@ -14,7 +14,7 @@
         });
     }
     export default {
-        name: 'svg-icon',
+        name: 'SvgIcon',
         props: {
             icon: {
                 type: String,
@@ -27,7 +27,7 @@
             growByHeight: {
                 type: Boolean,
                 default: true
-            },
+            }
         },
         mounted() {
             if (this.$el.firstElementChild.nodeName === 'svg') {
@@ -48,17 +48,7 @@
                     svgElement.setAttribute('width', '1em');
                     svgElement.setAttribute('height', `${1 / widthToHeight}em`);
                 }
-                svgElement.classList.add('svg-class');
             }
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .svg-container {
-        display: inline-flex;
-    }
-    .svg-class {
-        vertical-align: middle;
-    }
-</style>

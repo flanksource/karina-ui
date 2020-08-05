@@ -1,18 +1,14 @@
 <template>
   <span>
     <div v-if="content === '0'">
-      <svg-icon :icon="icon" :hasFill="false" :color="color" class="smile-icon"></svg-icon>
+      <svg-icon :icon="icon" :hasFill="true" :color="color"></svg-icon>
 
       {{label}}
     </div>
 
     <div v-else>
-      <v-badge
-       color="deep-purple accent-4"
-       :content="content"
-       inline="true"
-      >
-        <svg-icon :icon="icon" :hasFill="false" :color="color" class="smile-icon"></svg-icon>
+      <v-badge color="deep-purple accent-4" :content="content" inline="true">
+        <svg-icon :icon="icon" :hasFill="false" :color="color"></svg-icon>
 
         {{label}}
       </v-badge>  
@@ -24,7 +20,7 @@
   import SvgIcon from './SVGIcon.vue';
 
   export default {
-
+    name: 'ItemCard',
     components: {
       'svg-icon': SvgIcon,
     },
