@@ -12,11 +12,11 @@
       <v-col cols="12" md="10" class="card-bottom">
         <v-row>
           <v-col
-            v-for="(item, i) in indicatoricons"
+            v-for="(indicatoricon, i) in indicatoricons"
             :key="i"
             cols="12" md="1" class="ten-cols"
           >
-            <IndicatorIcon :shape="item.shape" :colour="item.color" :overlay="item.overlay"/> 
+            <IndicatorIcon :shape="indicatoricon.shape" :colour="indicatoricon.color" :overlay="indicatoricon.overlay"/> 
           </v-col>
         </v-row>
       </v-col>
@@ -28,9 +28,9 @@
   import IndicatorIcon from './IndicatorIcon.vue'
 
   export default {
+    name: 'IndicatorCard',
     components: {
       IndicatorIcon
-
     },
     props: {
       indicatoricons: Object,
@@ -39,7 +39,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .card-bottom  {
     border-bottom: 1px dashed black !important;
   }

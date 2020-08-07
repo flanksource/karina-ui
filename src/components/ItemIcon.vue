@@ -5,27 +5,18 @@
     </div>
 
     <div v-else>
-      <v-badge
-        bordered
-        bottom
-        color="deep-purple accent-4"
-        :content="count"
+      <v-badge bordered bottom color="deep-purple accent-4" :content="count"
         offset-x="20"
         offset-y="15"
         overlap="true"
       >
-     
-           <svg-icon :icon="icon" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
-    
+        <svg-icon :icon="icon" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
       </v-badge>
-
     </div>
 
     <div class="caption">
-     {{label}}
+      {{label}}
     </div>
-
-
   </span>
 </template>
 
@@ -33,7 +24,10 @@
   import SvgIcon from './SVGIcon.vue';
 
   export default {
-    name: 'my-component',
+    name: 'ItemIcon',
+    components: {
+      SvgIcon,
+    },
     props: {
       id: String,
       label: String,
@@ -41,19 +35,13 @@
       count: Number,
       colour: String,
     },
-     computed: {
+    computed: {
       iconStyles() {
         return {
           "color": this.colour,
         };
       }
     },
-    components: {
-      'svg-icon': SvgIcon,
-    },
-       data: () => ({
-        drawer: null,
-      }),
   }
 </script>
 
@@ -70,8 +58,8 @@
     display: inline-block;
     text-align: center;
     width: 120px;
-}
-.caption {
+  }
+  .caption {
     display: block;
-}
+  }
 </style>

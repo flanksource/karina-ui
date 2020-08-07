@@ -2,11 +2,11 @@
   <v-list class="indcator-list pa-0" width="73%">
     <v-list-item-group>
       <v-list-item
-        v-for="(item, i) in indicators"
+        v-for="(indicator, i) in indicators"
         :key="i"
-        class="px-0"
+        class="px-0 no-events"
       > 
-        <IndicatorCard :iconlg="item.indicator_icon_lg" :indicatoricons="item.indicator_icons"/>
+        <IndicatorCard :iconlg="indicator.indicator_icon_lg" :indicatoricons="indicator.indicator_icons"/>
       </v-list-item>
     </v-list-item-group>
   </v-list> 
@@ -16,18 +16,18 @@
   import IndicatorCard from './IndicatorCard.vue'
 
   export default {
+    name: 'IndicatorList',
     components: {
       IndicatorCard
     },
-
     props:{
       indicators: Object,
     }
   }
 </script>
 
-<style>
-  .indicator-list  {
-    width: 73%;
+<style scoped>
+  .no-events{
+    pointer-events: none
   }
 </style>

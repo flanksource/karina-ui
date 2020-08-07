@@ -36,6 +36,7 @@
   import stats from '../data/sample.json'
 
   export default {
+    name: 'IndicatorPanel',
     components:{
       ItemList, IndicatorList, ItemIcon
     },
