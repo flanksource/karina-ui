@@ -1,6 +1,6 @@
 # Karina - The Kubernetes Dashboard
 
-This is a GUI for the Karina
+This is a GUI for Karina
 
 ## Project setup
 ```
