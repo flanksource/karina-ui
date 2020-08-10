@@ -1,5 +1,7 @@
 # Karina - The Kubernetes Dashboard
 
+This is a GUI for the Karina
+
 ## Project setup
 ```
 npm install
