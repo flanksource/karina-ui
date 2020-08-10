@@ -1,6 +1,4 @@
-# sysmonitor
-
-This is a Real-time CPU and Memory Usage interface design. It uses the Vuetify component library.
+# Karina - The Kubernetes Dashboard
 
 ## Project setup
 ```
