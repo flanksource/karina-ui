@@ -6,9 +6,9 @@ WORKDIR /opt/karina-dash
 
 COPY . .
 
-RUN nmp install
+RUN npm install
 
-RUN nmp install @vue/cli@3.7.0 -g
+RUN npm install @vue/cli -g
 
 EXPOSE 8080
 
