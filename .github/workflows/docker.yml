@@ -1,18 +1,41 @@
-name: Publish Docker
+name: Create Docker
 on:
   push:
     branches:
-      - master
+    - master
+
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
+    container: 
+      image: node
     steps:
     - uses: actions/checkout@master
-    - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: simbatsuro/karina
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        snapshot: true
-        tag_names: true
+    - name: Installing dependencies
+      run: npm install
+    - name: Build project
+      run: npm run build
+    
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    
+    steps:
+      - uses: actions/checkout@master
+      - name: Login Docker
+        run: Docker login -u {{ secrets.DOCKER_USERNAME }} -p {{ secrets.DOCKER_PASSWORD }}
+      - name: Build docker
+        run: docker build -t karinadashboard .
+      - name: Tag
+        run: |
+          docker tag karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:${{ github.sha }}
+          docker tag karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:latest
+      - name: Push
+        run: |
+          docker push karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:${{ github.sha }}
+          docker push karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:latest         
+          
+          
+          
+          
+          
