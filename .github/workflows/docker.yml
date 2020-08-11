@@ -21,7 +21,6 @@ jobs:
     needs: ci
     
     steps:
-    - name: Checkout code
     - uses: actions/checkout@master
     - name: Build and push image
     - uses: docker/build-push-action@v1
