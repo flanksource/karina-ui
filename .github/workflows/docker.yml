@@ -21,21 +21,14 @@ jobs:
     needs: ci
     
     steps:
+      - name: Checkout code
       - uses: actions/checkout@master
-      - name: Login Docker
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -u ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build docker
-        run: docker build -t karinadashboard .
-      - name: Tag
-        run: |
-          docker tag karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:${{ github.sha }}
-          docker tag karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:latest
-      - name: Push
-        run: |
-          docker push karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:${{ github.sha }}
-          docker push karinadashboard ${{ secrets.DOCKER_USERNAME }}/karinadashboard:latest         
-          
-          
-          
-          
+        
+      - name: Build and push Docker images
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: simbatsuro/karina
+          tags: latest          
           
