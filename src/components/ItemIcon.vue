@@ -1,22 +1,22 @@
 <template>
-  <span class="item">
-    <div v-if="count === '0'">
-      <svg-icon :icon="icon" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
-    </div>
-
-    <div v-else>
-      <v-badge bordered bottom color="deep-purple accent-4" :content="count"
-        offset-x="20"
-        offset-y="15"
-        overlap="true"
-      >
-        <svg-icon :icon="icon" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
+  <span>
+    <div v-if="count === ' '">
+      <v-badge color="transparent" :content="count">
+        <svg-icon :icon="icon" :style="iconStyles" class="icon"></svg-icon>
       </v-badge>
     </div>
 
-    <div class="caption">
-      {{label}}
+    <div v-else>
+      <v-badge bottom :content="count"
+        offset-x="15"
+        offset-y="20"
+        overlap="true"
+      >
+        <svg-icon :icon="icon" :style="iconStyles" class="icon"></svg-icon>
+      </v-badge>
     </div>
+
+    <v-text class="text-size">{{label}}</v-text>
   </span>
 </template>
 
@@ -46,20 +46,10 @@
 </script>
 
 <style scoped>
-  .centre{
-    align-content: center;
-    padding: 0px 20px;
-  }
   .icon {
     font-size: 48px; 
   }
-  .item {
-    vertical-align: top;
-    display: inline-block;
-    text-align: center;
-    width: 120px;
-  }
-  .caption {
-    display: block;
+  .text-size{
+    font-size: 12px;
   }
 </style>

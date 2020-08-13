@@ -1,17 +1,15 @@
 <template>
-  <v-card class="mx-auto" color="white lighten-4" max-width="600">
-    <v-card-title>
-      <v-row align="start">
-        <v-icon :color="indigo" class="mr-3" size="24">mdi-memory</v-icon>
-     
-        <div class="caption grey--text text-uppercase">Memory Usage</div>
-
-        <div class="no">
-          <span class="display-2 font-weight-black" v-text="50"></span>
+  <v-card>
+      <v-row>
+        <v-col>
+        <v-icon :color="indigo">mdi-memory</v-icon>
+        <v-text class="text-size">
+          Memory Usage
+          <span v-text="50"></span>
           <span>%</span>
-        </div>
-      </v-row>    
-    </v-card-title>
+        </v-text>
+      </v-col>
+    </v-row>
 
     <v-sheet color="transparent">
       <v-sparkline
