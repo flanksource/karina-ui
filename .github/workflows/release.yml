@@ -29,8 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.0.4
-          release_name: Pre-Release v0.0.4
+          tag_name: v0.0.5
+          release_name: Pre-Release v0.0.5
           body: |
             #Initial Release
           draft: false
@@ -43,7 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./karina-ui-assets.zip
+          asset_path: ./src/karina-ui-assets.zip
           asset_name: karina-ui-assets.zip
           asset_content_type: application/zip
  
