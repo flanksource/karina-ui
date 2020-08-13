@@ -19,9 +19,9 @@ jobs:
           files: ./src/assets
           dest: ./src/karina-ui-assets.zip
 
-      - name: Build project
-        run: |
-           zip --junk-paths karina-ui README.md
+     # - name: Build project
+     #   run: |
+     #      zip --junk-paths karina-ui README.md
            
       - name: Create release
         id: create_release
