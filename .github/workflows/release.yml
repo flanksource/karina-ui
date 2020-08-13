@@ -28,8 +28,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.0.2
-          release_name: Pre-Release v0.0.2
+          tag_name: v0.0.3
+          release_name: Pre-Release v0.0.3
           body: |
             #Initial Release
           draft: false
