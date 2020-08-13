@@ -14,9 +14,10 @@ jobs:
         uses: actions/checkout@master
         
       - name: Archive assets folder
-        uses: montudor/action-zip@master
+        uses: papeloto/action-zip@v1
         with:
-          args: zip -qq -r ./karina-ui-assets.zip ./assets
+          files: ./src/assets
+          dest: ./src/karina-ui-assets.zip
 
       - name: Build project
         run: |
@@ -28,8 +29,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.0.3
-          release_name: Pre-Release v0.0.3
+          tag_name: v0.0.4
+          release_name: Pre-Release v0.0.4
           body: |
             #Initial Release
           draft: false
