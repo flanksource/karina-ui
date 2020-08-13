@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-app-bar app color="indigo" dark>
-      <v-toolbar-title><b>Karina</b> - The Kubernetes Dashboard</v-toolbar-title>
+      <v-toolbar-title><b>Karina</b> - The Kubernetes GUI Dashboard</v-toolbar-title>
     </v-app-bar>
 
     <v-main class="grey lighten-5">
