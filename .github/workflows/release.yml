@@ -2,7 +2,7 @@ name: Create release and upload asset(s)
 on:
   push:
     branches:
-      issue-27
+      master
     tags:
       - 'v*'
 
@@ -18,10 +18,6 @@ jobs:
         with:
           files: ./src/assets
           dest: ./src/karina-ui-assets.zip
-
-     # - name: Build project
-     #   run: |
-     #      zip --junk-paths karina-ui README.md
            
       - name: Create release
         id: create_release
@@ -29,9 +25,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.0.6 #${{ github.ref }}
-          release_name: Release v0.0.6 #${{ github.ref }}
-            #Initial Release
+          tag_name: v0.0.1
+          release_name: Release v0.0.1
+            Initial Release
           draft: false
           prerelease: false
 
