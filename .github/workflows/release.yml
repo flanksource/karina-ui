@@ -16,11 +16,11 @@ jobs:
       - name: Archive assets folder
         uses: montudor/action-zip@master
         with:
-          args: zip -qq -r ./karina-ui-assets.zip ./src/assets
+          args: zip -qq -r ./karina-ui-assets.zip ./assets
 
       - name: Build project
         run: |
-           zip --junk-paths my-artifacts README.md
+           zip --junk-paths karina-ui README.md
            
       - name: Create release
         id: create_release
