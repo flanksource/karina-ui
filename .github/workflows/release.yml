@@ -2,7 +2,7 @@ name: Create release and upload asset(s)
 on:
   push:
     branches:
-      master
+      issue-27
     tags:
       - 'v*'
 
@@ -29,12 +29,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v0.0.5
-          release_name: Pre-Release v0.0.5
-          body: |
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
             #Initial Release
           draft: false
-          prerelease: true
+          prerelease: false
 
       - name: Upload release asset
         id: upload-release-asset
