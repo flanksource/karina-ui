@@ -34,8 +34,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./karina-assets.zip
-          asset_name: karina-assets.zip
+          asset_path: ../../src/assets
+          asset_name: assets
           asset_content_type: application/zip
  
 
