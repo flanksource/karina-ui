@@ -1,16 +1,18 @@
 <template>
   <span>
-    <div v-if="content === '0'">
-      <svg-icon :icon="icon" :hasFill="true" :color="color"></svg-icon>
-
-      {{label}}
-    </div>
-
-    <div v-else>
-      <v-badge color="deep-purple accent-4" :content="content" inline="true">
+    <div v-if="content === ' '">
+      <v-badge :color="colour" :content="content" inline="true">
         <svg-icon :icon="icon" :hasFill="false" :color="color"></svg-icon>
 
-        {{label}}
+        <v-text class="pl-1 text-size">{{label}}</v-text>
+      </v-badge>  
+    </div>
+
+    <div v-else >
+      <v-badge :color="colour" :content="content" inline="true">
+        <svg-icon :icon="icon" :hasFill="false" :color="color"></svg-icon>
+
+        <v-text class="pl-1 text-size">{{label}}</v-text>
       </v-badge>  
     </div>
   </span>
@@ -29,6 +31,13 @@
       icon: String,
       label: String,
       content: String,
+      colour: String,
     },
   }
 </script>
+
+<style scoped>
+  .text-size{
+    font-size: 12px;
+  }
+</style>

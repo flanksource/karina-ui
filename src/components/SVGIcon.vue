@@ -22,7 +22,7 @@
             },
             hasFill: {
                 type: Boolean,
-                default: false
+                default: true
             },
             growByHeight: {
                 type: Boolean,

@@ -1,27 +1,21 @@
 <template>
-  <v-card flat class="fit-parent px-3">
-    <v-row align="center" no-gutters>
-      <v-col cols="12" md="2">
-     
+  <v-row align="center" class="pl-5">
+    <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="pa-0">
+      <v-img :aspect-ratio="1/1" :src="require(`@/assets/svg/${iconlg}`)" width=32></v-img>
+    </v-col>
 
-    <img :src="require(`@/assets/svg/${iconlg}`)" width=48/>
-      
-
-      </v-col>
-
-      <v-col cols="12" md="10" class="card-bottom">
-        <v-row>
-          <v-col
-            v-for="(indicatoricon, i) in indicatoricons"
-            :key="i"
-            cols="12" md="1" class="ten-cols"
-          >
-            <IndicatorIcon :shape="indicatoricon.shape" :colour="indicatoricon.color" :overlay="indicatoricon.overlay"/> 
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-card>
+    <v-col cols="10" xs="10" sm="8" md="8" lg="8" xl="8" class="pa-0 bordered">
+      <v-row no-gutters >
+        <v-span
+          v-for="(indicatoricon, i) in indicatoricons"
+          :key="i"
+          class="ten-abreast" 
+        >
+          <IndicatorIcon :shape="indicatoricon.shape" :colour="indicatoricon.color" :overlay="indicatoricon.overlay"/> 
+        </v-span>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -40,14 +34,10 @@
 </script>
 
 <style scoped>
-  .card-bottom  {
-    border-bottom: 1px dashed black !important;
-  }
-  .ten-cols {
+  .ten-abreast {
     min-width: 10%;
   }
-  .fit-parent{
-    width: 100%;
-    padding-top: 10px;
+  .bordered{
+    border-bottom: 1px dashed #111;
   }
 </style>
