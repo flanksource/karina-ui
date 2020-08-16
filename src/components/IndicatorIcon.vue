@@ -1,10 +1,8 @@
 <template>
   <span class="parent">
-    <svg-icon :icon="shape" :hasFill="true" :style="iconStyles" class="icon"></svg-icon>
+    <svg-icon :icon="shape" :style="iconStyles" class="icon"></svg-icon>
     
-    <v-icon icon="" color="white" size="14" class="overlay">
-      {{ overlay }}
-    </v-icon> 
+    <v-icon color="white" class="overlay">{{ overlay }}</v-icon> 
   </span>
 </template>
 
@@ -39,17 +37,16 @@
     position: relative;
     top: 0;
     left: 0;
-    font-size: 20px;
   }
   .icon {
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 20px;
   }
   .overlay {
-    position: absolute;
-    top: 0;
-    left: 3px;
+    position: relative;
+    top: -3px;
+    left: 2px;
+    font-size: 12px;
   }
 </style>
