@@ -18,7 +18,15 @@
       </v-col>
     </v-row>
 
-    <Pipeline/>
+    <v-carousel touch light height="auto" :show-arrows="false" hide-delimiter-background delimiter-icon="mdi-monitor-multiple">
+      <v-carousel-item
+        v-for="(cluster, i) in clusters"
+        :key="i"
+      >
+        <!-- <Pipeline :cluster="cluster" @changeName="cluster.id = $event"/> -->
+        <Pipeline :cluster="cluster"/>
+      </v-carousel-item>
+    </v-carousel>
 
     <v-row no-gutters align="center" justify="space-around" class="py-2">
       <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
@@ -49,7 +57,7 @@
     },
     data () {
       return {
-        stats: stats
+        clusters: stats.clusters
       }
     }
   }

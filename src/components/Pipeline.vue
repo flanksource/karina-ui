@@ -1,6 +1,10 @@
 <template> 
-  <v-row no-gutters justify="">   
+  <div class="pb-12">
+  <v-row no-gutters justify="" class="">   
     <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
+       <v-text class="ml-5" justify=""><b><u>Panel {{ cluster.id }}</u></b></v-text> 
+
+       <!-- <button @click='changeName()'>Change ID</button> -->
       <br/>
       <MemoryCard/>
       <br/>
@@ -10,16 +14,17 @@
     
     <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
       <v-card flat class="ml-3 py-3">
-        <ItemList :items="stats.items"/>
+        <ItemList :items="cluster.items"/>
       </v-card>
     </v-col>
     
     <v-col cols="12" xs="12" sm="7" md="7" lg="6" xl="6" class="indicator-list">
       <v-card flat class="mr-4 py-3">
-        <IndicatorList :indicators="stats.indicators"/>
+        <IndicatorList :indicators="cluster.indicators"/>
       </v-card>
     </v-col>
     </v-row>
+</div>
 </template>
      
 <script>
@@ -27,18 +32,20 @@
   import IndicatorList from './IndicatorList.vue'
   import ItemList from './ItemList.vue'
   import MemoryCard from './MemoryCard.vue'
-  import stats from '../data/sample.json'
 
   export default {
     name: 'IndicatorPanel',
     components:{
       ItemList, IndicatorList, MemoryCard, CPUCard
     },
-    data () {
-      return {
-        stats: stats
+    props: {
+      cluster: Object,
+    },
+ /*   methods: {
+      changeName() {
+        this.$emit('changeName', 5)
       }
-    }
+    }*/
   }
 </script>
 

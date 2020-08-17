@@ -1,18 +1,29 @@
 {
-  "items": [
-    {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
-    {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": " ", "badgecolour": ""},
-    {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": " ", "badgecolour": ""},
-    {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": "1", "badgecolour": "#336600"},
-    {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": "3", "badgecolour": "#990000"},
-    {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": "2", "badgecolour": "#b3b3b3"},
-    {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": " ", "badgecolour": ""},
-    {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": " ", "badgecolour": ""},
-    {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": " ", "badgecolour": ""}
-  ],
-  "indicators": [
+  "clusters": [
+    {
+      "id": 1,
+      "name": "A",
+      "itemicons": [
+        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
+        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+      ],
+      "items": [
+        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
+        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": " ", "badgecolour": ""},
+        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": " ", "badgecolour": ""},
+        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": "1", "badgecolour": "#336600"},
+        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": "3", "badgecolour": "#990000"},
+        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": "2", "badgecolour": "#b3b3b3"},
+        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": " ", "badgecolour": ""},
+        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": " ", "badgecolour": ""},
+        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": " ", "badgecolour": ""}
+      ],
+      "indicators": [
         { 
-          "id": "1",
+          "id": 1,
           "indicator_icon_lg": "heartline.svg",
           "indicator_icons": [
             {"id":"1","color":"", "shape":"", "overlay":""},
@@ -21,10 +32,258 @@
           ]
         },
         { 
-          "id": "2",
+          "id": 2,
           "indicator_icon_lg": "cluster.svg",
           "indicator_icons": [
+            {"id":1,"color":"", "shape":"", "overlay":""},
+            {"id":2,"color":"", "shape":"", "overlay":""},
+            {"id":3,"color":"", "shape":"", "overlay":""}
+          ]
+        },
+        { 
+          "id": 3,
+          "indicator_icon_lg": "birdie.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":2,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":3,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":4,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":5,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":6,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":7,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":8,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":9,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":10,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":11,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":12,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":13,"color":"#994c00", "shape":"heart", "overlay":""},
+            {"id":14,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":15,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":16,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":17,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":18,"color":"#990000", "shape":"heart", "overlay":""},
+            {"id":19,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":20,"color":"#336600", "shape":"heart", "overlay":""}
+          ]
+        },
+        { 
+          "id": 4,
+          "indicator_icon_lg": "idea.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#4d9900", "shape":"square", "overlay":"`"},
+            {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":3,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":4,"color":"#4d9900", "shape":"square", "overlay":""}
+          ]
+        },
+        { 
+          "id": 5,
+          "indicator_icon_lg": "server.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":3,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":4,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":5,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":6,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":7,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":8,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":9,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":10,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":11,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":12,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":13,"color":"#4d9900", "shape":"square", "overlay":"mdi-chart-bell-curve-cumulative"},
+            {"id":14,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":15,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":16,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":17,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":18,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":19,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":20,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":21,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":22,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":23,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":24,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":25,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":26,"color":"#990000", "shape":"square", "overlay":"mdi-bell"},
+            {"id":27,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":28,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":29,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":30,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":31,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":32,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":33,"color":"#994c00", "shape":"square", "overlay":"mdi-bell"},
+            {"id":34,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":35,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":36,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":37,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":38,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":39,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":40,"color":"#4d9900", "shape":"square", "overlay":""}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "B",
+      "itemicons": [
+        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
+        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+      ],
+      "items": [
+        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
+        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": " ", "badgecolour": ""},
+        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": " ", "badgecolour": ""},
+        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": "1", "badgecolour": "#336600"},
+        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": "3", "badgecolour": "#990000"},
+        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": "2", "badgecolour": "#b3b3b3"},
+        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": " ", "badgecolour": ""},
+        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": " ", "badgecolour": ""},
+        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": " ", "badgecolour": ""}
+      ],
+      "indicators": [
+        { 
+          "id": 1,
+          "indicator_icon_lg": "heartline.svg",
+          "indicator_icons": [
             {"id":"1","color":"", "shape":"", "overlay":""},
+            {"id":"2","color":"", "shape":"", "overlay":""},
+            {"id":"3","color":"", "shape":"", "overlay":""}
+          ]
+        },
+        { 
+          "id": 2,
+          "indicator_icon_lg": "cluster.svg",
+          "indicator_icons": [
+            {"id":1,"color":"", "shape":"", "overlay":""},
+            {"id":2,"color":"", "shape":"", "overlay":""},
+            {"id":3,"color":"", "shape":"", "overlay":""}
+          ]
+        },
+        { 
+          "id": 3,
+          "indicator_icon_lg": "birdie.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":2,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":3,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":4,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":5,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":6,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":7,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":8,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":9,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":10,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":11,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":12,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":13,"color":"#994c00", "shape":"heart", "overlay":""},
+            {"id":14,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":15,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":16,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":17,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":18,"color":"#990000", "shape":"heart", "overlay":""},
+            {"id":19,"color":"#336600", "shape":"heart", "overlay":""},
+            {"id":20,"color":"#336600", "shape":"heart", "overlay":""}
+          ]
+        },
+        { 
+          "id": 4,
+          "indicator_icon_lg": "idea.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#4d9900", "shape":"square", "overlay":"`"},
+            {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":3,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":4,"color":"#4d9900", "shape":"square", "overlay":""}
+          ]
+        },
+        { 
+          "id": 5,
+          "indicator_icon_lg": "server.svg",
+          "indicator_icons": [
+            {"id":1,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":3,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":4,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":5,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":6,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":7,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":8,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":9,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":10,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":11,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":12,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":13,"color":"#4d9900", "shape":"square", "overlay":"mdi-chart-bell-curve-cumulative"},
+            {"id":14,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":15,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":16,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":17,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":18,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":19,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":20,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":21,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":22,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":23,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":24,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":25,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":26,"color":"#990000", "shape":"square", "overlay":"mdi-bell"},
+            {"id":27,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":28,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":29,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":30,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":31,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":32,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":33,"color":"#994c00", "shape":"square", "overlay":"mdi-bell"},
+            {"id":34,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":35,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":36,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":37,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":38,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":39,"color":"#4d9900", "shape":"square", "overlay":""},
+            {"id":40,"color":"#4d9900", "shape":"square", "overlay":""}
+          ]
+        }
+      ]
+    },
+      {
+      "id": 3,
+      "name": "C",
+      "itemicons": [
+        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
+        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+      ],
+      "items": [
+        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
+        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": " ", "badgecolour": ""},
+        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": " ", "badgecolour": ""},
+        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": "1", "badgecolour": "#336600"},
+        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": "3", "badgecolour": "#990000"},
+        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": "2", "badgecolour": "#b3b3b3"},
+        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": " ", "badgecolour": ""},
+        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": " ", "badgecolour": ""},
+        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": " ", "badgecolour": ""}
+      ],
+      "indicators": [
+        { 
+          "id": 1,
+          "indicator_icon_lg": "heartline.svg",
+          "indicator_icons": [
+            {"id":"1","color":"", "shape":"", "overlay":""},
+            {"id":"2","color":"", "shape":"", "overlay":""},
+            {"id":"3","color":"", "shape":"", "overlay":""}
+          ]
+        },
+        { 
+          "id": 2,
+          "indicator_icon_lg": "cluster.svg",
+          "indicator_icons": [
+            {"id":1,"color":"", "shape":"", "overlay":""},
             {"id":2,"color":"", "shape":"", "overlay":""},
             {"id":3,"color":"", "shape":"", "overlay":""}
           ]
@@ -113,3 +372,5 @@
         }
       ]
     }
+  ]
+}
