@@ -1,7 +1,7 @@
 
 FROM golang:1.13.6 as builder
 WORKDIR /app
-COPY pkg/ /app
+COPY pkg/ /app/pkg/
 COPY main.go /app
 COPY go.mod /app
 ARG NAME
