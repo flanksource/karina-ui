@@ -7,8 +7,7 @@
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "}
       ],
       "items": [
         {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
@@ -131,8 +130,7 @@
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "}
       ],
       "items": [
         {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},
@@ -255,8 +253,7 @@
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":"5"},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":"2"},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample", "count":" "}
+        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":" "}
       ],
       "items": [
         {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": " ", "badgecolour": ""},

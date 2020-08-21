@@ -1,32 +1,17 @@
 <template> 
   <v-card>
     <v-row no-gutters align="center" justify="space-around" class="py-2 ml-4">
-      <v-col cols="3" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#f8cecc" label="Change Config" count="5"/>
-      </v-col>
-
-      <v-col cols="3" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#666666" label="Downgrade Version" count="2"/>
-      </v-col>
-
-      <v-col cols="3" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Bump Replicas" count=" "/>
-      </v-col>
-
-      <v-col cols="3" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
+   
+      <v-col
+        cols="3" sm="3" md="3" lg="3" xl="3"
+        v-for="(itemicon, i) in itemicons"
+        :key="i"
+      >
+        <ItemIcon :icon="itemicon.icon" :colour="itemicon.colour" :label="itemicon.label" :count="itemicon.count"/>
       </v-col>
     </v-row>
 
-    <v-carousel touch light height="auto" :show-arrows="false" hide-delimiter-background delimiter-icon="mdi-monitor-multiple">
-      <v-carousel-item
-        v-for="(cluster, i) in clusters"
-        :key="i"
-      >
-        <!-- <Pipeline :cluster="cluster" @changeName="cluster.id = $event"/> -->
-        <Pipeline :cluster="cluster"/>
-      </v-carousel-item>
-    </v-carousel>
+    <Pipeline :cluster="cluster"/>
 
     <v-row no-gutters align="center" justify="space-around" class="py-2">
       <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
@@ -48,17 +33,15 @@
  
   import ItemIcon from './ItemIcon.vue'
   import Pipeline from './Pipeline.vue'
-  import stats from '../data/sample.json'
 
   export default {
     name: 'IndicatorPanel',
     components:{
       ItemIcon, Pipeline
     },
-    data () {
-      return {
-        clusters: stats.clusters
-      }
+    props:{
+      cluster: Object,
+      itemicons: Object
     }
   }
 </script>

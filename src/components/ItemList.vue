@@ -1,5 +1,6 @@
 <template>
   <span>
+    <v-text><b><u>Panel {{ id }}</u></b></v-text>
     <span
       v-for="(item, i) in items"
       :key="i"
@@ -19,6 +20,7 @@
       ItemCard
     },
     props: {
+      id: Number,
       items: Object,
     },  
   }
