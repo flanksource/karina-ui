@@ -7,13 +7,18 @@
     <v-main>
       <v-container fluid>
         <v-row>
-          <v-col cols="12" xs="12" sm="12" md="6" lg="6" xl="6">
+          <v-col
+            cols="12" xs="12" sm="12" md="6" lg="6" xl="6"
+            v-for="(cluster, i) in clusters"
+            :key="i"
+          >
             <v-row no-gutters>
               <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
-                <IndicatorPanel/>
+                <IndicatorPanel :cluster="cluster" :itemicons="cluster.itemicons"/>
               </v-col>
             </v-row>
           </v-col>
+         
         </v-row>
       </v-container>
     </v-main>
@@ -22,10 +27,16 @@
 
 <script>
  import IndicatorPanel from './components/IndicatorPanel.vue'
+ import stats from './data/sample.json'
 
   export default {
     components:{
      IndicatorPanel
     },
+    data () {
+      return {
+        clusters: stats.clusters
+      }
+    }
   }
 </script>
