@@ -1,13 +1,23 @@
-<template> 
+<template>
+
   <v-card>
-    <v-row no-gutters align="center" justify="space-around" class="py-2 ml-4">
-   
+    <v-row
+      no-gutters
+      align="center"
+      justify="space-around"
+      class="py-2 ml-4"
+    >
       <v-col
         cols="3" sm="3" md="3" lg="3" xl="3"
         v-for="(itemicon, i) in itemicons"
         :key="i"
       >
-        <ItemIcon :icon="itemicon.icon" :colour="itemicon.colour" :label="itemicon.label" :count="itemicon.count"/>
+        <ItemIcon
+          :icon="itemicon.icon"
+          :colour="itemicon.colour"
+          :label="itemicon.label"
+          :count="itemicon.count"
+        />
       </v-col>
     </v-row>
 
@@ -15,18 +25,19 @@
 
     <v-row no-gutters align="center" justify="space-around" class="py-2">
       <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-       <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
+       <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count="0"/>
       </v-col>
 
       <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
+        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count="0"/>
       </v-col>
 
       <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
+        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count="0"/>
       </v-col>
     </v-row>
   </v-card>
+
 </template>
      
 <script>
@@ -36,28 +47,35 @@
 
   export default {
     name: 'IndicatorPanel',
+
     components:{
-      ItemIcon, Pipeline
+      ItemIcon, 
+      Pipeline
     },
+
     props:{
       cluster: Object,
-      itemicons: Object
+      itemicons: Array,
     }
   }
+
 </script>
 
 <style scoped>
-  .item-list{
+
+  .item-list {
     border-top-left-radius: 20px !important;
     border-bottom-left-radius: 20px !important;
     min-height: 100%;
     border-right: none;
     border: 1px solid #444;
   }
- .indicator-list{
+
+ .indicator-list {
     border-top-right-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
     border-left: 2px solid #222;
     border: 1px solid #444;
   }
+
 </style>
