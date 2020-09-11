@@ -46,7 +46,7 @@
     computed: {
       iconStyles() {
         return {
-          "fill": this.colour,
+          "color": this.colour,
         };
       }
     },
