@@ -14,7 +14,10 @@
           >
             <v-row no-gutters>
               <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
-                <IndicatorPanel :cluster="cluster" :itemicons="cluster.itemicons"/>
+                <IndicatorPanel
+                  :cluster="cluster"
+                  :itemicons="cluster.itemicons"
+                />
               </v-col>
             </v-row>
           </v-col>
@@ -26,13 +29,16 @@
 </template>
 
 <script>
- import IndicatorPanel from './components/IndicatorPanel.vue'
- import stats from './data/sample.json'
+
+  import IndicatorPanel from './components/IndicatorPanel.vue'
+  import stats from './data/sample.json'
 
   export default {
+
     components:{
-     IndicatorPanel
+      IndicatorPanel
     },
+
     data () {
       return {
         clusters: stats.clusters

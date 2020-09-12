@@ -1,14 +1,24 @@
 <template>
+
   <span>
-    <v-text><b><u>Panel {{ id }}</u></b></v-text>
+    <span class="cluster-title">
+     {{ id }}
+    </span>
+
     <span
       v-for="(item, i) in items"
       :key="i"
       class="no-events"
     >
-      <ItemCard  :label="item.label" :icon="item.icon" :content="item.badge" :colour="item.badgecolour"/>
+      <ItemCard
+        :label="item.label"
+        :icon="item.icon"
+        :content="item.badge"
+        :colour="item.badgecolour"
+      />
     </span>
   </span>
+
 </template>
 
 <script>
@@ -16,18 +26,28 @@
 
   export default {
     name: 'ItemList',
+
     components:{
       ItemCard
     },
+
     props: {
       id: Number,
-      items: Object,
+      items: Array,
     },  
   }
+  
 </script>
 
 <style scoped>
-  .no-events{
+
+  .no-events {
     pointer-events: none
   }
+
+  .cluster-title {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
 </style>

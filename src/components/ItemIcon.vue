@@ -1,40 +1,61 @@
 <template>
+
   <span>
-    <div v-if="count === ' '">
-      <v-badge color="transparent" :content="count">
-        <svg-icon :icon="icon" :style="iconStyles" class="icon"></svg-icon>
+    <div v-if="count == 0">
+      <v-badge
+        color=""
+        :content="count"
+      >
+        <svg-icon
+          :icon="icon"
+          :style="iconStyles"
+          class="icon"
+        />
       </v-badge>
     </div>
 
     <div v-else>
-      <v-badge bottom :content="count"
+      <v-badge
+        bottom
+        :content="count"
         offset-x="15"
         offset-y="20"
-        overlap="true"
+        overlap
       >
-        <svg-icon :icon="icon" :style="iconStyles" class="icon"></svg-icon>
+        <svg-icon
+          :icon="icon"
+          :style="iconStyles"
+          class="icon"
+        />
       </v-badge>
     </div>
 
-    <v-text class="text-size">{{label}}</v-text>
+    <span class="text-size">
+      {{ label }}
+    </span>
   </span>
+
 </template>
 
 <script>
+
   import SvgIcon from './SVGIcon.vue';
 
   export default {
     name: 'ItemIcon',
+
     components: {
       SvgIcon,
     },
+
     props: {
       id: String,
       label: String,
       icon: String,
-      count: Number,
+      count: [Number, String],
       colour: String,
     },
+
     computed: {
       iconStyles() {
         return {
@@ -43,13 +64,17 @@
       }
     },
   }
+
 </script>
 
 <style scoped>
+
   .icon {
     font-size: 48px; 
   }
+
   .text-size{
     font-size: 12px;
   }
+  
 </style>
