@@ -2,7 +2,7 @@
 
   <span>
     <span class="cluster-title">
-      Panel {{ id }}
+     {{ id }}
     </span>
 
     <span
