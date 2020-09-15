@@ -3,13 +3,14 @@ package api
 import (
 	"time"
 
-	"github.com/flanksource/canary-checker/pkg"
+	//"github.com/flanksource/canary-checker/pkg"
 )
 
 type Cluster struct {
 	Name         string      `json:"name,omitempty"`
 	Properties   []Property  `json:"properties,omitempty"`
-	CanaryChecks []pkg.Check `json:"canary_checks,omitempty"`
+	//CanaryChecks []pkg.Check `json:"canary_checks,omitempty"`
+	CanaryChecks []CanaryCheck `json:"canary_checks,omitem/pty"`
 	Nodes        []Node      `json:"nodes,omitempty"`
 	Alerts       []Alert     `json:"alerts,omitempty"`
 }

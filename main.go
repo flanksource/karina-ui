@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	//"os/exec"
+	//"strings"
+	//"errors"
 
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/karina-ui/pkg"
@@ -32,6 +35,10 @@ func main() {
 		version = fmt.Sprintf("%v, commit %v, built at %v", version, commit[0:8], date)
 	}
 
+	root.AddCommand(
+		pkg.GetCanary,
+	)
+
 	root.AddCommand(&cobra.Command{
 		Use:   "version",
 		Short: "Print the version of karina-ui",
@@ -53,6 +60,7 @@ func main() {
 			}
 		},
 	})
+
 	root.SetUsageTemplate(root.UsageTemplate() + fmt.Sprintf("\nversion: %s\n ", version))
 	if err := root.Execute(); err != nil {
 		os.Exit(1)

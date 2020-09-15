@@ -29,6 +29,345 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 					Value: "100",
 				},
 			},
+			CanaryChecks: []api.CanaryCheck{
+				{
+					
+					Name:		"dns", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"lan", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		false,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"lan", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		false,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+
+				{
+					
+					Name:		"ldap", 				//NAME
+					Namespace: 	"platform-system", 	//NAMESPACE
+					Type:		"string",
+					Endpoint:  	"string",
+					Latency1H:	"string",			//LATENCY 1H
+					Uptime1H:	"0/2 (0%)",			//UPTIME 1H
+					Status: 	[]api.CanaryCheckStatus{
+						{
+							Pass: 		true,		//STATUS
+							//Timestamp:	null, 	//LAST CHECK INTERVAL LAST TRANSITIONED
+							Message:	"string",	//MESSAGE
+						},
+					},
+				},
+			},
 		},
 	}
 
@@ -37,6 +376,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		resp.WriteHeader(500)
 		resp.Write([]byte(err.Error()))
 	} else {
+		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		resp.Write(json)
 	}
 
