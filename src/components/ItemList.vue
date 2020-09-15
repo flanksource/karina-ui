@@ -1,24 +1,21 @@
 <template>
-
   <span>
-    <span class="cluster-title">
-     {{ id }}
-    </span>
-
+    <v-text><b><u>{{ name }}</u></b></v-text>
     <span
-      v-for="(item, i) in items"
+      v-for="(property, i) in properties"
       :key="i"
       class="no-events"
     >
+
       <ItemCard
-        :label="item.label"
-        :icon="item.icon"
-        :content="item.badge"
-        :colour="item.badgecolour"
+        :label="property.value" 
+        :icon="property.type" 
+        :alerts="getPropertyAlerts(property.alerts)"
+        :alertscolour="property.badgecolour"
       />
+
     </span>
   </span>
-
 </template>
 
 <script>
@@ -26,28 +23,37 @@
 
   export default {
     name: 'ItemList',
-
+    
     components:{
       ItemCard
     },
 
     props: {
-      id: Number,
-      items: Array,
-    },  
+      name: String,
+      properties: Object,
+    },
+
+    methods: {
+      getPropertyAlerts(alerts){
+
+        var count = 0;
+
+        if (alerts) {
+          count = alerts.length;
+        }
+
+        else {
+          count = 0;
+        }
+
+        return count;      
+      }
+    }
   }
-  
 </script>
 
 <style scoped>
-
-  .no-events {
+  .no-events{
     pointer-events: none
   }
-
-  .cluster-title {
-    text-decoration: underline;
-    font-weight: bold;
-  }
-
 </style>

@@ -1,71 +1,46 @@
 <template>
-
   <span>
-    <div v-if="content === 0">
-      <v-badge
-        color=" "
-        :content="content"
-        inline
-      >
-        <svg-icon
-          :icon="icon"
-          :hasFill="false"
-          :color="colour"
-        />
+    <div v-if="alerts === 0">
+ 
+      <v-badge color="" :content="alerts" inline="true">
 
-        <span class="pl-1 text-size">
-          {{ label }}
-        </span>
+        <svg-icon :icon="icon" :hasFill="false" color=""></svg-icon>
+
+        <v-text class="pl-1 text-size">{{label}}</v-text>
       </v-badge>  
     </div>
 
     <div v-else >
-      <v-badge
-        :color="colour"
-        :content="content"
-        inline
-      >
-        <svg-icon
-          :icon="icon"
-          :hasFill="false"
-          :color="colour"
-        />
+      <v-badge color="#b3b3b3" :content="alerts" inline="true">
 
-        <span class="pl-1 text-size">
-          {{ label }}
-        </span>
+        <svg-icon :icon="icon" :hasFill="false" color=""></svg-icon>
+
+        <v-text class="pl-1 text-size">{{label}}</v-text>
       </v-badge>  
-    </div>
-  </span>
 
+    </div> 
+  </span>
 </template>
 
 <script>
-
   import SvgIcon from './SVGIcon.vue';
 
   export default {
     name: 'ItemCard',
-
     components: {
       'svg-icon': SvgIcon,
     },
-
     props: {
-      source: String,
       icon: String,
       label: String,
-      content: Number,
-      colour: String,
+      alerts: String,
+      alertscolour: String,
     },
   }
-
 </script>
 
 <style scoped>
-
   .text-size{
     font-size: 12px;
   }
-
 </style>

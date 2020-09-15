@@ -6,6 +6,26 @@
 
     <v-main>
       <v-container fluid>
+
+        <v-row>
+          <v-col
+            cols="12" xs="12" sm="12" md="6" lg="6" xl="6"
+            v-for="(apicluster, i) in apiclusters"
+            :key="i"
+          >
+            <v-row no-gutters>
+              <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
+                <IndicatorPanel :cluster="apicluster"/>
+              </v-col>
+            </v-row>
+          </v-col>
+         
+        </v-row>
+
+        <hr>
+        <span> Old Interface </span>
+        <hr>
+
         <v-row>
           <v-col
             cols="12" xs="12" sm="12" md="6" lg="6" xl="6"
@@ -41,8 +61,15 @@
 
     data () {
       return {
-        clusters: stats.clusters
+        apiclusters: null,
+        clusters: stats.clusters,
       }
+    },
+    mounted() {
+      this.$axios
+        .get('http://localhost:8080/api')
+        .then(response => (this.apiclusters = response.data))
+        .catch(error => console.log(error))  
     }
   }
 </script>
