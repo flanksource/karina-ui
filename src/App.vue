@@ -102,7 +102,7 @@
 
     mounted() {
       this.$axios
-        .get('http://localhost:8080/api')
+        .get('/api')
         .then(response => (this.apiclusters = response.data))
         .catch(error => console.log(error))  
     }
