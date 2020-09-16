@@ -26,14 +26,14 @@ type Canarydata struct {
 }
 
 type Chek struct {
-	Key 			string
-	Type 			string
-	Name  			string
-	Description 	string
-	Uptime 			string
-	Latency 		string
-	CheckStatuses 	[]ChekStatus
-	checkConf 		ChekConf
+	Key 			string 			`json:"key,omitempty"`
+	Type 			string 			`json:"type,omitempty"`
+	Name  			string 			`json:"name,omitempty"`
+	Description 	string 			`json:"description,omitempty"`
+	Uptime 			string 			`json:"uptime,omitempty"`
+	Latency 		string 			`json:"latency,omitempty"`
+	CheckStatuses 	[]ChekStatus 	`json:"checkStatuses,omitempty"`
+	checkConf 		ChekConf 		//`json:"checkConf,omitempty"`
 
 }
 

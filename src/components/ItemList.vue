@@ -32,7 +32,7 @@
     },
 
     props: {
-      id: Number,
+      id: String,
       items: Array,
     },  
   }

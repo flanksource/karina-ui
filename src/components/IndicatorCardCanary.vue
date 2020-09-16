@@ -8,7 +8,7 @@
       cols="2" xs="2" sm="2" md="2" lg="2" xl="2"
       class="pa-0"
     >
- 
+
       <v-img
         :aspect-ratio="1/1"
         :src="require(`@/assets/svg/${indicatoricon}`)"
@@ -27,28 +27,48 @@
           :key="i"
           class="ten-abreast" 
         >
-        {{canarycheck}}
 
-          <span
-            v-for="(check, i) in canarycheck.status"
-            :key="i"
-            class="ten-abreast" 
-          >           
+     
 
-            <span
-                v-if="check.pass == true"
-            >
-              <IndicatorIcon
+         <IndicatorIcon
                 shape="heart"
                 colour="#336600"
                 overlay=""
                 class="clickable-icon"
                 @click.native="selectCheck(canarycheck)"
               /> 
+  <br>
+     
+ 
+          <span
+            v-for="(check, i) in canarycheck.checkStatuses"
+            :key="i"
+            class="ten-abreast" 
+          >       
+
+          {{ check }} 
+
+          </span>  
+
+          <hr> <br> 
+    
+         <!--   <span
+
+                v-if="check.pass == true"
+            > -->
+            <!-- <span>
+              <IndicatorIcon
+                shape="heart"
+                colour="#336600"
+                overlay=""
+                class="clickable-icon"
+                @click.native="selectCheck(check)"
+              /> 
 
             </span>
+           -->
 
-            <span
+        <!--     <span
                 v-else
             >
               <IndicatorIcon
@@ -61,29 +81,25 @@
 
             </span>
 
-        </span>
+        </span> -->
          
             <v-dialog
               v-model="dialog"
-              max-width="290"
+              max-width="500"
             >
               <v-card>
 
        
 
 
-                 <v-card-title class="headline"></v-card-title>
+                 <v-card-title class="headline">{{selectedCheck.name}}</v-card-title>
                 <v-card-text>
-                   {{selectedChecktype}}
-
-      <!--              {{ checktype.name }}
-
-                  Namespace: {{ checktype.namespace }}<br/>
-                  Type: {{ checktype.type }}<br/>
-                  Endpoint: {{ checktype.endpoint }}<br/>
-                  Latency1H: {{ checktype.latency_1_h }}<br/>
-                  Uptime1H: {{ checktype.uptime_1_h }}<br/>
-                  Message: {{ checktype.status.message }}<br/>  -->
+                  Type: {{selectedCheck.type}}<br/>
+                  Description: {{selectedCheck.description}}<br/>
+                  Uptime: {{selectedCheck.uptime}}<br/>
+                  Latency: {{selectedCheck.latency}}<br/>
+                  Statuses: {{selectedCheck.checkStatuses}}<br/>
+                 
                 </v-card-text>
 
 
@@ -111,20 +127,23 @@
 
     props: {
       canarychecks : Array,
+      canarycheck: Object,
       indicatoricon: String,
       item: String,
-      selectedChecktype: Object,
+     // selectedCheck: Object,
     },
 
     data () {
       return {
         dialog: false,
+        selectedCheck: {},
+
       }
     },
 
     methods: {
       selectCheck(canarycheck) {
-        this.selectedChecktype = canarycheck
+        this.selectedCheck = canarycheck
         this.dialog = true
       },
     }
@@ -149,3 +168,7 @@
 }
 
 </style>
+
+
+
+
