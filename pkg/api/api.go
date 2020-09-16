@@ -2,15 +2,12 @@ package api
 
 import (
 	"time"
-
-	//"github.com/flanksource/canary-checker/pkg"
 )
 
 type Cluster struct {
 	Name         string      `json:"name,omitempty"`
 	Properties   []Property  `json:"properties,omitempty"`
-	//CanaryChecks []pkg.Check `json:"canary_checks,omitempty"`
-	CanaryChecks []CanaryCheck `json:"canary_checks,omitem/pty"`
+	CanaryChecks []Chek  	 `json:"canary_checks,omitempty"`
 	Nodes        []Node      `json:"nodes,omitempty"`
 	Alerts       []Alert     `json:"alerts,omitempty"`
 }
@@ -22,7 +19,64 @@ type Property struct {
 	Alerts []Alert `json:"alerts,omitempty"`
 }
 
-type CanaryCheck struct {
+
+type Canarydata struct {
+	ServerName	string 	`json:"server_name,omitempty"`
+	Checks 		[]Chek 	`json:"checks,omitempty"`
+}
+
+type Chek struct {
+	Key 			string
+	Type 			string
+	Name  			string
+	Description 	string
+	Uptime 			string
+	Latency 		string
+	CheckStatuses 	[]ChekStatus
+	checkConf 		ChekConf
+
+}
+
+type ChekStatus struct {
+
+	Status 		bool
+	Invalid 	bool
+	Time  		string
+	Duration	int
+	Message 	string
+}
+
+type ChekConf struct {
+	Server 			string
+	Port 			int
+	Query 			string
+	QueryType 		string
+	Minrecords 		string
+	ExactReply 		[]string
+	Timeout   		int
+	ThresholdMillis int
+
+}
+
+type Node struct {
+	Name   string  `json:"name,omitempty"`
+	IP     string  `json:"ip,omitempty"`
+	Alerts []Alert `json:"alerts,omitempty"`
+}
+
+type Alert struct {
+	Level   string    `json:"level,omitempty"`
+	Since   time.Time `json:"since,omitempty"`
+	Message string    `json:"message,omitempty"`
+}
+
+
+/*type Combo struct {
+	Cluster []Cluster
+	Canary 	Canarydata
+}*/
+
+/*type CanaryCheck struct {
 	Name      string              `json:"name,omitempty"`
 	Namespace string              `json:"namespace,omitempty"`
 	Type      string              `json:"type,omitempty"`
@@ -36,15 +90,4 @@ type CanaryCheckStatus struct {
 	Pass      bool      `json:"pass,omitempty"`
 	Timestamp time.Time `json:"timestamp,omitempty"`
 	Message   string    `json:"message,omitempty"`
-}
-type Node struct {
-	Name   string  `json:"name,omitempty"`
-	IP     string  `json:"ip,omitempty"`
-	Alerts []Alert `json:"alerts,omitempty"`
-}
-
-type Alert struct {
-	Level   string    `json:"level,omitempty"`
-	Since   time.Time `json:"since,omitempty"`
-	Message string    `json:"message,omitempty"`
-}
+}*/

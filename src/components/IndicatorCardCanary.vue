@@ -8,6 +8,7 @@
       cols="2" xs="2" sm="2" md="2" lg="2" xl="2"
       class="pa-0"
     >
+ 
       <v-img
         :aspect-ratio="1/1"
         :src="require(`@/assets/svg/${indicatoricon}`)"
@@ -19,15 +20,17 @@
       cols="10" xs="10" sm="8" md="8" lg="8" xl="8"
       class="pa-0 bordered"
     >
+
       <v-row no-gutters >
         <span
-          v-for="(checktype, i) in checktypes"
+          v-for="(canarycheck, i) in canarychecks"
           :key="i"
           class="ten-abreast" 
         >
+        {{canarycheck}}
 
           <span
-            v-for="(check, i) in checktype.status"
+            v-for="(check, i) in canarycheck.status"
             :key="i"
             class="ten-abreast" 
           >           
@@ -40,7 +43,7 @@
                 colour="#336600"
                 overlay=""
                 class="clickable-icon"
-                @click.native="selectCheck(checktype)"
+                @click.native="selectCheck(canarycheck)"
               /> 
 
             </span>
@@ -53,7 +56,7 @@
                 colour="#990000"
                 overlay=""
                 class="clickable-icon"
-                @click.native="selectCheck(checktype)"
+                @click.native="selectCheck(canarycheck)"
               /> 
 
             </span>
@@ -107,7 +110,7 @@
     },
 
     props: {
-      checktypes: Array,
+      canarychecks : Array,
       indicatoricon: String,
       item: String,
       selectedChecktype: Object,
@@ -120,8 +123,8 @@
     },
 
     methods: {
-      selectCheck(checktype) {
-        this.selectedChecktype = checktype
+      selectCheck(canarycheck) {
+        this.selectedChecktype = canarycheck
         this.dialog = true
       },
     }

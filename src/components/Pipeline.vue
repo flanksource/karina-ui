@@ -1,6 +1,7 @@
 <template>
 
   <div class="pb-12">
+
     <v-row no-gutters>   
       <v-col
         cols="12" xs="12" sm="2" md="2" lg="3" xl="3"
@@ -16,8 +17,8 @@
           class="ml-3 py-3"
         >
           <ItemList
-            :items="cluster.items"
-            :id="cluster.id"
+            :items="cluster.properties"
+            :id="cluster.name"
           />
         </v-card>
       </v-col>
@@ -30,10 +31,11 @@
           flat
           class="mr-4 py-3"
         >
-          <IndicatorList :indicators="cluster.indicators"/>
+          <IndicatorList :canarychecks="cluster.canary_checks"/>
         </v-card>
       </v-col>
     </v-row>
+    
   </div>
 
 </template>

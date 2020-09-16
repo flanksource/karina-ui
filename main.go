@@ -35,9 +35,9 @@ func main() {
 		version = fmt.Sprintf("%v, commit %v, built at %v", version, commit[0:8], date)
 	}
 
-	root.AddCommand(
+	/*root.AddCommand(
 		pkg.GetCanary,
-	)
+	)*/
 
 	root.AddCommand(&cobra.Command{
 		Use:   "version",
