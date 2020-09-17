@@ -27,50 +27,19 @@
           :key="i"
           class="ten-abreast" 
         >
+          <span v-if="canarycheck.checkStatuses">
 
-     
-
-         <IndicatorIcon
-                shape="heart"
-                colour="#336600"
-                overlay=""
-                class="clickable-icon"
-                @click.native="selectCheck(canarycheck)"
-              /> 
-  <br>
-     
- 
-          <span
-            v-for="(check, i) in canarycheck.checkStatuses"
-            :key="i"
-            class="ten-abreast" 
-          >       
-
-          {{ check }} 
-
-          </span>  
-
-          <hr> <br> 
-    
-         <!--   <span
-
-                v-if="check.pass == true"
-            > -->
-            <!-- <span>
+            <span v-if="canarycheck.checkStatuses[0].Status == true">
               <IndicatorIcon
                 shape="heart"
                 colour="#336600"
                 overlay=""
                 class="clickable-icon"
-                @click.native="selectCheck(check)"
-              /> 
-
+                @click.native="selectCheck(canarycheck)"
+              />
             </span>
-           -->
 
-        <!--     <span
-                v-else
-            >
+            <span v-else>
               <IndicatorIcon
                 shape="heart"
                 colour="#990000"
@@ -78,35 +47,61 @@
                 class="clickable-icon"
                 @click.native="selectCheck(canarycheck)"
               /> 
-
             </span>
+          </span>
 
-        </span> -->
-         
-            <v-dialog
-              v-model="dialog"
-              max-width="500"
-            >
-              <v-card>
+          <span v-else>
+            <IndicatorIcon
+              shape="heart"
+              colour="#994c00"
+              overlay=""
+              class="clickable-icon"
+              @click.native="selectCheck(canarycheck)"
+            /> 
+          </span>
 
-       
+          <v-dialog
+            v-model="dialog"
+            max-width="50%"
+          >
+            <v-card>
+              <v-card-title class="headline">{{selectedCheck.name}}</v-card-title>
 
+              <v-card-text>
+                <v-row no-gutters>
+                  <v-col class="ml-0">
+                    <b>Type</b>: {{selectedCheck.type}} 
+                  </v-col>
 
-                 <v-card-title class="headline">{{selectedCheck.name}}</v-card-title>
-                <v-card-text>
-                  Type: {{selectedCheck.type}}<br/>
-                  Description: {{selectedCheck.description}}<br/>
-                  Uptime: {{selectedCheck.uptime}}<br/>
-                  Latency: {{selectedCheck.latency}}<br/>
-                  Statuses: {{selectedCheck.checkStatuses}}<br/>
-                 
-                </v-card-text>
+                  <v-col>
+                    <b>Uptime</b>: {{selectedCheck.uptime}}
+                  </v-col>
 
+                  <v-col>
+                    <b>Latency</b>: {{selectedCheck.latency}}
+                  </v-col>
+                </v-row>
 
-              </v-card>
-            </v-dialog>
+                <v-row>
+                  <b>Description</b>: {{selectedCheck.description}}
+                </v-row>
 
-
+                <v-row>
+                  <span
+                    v-for="(status, i) in selectedCheck.checkStatuses"
+                    :key="i"
+                  >
+                    <b>Status {{i + 1}}</b>: <br/>
+                    Status: {{status.Status}} <br/>
+                    Validity: {{status.Invalid}} <br/>
+                    Time: {{status.Time}} <br/>
+                    Duration: {{status.Duration}} <br/>
+                    Message: {{status.Message}} <br/>
+                  </span>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </span>
       </v-row>
     </v-col>
@@ -127,17 +122,13 @@
 
     props: {
       canarychecks : Array,
-      canarycheck: Object,
       indicatoricon: String,
-      item: String,
-     // selectedCheck: Object,
     },
 
     data () {
       return {
         dialog: false,
         selectedCheck: {},
-
       }
     },
 
@@ -147,8 +138,6 @@
         this.dialog = true
       },
     }
-
-
   }
 
 </script>
@@ -163,12 +152,8 @@
     border-bottom: 1px dashed #111;
   }
 
-.clickable-icon {
-  cursor: pointer;
-}
+  .clickable-icon {
+    cursor: pointer;
+  }
 
 </style>
-
-
-
-
