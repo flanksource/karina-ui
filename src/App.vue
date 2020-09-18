@@ -51,7 +51,7 @@
 
     mounted() {
       this.$axios
-        .get('http://localhost:8080/api')
+        .get(/api')
         .then(response => (this.clusters = response.data))
         .catch(error => console.log(error))  
     }
