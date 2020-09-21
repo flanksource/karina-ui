@@ -60,12 +60,19 @@
     },
 
     mounted() {
+
       if ( !DEMO_MODE ) {
-        this.$axios
+        /*this.$axios
           .get('http://localhost:8080/api')
           .then(response => (this.clusters = response.data))
-          .catch(error => console.log(error))
+          .catch(error => console.log(error))*/      
+
+        this.$axios
+          .get('/api')
+          .then(response => (this.clusters = response.data))
+          .catch(error => console.log(error)) 
       }
+
     }
   }
 
