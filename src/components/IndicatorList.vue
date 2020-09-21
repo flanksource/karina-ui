@@ -1,12 +1,23 @@
 <template>
 
   <span>
+
+      <span
+      v-for="(indicator, i) in indicators"
+      :key="i"
+ 
+    > 
+      <IndicatorCard
+        :iconlg="indicator.indicator_icon_lg"
+        :indicatoricons="indicator.indicator_icons"
+      />
+    </span>
+
     <span>
       <IndicatorCardCanary
         indicatoricon="birdie.svg"
         :canarychecks="canarychecks"
       /> 
-
     </span>
 
     
@@ -17,13 +28,15 @@
 
 <script>
 
+  import IndicatorCard from './IndicatorCard.vue'
   import IndicatorCardCanary from './IndicatorCardCanary.vue'
 
   export default {
     name: 'IndicatorList',
 
     components: {
-      IndicatorCardCanary
+       IndicatorCard,
+       IndicatorCardCanary,
     },
 
     props:{

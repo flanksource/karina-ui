@@ -2,14 +2,14 @@
   "clusters": [
     {
       "id": 1,
-      "name": "A",
+      "name": "Cluster 01",
       "itemicons": [
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
       ],
-      "items": [
+      "properties": [
         {"id":1, "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
         {"id":2, "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
         {"id":3, "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
@@ -125,14 +125,14 @@
     },
     {
       "id": 2,
-      "name": "B",
+      "name": "Cluster 02",
       "itemicons": [
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
       ],
-      "items": [
+      "properties": [
         {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
         {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
         {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
@@ -248,14 +248,14 @@
     },
       {
       "id": 3,
-      "name": "C",
+      "name": "Cluster 03",
       "itemicons": [
         {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
         {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
       ],
-      "items": [
+      "properties": [
         {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
         {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
         {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},

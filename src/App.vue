@@ -7,8 +7,7 @@
 
     <v-main>
       <v-container fluid>
-  
-          <v-row>
+        <v-row>
           <v-col
             cols="12" xs="12" sm="12" md="6" lg="6" xl="6"
             v-for="(cluster, i) in clusters"
@@ -36,6 +35,9 @@
 <script>
 
   import IndicatorPanel from './components/IndicatorPanel.vue'
+  import stats from './data/sample.json'
+
+  var DEMO_MODE;
 
   export default {
 
@@ -44,16 +46,26 @@
     },
 
     data () {
-      return {
-        clusters: null,
+      if ( DEMO_MODE ){
+        return {
+          clusters: stats.clusters,
+         
+        }
+      }
+      else{
+        return {
+         clusters: null 
+        }
       }
     },
 
     mounted() {
-      this.$axios
-        .get('http://localhost:8080/api')
-        .then(response => (this.clusters = response.data))
-        .catch(error => console.log(error))  
+      if ( !DEMO_MODE ) {
+        this.$axios
+          .get('http://localhost:8080/api')
+          .then(response => (this.clusters = response.data))
+          .catch(error => console.log(error))
+      }
     }
   }
 

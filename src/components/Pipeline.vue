@@ -31,7 +31,9 @@
           flat
           class="mr-4 py-3"
         >
-          <IndicatorList :canarychecks="cluster.canary_checks"/>
+    
+          <IndicatorList :canarychecks="cluster.canary_checks" :indicators="cluster.indicators"/>
+
         </v-card>
       </v-col>
     </v-row>
