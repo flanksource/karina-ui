@@ -37,7 +37,7 @@
   import IndicatorPanel from './components/IndicatorPanel.vue'
   import stats from './data/sample.json'
 
-  var DEMO_MODE;
+  var DEMO_MODE = true;
 
   export default {
 
