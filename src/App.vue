@@ -46,7 +46,7 @@
     },
 
     data () {
-      if ( DEMO_MODE ){
+      if ( window.DEMO_MODE ){
         return {
           clusters: stats.clusters,
          
@@ -61,7 +61,7 @@
 
     mounted() {
 
-      if ( !DEMO_MODE ) {
+      if ( !window.DEMO_MODE ) {
         /*this.$axios
           .get('http://localhost:8080/api')
           .then(response => (this.clusters = response.data))
