@@ -25,7 +25,7 @@ func main() {
 		Use: "karina-ui",
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			logger.UseZap(cmd.Flags())
-			logger.Infof("Starting %s", version)
+			logger.Infof("🏁 Starting %s", version)
 		},
 	}
 
@@ -50,19 +50,31 @@ func main() {
 
 	root.AddCommand(&cobra.Command{
 		Use: "serve",
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(cmd *cobra.Command, args []string){
+			file, _ := cmd.Flags().GetString("c")
+
+
 			http.Handle("/", http.FileServer(http.Dir("./dist/")))
+			
+			fmt.Printf("file: %s\n", file)
+
 			http.HandleFunc("/api", pkg.Serve)
-			logger.Infof("Listening on %s", ":8080")
+			
+			logger.Infof("👂 Listening on %s", ":8080")
+
 
 			if err := http.ListenAndServe(":8080", nil); err != nil {
-				logger.Fatalf("%v", err)
+				logger.Fatalf("❌ %v", err)
 			}
 		},
 	})
 
 	root.SetUsageTemplate(root.UsageTemplate() + fmt.Sprintf("\nversion: %s\n ", version))
+	root.PersistentFlags().String("c", "", "Specify a kubeconfig to use")
+
+
 	if err := root.Execute(); err != nil {
 		os.Exit(1)
 	}
+
 }

@@ -2,7 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
+	//"fmt"
 	"io/ioutil"
 	"net/http"
 	"reflect"
@@ -15,80 +15,51 @@ import (
 )
 
 
-var config = make(map[string]ClusterConfiguration)
-var clusters = []api.Cluster{}
-
-type ClusterConfiguration struct {
-	CanaryChecker string `yaml:"canaryChecker,omitempty"`
-	Prometheus    string `yaml:"prometheus,omitempty"`
-	AlertManager  string `yaml:"alertmanager,omitempty"`
-	// A kubeconfig with connection details to a kubernetes cluster
-	Kubeconfig string `yaml:"kubeconfig,omitempty"`
-}
-
-func ParseConfiguration(path string) (map[string]ClusterConfiguration, error) {
-	
-	data, err := ioutil.ReadFile(path)
-	if err != nil {
-		fmt.Printf("error: %s\n", err)
-		return nil, err
-	}
-	if err := yaml.Unmarshal(data, &config); err != nil {
-		fmt.Printf("yaml error: %s\n", err)
-		return nil, err
-	}
-	return config, err
-}
-
-
-//You would use that snipped to create map of clusters based on a yaml file:
-
-//On startup you pass the config file path as a cobra argument,
-//parse it and
-//then store it in global variable in the Serve method, 
-//you iterate over the map
+var config = make(map[string]api.ClusterConfiguration)
 
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
+	logger.Infof("🚀 Fetching data")
+	var name string
+	var clusters = []api.Cluster{}
+	var clusterConfig, clusterConfigErr = ParseConfiguration("pkg/config/kubeconfig.yml")
 
-	var clusterConfig, erra = ParseConfiguration("pkg/config/kubeconfig.yml")
-
-	//To handle
-	if erra == nil {
-		fmt.Printf("\n")
+	if clusterConfigErr != nil {
+		logger.Fatalf("❌ Cluster configuration failed with: %v", clusterConfigErr)
 	}
 
     keys := reflect.ValueOf(clusterConfig).MapKeys()
-
-    strkeys := make([]string, len(keys))
-    for i := 0; i < len(keys); i++ {
-        strkeys[i] = keys[i].String()
+    if len(keys) < 1 {
+    	logger.Infof("⚠️  Cluster configuration has no data")
     }
 
-    for x := 0; x < len(strkeys); x++{
-    	var clusterKey = strkeys[x]
+    strKeys := make([]string, len(keys))
+    for i := 0; i < len(keys); i++ {
+        strKeys[i] = keys[i].String()
+    }
+
+    for x := 0; x < len(strKeys); x++ {
+    	var clusterKey = strKeys[x]
     	var clusterValues = clusterConfig[clusterKey]
 
-    	var canaryUrl = clusterValues.CanaryChecker
-    	//var prometheusUrl = clusterValues.Prometheus
-    	//var alertManager = clusterValues.AlertManager
-    	//var kubeConfig = clusterValues.Kubeconfig
-    	
-/*    	fmt.Printf("%d\n", x)
-    	fmt.Printf("%v\n", canaryUrl)
-    	fmt.Printf("\n")
-*/
+    	var canaryUrl = clusterValues.CanaryChecker    	
 		var canary api.Canarydata
-		var respCanary, err = net.GET(canaryUrl)
-		json.Unmarshal([]byte(respCanary), &canary)
-
+		var canaryResp, err = net.GET(canaryUrl)
+		json.Unmarshal([]byte(canaryResp), &canary)
 	    if err != nil {
-	      	logger.Infof("Canary Check failed with %s\n", err)
+	      	logger.Fatalf("❌ Canary Check failed with %s\n", err)
 	    }
 
-	    name := "Cluster" + strconv.Itoa(x+1)
 
-	    logger.Infof("Retrieving data...")
+	    //var prometheusUrl = clusterValues.Prometheus
+    	//var alertManager = clusterValues.AlertManager
+    	//var kubeConfig = clusterValues.Kubeconfig
+
+	    if x<10 {
+	    	name = "Cluster0" + strconv.Itoa(x+1)
+	    } else {
+	    	name = "Cluster" + strconv.Itoa(x+1)
+	    }
 	    
 		clusters = append(clusters, api.Cluster{
 			Name: name,
@@ -121,4 +92,16 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		resp.Write(json)
 	}
+}
+
+
+func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	if err := yaml.Unmarshal(data, &config); err != nil {
+		return nil, err
+	}
+	return config, err
 }

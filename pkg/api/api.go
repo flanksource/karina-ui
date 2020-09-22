@@ -70,6 +70,12 @@ type Alert struct {
 	Message string    `json:"message,omitempty"`
 }
 
+type ClusterConfiguration struct {
+	CanaryChecker string `yaml:"canaryChecker,omitempty"`
+	Prometheus    string `yaml:"prometheus,omitempty"`
+	AlertManager  string `yaml:"alertmanager,omitempty"`
+	Kubeconfig 	  string `yaml:"kubeconfig,omitempty"`
+}
 
 /*type Combo struct {
 	Cluster []Cluster
