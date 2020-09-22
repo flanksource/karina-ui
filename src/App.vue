@@ -13,7 +13,6 @@
             v-for="(cluster, i) in clusters"
             :key="i"
           >
-      
             <v-row no-gutters>
               <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
                 <IndicatorPanel
@@ -37,7 +36,7 @@
   import IndicatorPanel from './components/IndicatorPanel.vue'
   import stats from './data/sample.json'
 
-  var DEMO_MODE = true;
+ // var DEMO_MODE = true;
 
   export default {
 
@@ -46,7 +45,7 @@
     },
 
     data () {
-      if ( DEMO_MODE ){
+      if ( window.DEMO_MODE ){
         return {
           clusters: stats.clusters,
          
@@ -61,11 +60,11 @@
 
     mounted() {
 
-      if ( !DEMO_MODE ) {
-        /*this.$axios
+      if ( !window.DEMO_MODE ) {
+       /* this.$axios
           .get('http://localhost:8080/api')
           .then(response => (this.clusters = response.data))
-          .catch(error => console.log(error))*/      
+          .catch(error => console.log(error))      */
 
         this.$axios
           .get('/api')

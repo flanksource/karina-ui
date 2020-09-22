@@ -5,13 +5,18 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"gopkg.in/yaml.v2"
+	"reflect"
+	"strconv"
 
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
+	"gopkg.in/yaml.v2"
 )
 
+
+var config = make(map[string]ClusterConfiguration)
+var clusters = []api.Cluster{}
 
 type ClusterConfiguration struct {
 	CanaryChecker string `yaml:"canaryChecker,omitempty"`
@@ -22,7 +27,7 @@ type ClusterConfiguration struct {
 }
 
 func ParseConfiguration(path string) (map[string]ClusterConfiguration, error) {
-	config := make(map[string]ClusterConfiguration)
+	
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
 		fmt.Printf("error: %s\n", err)
@@ -32,44 +37,61 @@ func ParseConfiguration(path string) (map[string]ClusterConfiguration, error) {
 		fmt.Printf("yaml error: %s\n", err)
 		return nil, err
 	}
-
 	return config, err
 }
 
 
 //You would use that snipped to create map of clusters based on a yaml file:
 
-//On startup you pass the config file path as a cobra argument, parse it and
-//then store it in global variable in the Serve method, you iterate over the map
+//On startup you pass the config file path as a cobra argument,
+//parse it and
+//then store it in global variable in the Serve method, 
+//you iterate over the map
 
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 
-	var x, y = ParseConfiguration("pkg/config/kubeconfig.yml")
+	var clusterConfig, erra = ParseConfiguration("pkg/config/kubeconfig.yml")
 
-	if y == nil {
-		fmt.Printf("y:\n %s\n", y)
+	//To handle
+	if erra == nil {
+		fmt.Printf("\n")
 	}
-	fmt.Printf("x:\n %s\n", x)
 
-	//for 
-	
+    keys := reflect.ValueOf(clusterConfig).MapKeys()
 
-	var canary api.Canarydata
-
-	var respCanary, err = net.GET("https://canaries.hetzner.lab.flanksource.com/api")
-	json.Unmarshal([]byte(respCanary), &canary)
-	
-    if err != nil {
-      	logger.Infof("Canary Check failed with %s\n", err)
+    strkeys := make([]string, len(keys))
+    for i := 0; i < len(keys); i++ {
+        strkeys[i] = keys[i].String()
     }
 
-    logger.Infof("Retrieving data...")
+    for x := 0; x < len(strkeys); x++{
+    	var clusterKey = strkeys[x]
+    	var clusterValues = clusterConfig[clusterKey]
 
-    
-	var clusters = []api.Cluster{
-		{
-			Name: "cluster01",
+    	var canaryUrl = clusterValues.CanaryChecker
+    	//var prometheusUrl = clusterValues.Prometheus
+    	//var alertManager = clusterValues.AlertManager
+    	//var kubeConfig = clusterValues.Kubeconfig
+    	
+/*    	fmt.Printf("%d\n", x)
+    	fmt.Printf("%v\n", canaryUrl)
+    	fmt.Printf("\n")
+*/
+		var canary api.Canarydata
+		var respCanary, err = net.GET(canaryUrl)
+		json.Unmarshal([]byte(respCanary), &canary)
+
+	    if err != nil {
+	      	logger.Infof("Canary Check failed with %s\n", err)
+	    }
+
+	    name := "Cluster" + strconv.Itoa(x+1)
+
+	    logger.Infof("Retrieving data...")
+	    
+		clusters = append(clusters, api.Cluster{
+			Name: name,
 			Properties: []api.Property{
 				{
 					Name:  "CPU",
@@ -88,29 +110,8 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 				},
 			},
 			CanaryChecks: canary.Checks,
-		},
-		{
-			Name: "cluster02",
-			Properties: []api.Property{
-				{
-					Name:  "CPU",
-					Type:  "cpu",
-					Value: "72",
-				},
-				{
-					Name:  "Memory",
-					Type:  "mem",
-					Value: "128",
-				},
-				{
-					Name:  "Disk",
-					Type:  "disk",
-					Value: "100",
-				},
-			},
-			CanaryChecks: canary.Checks,
-		},
-	}
+		})
+    }
 	
 	json, err := json.Marshal(clusters)
 	if err != nil {
@@ -121,5 +122,3 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		resp.Write(json)
 	}
 }
-
-
