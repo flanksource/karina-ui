@@ -59,11 +59,8 @@
     mounted() {
 
       if ( !window.DEMO_MODE ) {
-<<<<<<< HEAD
-       /* this.$axios
-=======
+
         /*this.$axios
->>>>>>> 119a10270c7b12a0019ed373878644fadf76ba64
           .get('http://localhost:8080/api')
           .then(response => (this.clusters = response.data))
           .catch(error => console.log(error))      */
