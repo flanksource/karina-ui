@@ -4,9 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	//"os/exec"
-	//"strings"
-	//"errors"
 
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/karina-ui/pkg"
@@ -35,10 +32,6 @@ func main() {
 		version = fmt.Sprintf("%v, commit %v, built at %v", version, commit[0:8], date)
 	}
 
-	/*root.AddCommand(
-		pkg.GetCanary,
-	)*/
-
 	root.AddCommand(&cobra.Command{
 		Use:   "version",
 		Short: "Print the version of karina-ui",
@@ -51,30 +44,21 @@ func main() {
 	root.AddCommand(&cobra.Command{
 		Use: "serve",
 		Run: func(cmd *cobra.Command, args []string){
-			file, _ := cmd.Flags().GetString("c")
-
-
+			file, _ := cmd.Flags().GetString("config")
+			pkg.ParseConfiguration(file)
 			http.Handle("/", http.FileServer(http.Dir("./dist/")))
-			
-			fmt.Printf("file: %s\n", file)
-
-			http.HandleFunc("/api", pkg.Serve)
-			
+			http.HandleFunc("/api", pkg.Serve)		
 			logger.Infof("👂 Listening on %s", ":8080")
-
 
 			if err := http.ListenAndServe(":8080", nil); err != nil {
 				logger.Fatalf("❌ %v", err)
 			}
 		},
 	})
-
 	root.SetUsageTemplate(root.UsageTemplate() + fmt.Sprintf("\nversion: %s\n ", version))
-	root.PersistentFlags().String("c", "", "Specify a kubeconfig to use")
-
+	root.PersistentFlags().String("config", "", "Specify a kubeconfig to use")
 
 	if err := root.Execute(); err != nil {
 		os.Exit(1)
 	}
-
 }

@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"encoding/json"
-	//"fmt"
 	"io/ioutil"
 	"net/http"
 	"reflect"
@@ -14,21 +13,14 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-
 var config = make(map[string]api.ClusterConfiguration)
-
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var name string
 	var clusters = []api.Cluster{}
-	var clusterConfig, clusterConfigErr = ParseConfiguration("pkg/config/kubeconfig.yml")
 
-	if clusterConfigErr != nil {
-		logger.Fatalf("❌ Cluster configuration failed with: %v", clusterConfigErr)
-	}
-
-    keys := reflect.ValueOf(clusterConfig).MapKeys()
+    keys := reflect.ValueOf(config).MapKeys()
     if len(keys) < 1 {
     	logger.Infof("⚠️  Cluster configuration has no data")
     }
@@ -40,7 +32,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 
     for x := 0; x < len(strKeys); x++ {
     	var clusterKey = strKeys[x]
-    	var clusterValues = clusterConfig[clusterKey]
+    	var clusterValues = config[clusterKey]
 
     	var canaryUrl = clusterValues.CanaryChecker    	
 		var canary api.Canarydata
@@ -49,7 +41,6 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	    if err != nil {
 	      	logger.Fatalf("❌ Canary Check failed with %s\n", err)
 	    }
-
 
 	    //var prometheusUrl = clusterValues.Prometheus
     	//var alertManager = clusterValues.AlertManager
@@ -94,13 +85,14 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	}
 }
 
-
 func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error) {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
+		logger.Fatalf("❌ Cluster configuration failed with: %v", err)
 		return nil, err
 	}
 	if err := yaml.Unmarshal(data, &config); err != nil {
+		logger.Fatalf("❌ Cluster configuration failed with: %v", err)
 		return nil, err
 	}
 	return config, err
