@@ -21,4 +21,5 @@ FROM ubuntu:bionic
 WORKDIR /app
 COPY --from=builder /app/server /app
 COPY --from=ui /app/dist /app/dist
-ENTRYPOINT ["/app/server"]
+RUN mv /app/dist/
+ENTRYPOINT ["/app/server", "serve"]

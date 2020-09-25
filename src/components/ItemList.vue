@@ -1,15 +1,10 @@
 <template>
-
   <span>
     <span class="cluster-title">
-     {{ id }}
+      {{ id }}
     </span>
 
-    <span
-      v-for="(item, i) in items"
-      :key="i"
-      class="no-events"
-    >
+    <span v-for="(item, i) in items" :key="i" class="no-events">
       <ItemCard
         :label="item.label"
         :icon="item.icon"
@@ -18,36 +13,32 @@
       />
     </span>
   </span>
-
 </template>
 
 <script>
-  import ItemCard from './ItemCard.vue'
+import ItemCard from "./ItemCard.vue";
 
-  export default {
-    name: 'ItemList',
+export default {
+  name: "ItemList",
 
-    components:{
-      ItemCard
-    },
+  components: {
+    ItemCard,
+  },
 
-    props: {
-      id: String,
-      items: Array,
-    },  
-  }
-  
+  props: {
+    id: String,
+    items: Array,
+  },
+};
 </script>
 
 <style scoped>
+.no-events {
+  pointer-events: none;
+}
 
-  .no-events {
-    pointer-events: none
-  }
-
-  .cluster-title {
-    text-decoration: underline;
-    font-weight: bold;
-  }
-
+.cluster-title {
+  text-decoration: underline;
+  font-weight: bold;
+}
 </style>
