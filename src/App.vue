@@ -1,4 +1,5 @@
 <template>
+
   <v-app>
     <v-app-bar app>
       <v-toolbar-title><b>Karina</b> - The Kubernetes Dashboard</v-toolbar-title>
@@ -18,15 +19,17 @@
                   :cluster="cluster"
                   :itemicons="cluster.itemicons"
                 />
+
               </v-col>
             </v-row>
-          </v-col>
-         
+          </v-col>         
         </v-row>
       </v-container>
     </v-main>
   </v-app>
+
 </template>
+
 
 <script>
 
@@ -36,13 +39,39 @@
   export default {
 
     components:{
-      IndicatorPanel
+      IndicatorPanel,
     },
 
     data () {
-      return {
-        clusters: stats.clusters
+      if ( window.DEMO_MODE ){
+        return {
+          clusters: stats.clusters,
+         
+        }
       }
+      else{
+        return {
+         clusters: null 
+        }
+      }
+    },
+
+    mounted() {
+
+      if ( !window.DEMO_MODE ) {
+
+        /*this.$axios
+          .get('http://localhost:8080/api')
+          .then(response => (this.clusters = response.data))
+          .catch(error => console.log(error))      */
+
+        this.$axios
+          .get('/api')
+          .then(response => (this.clusters = response.data))
+          .catch(error => console.log(error)) 
+      }
+
     }
   }
+
 </script>
