@@ -5,57 +5,55 @@ import (
 )
 
 type Cluster struct {
-	Name         string      `json:"name,omitempty"`
-	Properties   []Property  `json:"properties,omitempty"`
-	CanaryChecks []Chek  	 `json:"canary_checks,omitempty"`
-	Nodes        []Node      `json:"nodes,omitempty"`
-	Alerts       []Alert     `json:"alerts,omitempty"`
+	Name         string     `json:"name,omitempty"`
+	Properties   []Property `json:"properties,omitempty"`
+	CanaryChecks []Chek     `json:"canary_checks,omitempty"`
+	Nodes        []Node     `json:"nodes,omitempty"`
+	Alerts       []Alert    `json:"alerts,omitempty"`
 }
 
 type Property struct {
 	Name   string  `json:"name,omitempty"`
-	Value  string  `json:"value,omitempty"`
+	Value  string  `json:"label,omitempty"`
 	Type   string  `json:"type,omitempty"`
+	Icon   string  `json:"icon,omitempty"`
 	Alerts []Alert `json:"alerts,omitempty"`
 }
 
-
 type Canarydata struct {
-	ServerName	string 	`json:"server_name,omitempty"`
-	Checks 		[]Chek 	`json:"checks,omitempty"`
+	ServerName string `json:"server_name,omitempty"`
+	Checks     []Chek `json:"checks,omitempty"`
 }
 
 type Chek struct {
-	Key 			string 			`json:"key,omitempty"`
-	Type 			string 			`json:"type,omitempty"`
-	Name  			string 			`json:"name,omitempty"`
-	Description 	string 			`json:"description,omitempty"`
-	Uptime 			string 			`json:"uptime,omitempty"`
-	Latency 		string 			`json:"latency,omitempty"`
-	CheckStatuses 	[]ChekStatus 	`json:"checkStatuses,omitempty"`
-	checkConf 		ChekConf 		//`json:"checkConf,omitempty"`
+	Key           string       `json:"key,omitempty"`
+	Type          string       `json:"type,omitempty"`
+	Name          string       `json:"name,omitempty"`
+	Description   string       `json:"description,omitempty"`
+	Uptime        string       `json:"uptime,omitempty"`
+	Latency       string       `json:"latency,omitempty"`
+	CheckStatuses []ChekStatus `json:"checkStatuses,omitempty"`
+	checkConf     ChekConf     //`json:"checkConf,omitempty"`
 
 }
 
 type ChekStatus struct {
-
-	Status 		bool
-	Invalid 	bool
-	Time  		string
-	Duration	int
-	Message 	string
+	Status   bool
+	Invalid  bool
+	Time     string
+	Duration int
+	Message  string
 }
 
 type ChekConf struct {
-	Server 			string
-	Port 			int
-	Query 			string
-	QueryType 		string
-	Minrecords 		string
-	ExactReply 		[]string
-	Timeout   		int
+	Server          string
+	Port            int
+	Query           string
+	QueryType       string
+	Minrecords      string
+	ExactReply      []string
+	Timeout         int
 	ThresholdMillis int
-
 }
 
 type Node struct {
@@ -74,7 +72,7 @@ type ClusterConfiguration struct {
 	CanaryChecker string `yaml:"canaryChecker,omitempty"`
 	Prometheus    string `yaml:"prometheus,omitempty"`
 	AlertManager  string `yaml:"alertmanager,omitempty"`
-	Kubeconfig 	  string `yaml:"kubeconfig,omitempty"`
+	Kubeconfig    string `yaml:"kubeconfig,omitempty"`
 }
 
 /*type Combo struct {

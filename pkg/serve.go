@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"reflect"
-	"strconv"
 
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/commons/net"
@@ -17,64 +15,46 @@ var config = make(map[string]api.ClusterConfiguration)
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
-	var name string
-	var clusters = []api.Cluster{}
+	var clusters []api.Cluster
+	for name, cluster := range config {
 
-    keys := reflect.ValueOf(config).MapKeys()
-    if len(keys) < 1 {
-    	logger.Infof("⚠️  Cluster configuration has no data")
-    }
-
-    strKeys := make([]string, len(keys))
-    for i := 0; i < len(keys); i++ {
-        strKeys[i] = keys[i].String()
-    }
-
-    for x := 0; x < len(strKeys); x++ {
-    	var clusterKey = strKeys[x]
-    	var clusterValues = config[clusterKey]
-
-    	var canaryUrl = clusterValues.CanaryChecker    	
 		var canary api.Canarydata
-		var canaryResp, err = net.GET(canaryUrl)
-		json.Unmarshal([]byte(canaryResp), &canary)
-	    if err != nil {
-	      	logger.Fatalf("❌ Canary Check failed with %s\n", err)
-	    }
+		canaryResp, err := net.GET(cluster.CanaryChecker)
+		if err != nil {
+			logger.Errorf("❌ Canary Check failed with %s", err)
+			continue
+		}
+		if err := json.Unmarshal([]byte(canaryResp), &canary); err != nil {
+			logger.Errorf("❌ Failed to unmarshal json %s", err)
+			continue
+		}
 
-	    //var prometheusUrl = clusterValues.Prometheus
-    	//var alertManager = clusterValues.AlertManager
-    	//var kubeConfig = clusterValues.Kubeconfig
-
-	    if x<10 {
-	    	name = "Cluster0" + strconv.Itoa(x+1)
-	    } else {
-	    	name = "Cluster" + strconv.Itoa(x+1)
-	    }
-	    
 		clusters = append(clusters, api.Cluster{
 			Name: name,
 			Properties: []api.Property{
 				{
 					Name:  "CPU",
+					Icon:  "cpu",
 					Type:  "cpu",
 					Value: "72",
 				},
 				{
 					Name:  "Memory",
+					Icon:  "memory",
 					Type:  "mem",
 					Value: "128",
 				},
 				{
 					Name:  "Disk",
+					Icon:  "disk",
 					Type:  "disk",
 					Value: "100",
 				},
 			},
 			CanaryChecks: canary.Checks,
 		})
-    }
-	
+	}
+
 	json, err := json.Marshal(clusters)
 	if err != nil {
 		resp.WriteHeader(500)
