@@ -1,5 +1,5 @@
 <template>
-  <span  
+  <span>
     <span class="cluster-title">
       {{ name }}
      </span>
@@ -9,7 +9,7 @@
       class="no-events"
     >
       <ItemCard
-        :label="property.value" 
+        :label="property.label" 
         :icon="property.type" 
         :alerts="getPropertyAlerts(property.alerts)"
         :alertscolour="property.badgecolour"

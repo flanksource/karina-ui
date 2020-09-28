@@ -11,7 +11,7 @@
       ],
       "properties": [
         {
-          "id":1, "service": "memory", "type": "ram", "value": "512GB", "badge": 0, "badgecolour": "",
+          "id":1, "service": "memory", "type": "ram", "label": "512GB", "badge": 0, "badgecolour": "",
           "alerts": [
             {"name":"one"},
             {"name":"one"},
@@ -19,15 +19,15 @@
           ]
         },
         {
-          "id":2, "service": "cpu", "type": "cpu", "value": "96",   "badge": 0, "badgecolour": ""
+          "id":2, "service": "cpu", "type": "cpu", "label": "96",   "badge": 0, "badgecolour": ""
         },
-        {"id":3, "service": "storage", "type": "storage", "value": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":4, "service": "node", "type": "node", "value": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":5, "service": "kernel", "type": "linux", "value": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":6, "service": "kubernetes", "type": "kubernetes", "value": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":7, "service": "os", "type": "ubuntu", "value": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":8, "service": "vulnerability", "type": "threat", "value": "", "badge": 0, "badgecolour": ""},
-        {"id":9, "service": "updates", "type": "safe", "value": "", "badge": 0, "badgecolour": ""}
+        {"id":3, "service": "storage", "type": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
+        {"id":4, "service": "node", "type": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
+        {"id":5, "service": "kernel", "type": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
+        {"id":6, "service": "kubernetes", "type": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
+        {"id":7, "service": "os", "type": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
+        {"id":8, "service": "vulnerability", "type": "threat", "label": "", "badge": 0, "badgecolour": ""},
+        {"id":9, "service": "updates", "type": "safe", "label": "", "badge": 0, "badgecolour": ""}
 
       ],
       "indicators": [
@@ -143,15 +143,15 @@
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
       ],
       "properties": [
-        {"id":"1", "service": "memory", "type": "ram", "value": "512GB", "badge": 0, "badgecolour": ""},
-        {"id":"2", "service": "cpu", "type": "cpu", "value": "96",   "badge": 0, "badgecolour": ""},
-        {"id":"3", "service": "storage", "type": "storage", "value": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":"4", "service": "node", "type": "node", "value": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":"5", "service": "kernel", "type": "linux", "value": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":"6", "service": "kubernetes", "type": "kubernetes", "value": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":"7", "service": "os", "type": "ubuntu", "value": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":"8", "service": "vulnerability", "type": "threat", "value": "", "badge": 0, "badgecolour": ""},
-        {"id":"9", "service": "updates", "type": "safe", "value": "", "badge": 0, "badgecolour": ""}
+        {"id":"1", "service": "memory", "type": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
+        {"id":"2", "service": "cpu", "type": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
+        {"id":"3", "service": "storage", "type": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
+        {"id":"4", "service": "node", "type": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
+        {"id":"5", "service": "kernel", "type": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
+        {"id":"6", "service": "kubernetes", "type": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
+        {"id":"7", "service": "os", "type": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
+        {"id":"8", "service": "vulnerability", "type": "threat", "label": "", "badge": 0, "badgecolour": ""},
+        {"id":"9", "service": "updates", "type": "safe", "label": "", "badge": 0, "badgecolour": ""}
       ],
       "indicators": [
         { 
@@ -266,15 +266,15 @@
         {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
       ],
       "properties": [
-        {"id":"1", "service": "memory", "type": "ram", "value": "512GB", "badge": 0, "badgecolour": ""},
-        {"id":"2", "service": "cpu", "type": "cpu", "value": "96",   "badge": 0, "badgecolour": ""},
-        {"id":"3", "service": "storage", "type": "storage", "value": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":"4", "service": "node", "type": "node", "value": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":"5", "service": "kernel", "type": "linux", "value": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":"6", "service": "kubernetes", "type": "kubernetes", "value": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":"7", "service": "os", "type": "ubuntu", "value": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":"8", "service": "vulnerability", "type": "threat", "value": "", "badge": 0, "badgecolour": ""},
-        {"id":"9", "service": "updates", "type": "safe", "value": "", "badge": 0, "badgecolour": ""}
+        {"id":"1", "service": "memory", "type": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
+        {"id":"2", "service": "cpu", "type": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
+        {"id":"3", "service": "storage", "type": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
+        {"id":"4", "service": "node", "type": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
+        {"id":"5", "service": "kernel", "type": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
+        {"id":"6", "service": "kubernetes", "type": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
+        {"id":"7", "service": "os", "type": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
+        {"id":"8", "service": "vulnerability", "type": "threat", "label": "", "badge": 0, "badgecolour": ""},
+        {"id":"9", "service": "updates", "type": "safe", "label": "", "badge": 0, "badgecolour": ""}
       ],
       "indicators": [
         { 
