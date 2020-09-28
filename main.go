@@ -42,7 +42,7 @@ func main() {
 	})
 
 	root.AddCommand(
-		pkg.kube,
+		pkg.GetKube,
 	)
 
 	root.AddCommand(&cobra.Command{

@@ -1,5 +1,6 @@
 <template>
   <span>
+  
     <v-text><b><u>{{ name }}</u></b></v-text>
     <span
       v-for="(property, i) in properties"
@@ -37,15 +38,9 @@
       getPropertyAlerts(alerts){
 
         var count = 0;
-
         if (alerts) {
           count = alerts.length;
         }
-
-        else {
-          count = 0;
-        }
-
         return count;      
       }
     }

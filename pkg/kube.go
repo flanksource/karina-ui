@@ -1,7 +1,7 @@
-
 package pkg
 
 import (
+    "fmt"
 	"os"
     "os/exec"
 
@@ -20,19 +20,26 @@ var GetKube= &cobra.Command{
 			KubeVersion()	
 			OSVersion()
 			KernelVersion()	 
+            fmt.Printf("all ran\n")
 		},
 	}
 
 func KubeVersion() {
 
 	cmd := exec.Command("kubectl", "version", "--short")
+    //permission issue
 
     outfile, err := os.Create("./pkg/api/getkube.txt")
+
     if err != nil {
         panic(err)
     }
+
+
     defer outfile.Close()
+
     cmd.Stdout = outfile
+
 
     err = cmd.Start(); if err != nil {
         panic(err)
