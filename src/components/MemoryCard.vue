@@ -1,7 +1,7 @@
 <template>
   <v-card>
-      <v-row>
-        <v-col>
+    <v-row>
+      <v-col>
         <v-icon :color="indigo">mdi-memory</v-icon>
         <v-text class="text-size">
           Memory Usage
@@ -26,26 +26,26 @@
 </template>
 
 <script>
-  const exhale = ms => new Promise(resolve => setTimeout(resolve, ms))
+const exhale = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  export default {
-    data: () => ({
-      checking: false,
-      memoryInstances: [],
-    }),
-    created () {
-      this.takeInstance(false)
+export default {
+  data: () => ({
+    checking: false,
+    memoryInstances: [],
+  }),
+  created() {
+    this.takeInstance(false);
+  },
+  methods: {
+    memoryInstance() {
+      return Math.ceil(Math.random() * 100);
     },
-    methods: {
-      memoryInstance () {
-        return Math.ceil(Math.random() * (100))
-      },
-      async takeInstance (inhale = true) {
-        this.checking = true
-        inhale && await exhale(1000)
-        this.memoryInstances = Array.from({ length: 20 }, this.memoryInstance)
-        this.checking = false
-      },
+    async takeInstance(inhale = true) {
+      this.checking = true;
+      inhale && (await exhale(1000));
+      this.memoryInstances = Array.from({ length: 20 }, this.memoryInstance);
+      this.checking = false;
     },
-  }
+  },
+};
 </script>

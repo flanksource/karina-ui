@@ -1,13 +1,13 @@
 <template>
-  <span>
-  
-    <v-text><b><u>{{ name }}</u></b></v-text>
+  <span  
+    <span class="cluster-title">
+      {{ name }}
+     </span>
     <span
       v-for="(property, i) in properties"
       :key="i"
       class="no-events"
     >
-
       <ItemCard
         :label="property.value" 
         :icon="property.type" 
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import ItemCard from './ItemCard.vue'
+import ItemCard from "./ItemCard.vue";
 
   export default {
     name: 'ItemList',
@@ -51,4 +51,9 @@
   .no-events{
     pointer-events: none
   }
+  
+.cluster-title {
+  text-decoration: underline;
+  font-weight: bold;
+}
 </style>

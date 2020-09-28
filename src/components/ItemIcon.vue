@@ -1,80 +1,49 @@
 <template>
-
   <span>
-    <div v-if="count == 0">
-      <v-badge
-        color=""
-        :content="count"
-      >
-        <svg-icon
-          :icon="icon"
-          :style="iconStyles"
-          class="icon"
-        />
+    <div v-if="count == 1">
+      <v-badge bottom :content="count" offset-x="15" offset-y="20" overlap>
+        <svg-icon :icon="icon" :style="iconStyles" class="icon" />
       </v-badge>
     </div>
 
-    <div v-else>
-      <v-badge
-        bottom
-        :content="count"
-        offset-x="15"
-        offset-y="20"
-        overlap
-      >
-        <svg-icon
-          :icon="icon"
-          :style="iconStyles"
-          class="icon"
-        />
-      </v-badge>
-    </div>
-
-    <span class="text-size">
-      {{ label }}
-    </span>
+    <span class="text-size"> {{ label }} </span>
   </span>
-
 </template>
 
 <script>
+import SvgIcon from "./SVGIcon.vue";
 
-  import SvgIcon from './SVGIcon.vue';
+export default {
+  name: "ItemIcon",
 
-  export default {
-    name: 'ItemIcon',
+  components: {
+    SvgIcon,
+  },
 
-    components: {
-      SvgIcon,
+  props: {
+    id: String,
+    label: String,
+    icon: String,
+    count: [Number, String],
+    colour: String,
+  },
+
+  computed: {
+    iconStyles() {
+      return {
+        color: this.colour,
+      };
     },
-
-    props: {
-      id: String,
-      label: String,
-      icon: String,
-      count: [Number, String],
-      colour: String,
-    },
-
-    computed: {
-      iconStyles() {
-        return {
-          "color": this.colour,
-        };
-      }
-    },
-  }
-
+  },
+};
 </script>
 
 <style scoped>
+.icon {
+  font-size: 48px;
+}
 
-  .icon {
-    font-size: 48px; 
-  }
-
-  .text-size{
-    font-size: 12px;
-  }
-  
+.text-size {
+  font-size: 12px;
+}
 </style>

@@ -1,78 +1,65 @@
 <template>
+  <span v-if="shape == 'none'" class="parent" />
 
-  <span
-    v-if="shape == 'none'"
-    class="parent"
-  />
-    
-  <span
-    v-else
-    class="parent"
-  >
-    <svg-icon
-      :icon="shape"
-      :style="iconStyles"
-      class="icon"
-    />
-    
-    <v-icon
-      color="white"
-      class="overlay"
-    >
+  <span v-else class="parent">
+    <svg-icon :icon="shape" :style="iconStyles" class="icon" :title="title" />
+
+    <v-icon color="white" class="overlay">
       {{ overlay }}
-    </v-icon> 
+    </v-icon>
   </span>
-
 </template>
 
 <script>
+import SvgIcon from "./SVGIcon.vue";
 
-  import SvgIcon from './SVGIcon.vue';
+export default {
+  name: "IndicatorIcon",
 
-  export default {
-    name: 'IndicatorIcon',
+  data: () => ({
+    hover: false,
+  }),
 
-    components: {
-      SvgIcon,
+  components: {
+    SvgIcon,
+  },
+
+  props: {
+    id: String,
+    colour: String,
+    shape: String,
+    overlay: String,
+    hover: Boolean,
+    title: String,
+  },
+
+  computed: {
+    iconStyles() {
+      return {
+        color: this.colour,
+      };
     },
-
-    props: {
-      id: String,
-      colour: String,
-      shape: String,
-      overlay: String,
-    },
-
-    computed: {
-      iconStyles() {
-        return {
-          "color": this.colour,
-        };
-      }
-    },
-  }
-
+  },
+};
 </script>
 
 <style scoped>
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
 
-  .parent {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
+.icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-  .icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .overlay {
-    position: relative;
-    top: -3px;
-    left: 2px;
-    font-size: 12px;
-  }
-
+.overlay {
+  position: relative;
+  top: -3px;
+  left: 2px;
+  font-size: 12px;
+}
 </style>

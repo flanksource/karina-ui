@@ -1,0 +1,3 @@
+[build]
+command = "mv public/demo.html public/index.html && npm run build"
+publish = "dist/"

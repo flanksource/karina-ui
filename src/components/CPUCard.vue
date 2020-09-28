@@ -4,12 +4,12 @@
       <v-col>
         <v-icon :color="indigo"> mdi-cpu-64-bit</v-icon>
         <v-text>
-          CPU Usage       
+          CPU Usage
           <span v-text="50"></span>
           <span>%</span>
         </v-text>
       </v-col>
-    </v-row>    
+    </v-row>
 
     <v-sheet color="transparent">
       <v-sparkline
@@ -26,26 +26,26 @@
 </template>
 
 <script>
-  const exhale = ms => new Promise(resolve => setTimeout(resolve, ms))
+const exhale = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  export default {
-    data: () => ({
-      checking: false,
-      cpuInstances: [],
-    }),
-    created () {
-      this.takeInstance(false)
+export default {
+  data: () => ({
+    checking: false,
+    cpuInstances: [],
+  }),
+  created() {
+    this.takeInstance(false);
+  },
+  methods: {
+    cpuInstance() {
+      return Math.ceil(Math.random() * 100);
     },
-    methods: {
-      cpuInstance () {
-        return Math.ceil(Math.random() * (100))
-      },
-      async takeInstance (inhale = true) {
-        this.checking = true
-        inhale && await exhale(1000)
-        this.cpuInstances = Array.from({ length: 20 }, this.cpuInstance)
-        this.checking = false
-      },
+    async takeInstance(inhale = true) {
+      this.checking = true;
+      inhale && (await exhale(1000));
+      this.cpuInstances = Array.from({ length: 20 }, this.cpuInstance);
+      this.checking = false;
     },
-  }
+  },
+};
 </script>

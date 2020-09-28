@@ -7,7 +7,6 @@ import VueAxios from 'vue-axios'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios,
 
-
 new Vue({
   vuetify,
   VueAxios,
@@ -15,3 +14,4 @@ new Vue({
   render: h => h(App)
 
 }).$mount('#app')
+

@@ -1,23 +1,17 @@
 <template>
   <span>
     <div v-if="alerts === 0">
- 
-      <v-badge color="" :content="alerts" inline="true">
-
-        <svg-icon :icon="icon" :hasFill="false" color=""></svg-icon>
-
-        <v-text class="pl-1 text-size">{{label}}</v-text>
+      <v-badge color="" :content="alerts" inline>
+        <svg-icon :icon="icon" :hasFill="false" color=""/>
+        <span class="pl-1 text-size">{{label}}</span>
       </v-badge>  
     </div>
 
-    <div v-else >
-      <v-badge color="#b3b3b3" :content="alerts" inline="true">
-
-        <svg-icon :icon="icon" :hasFill="false" color=""></svg-icon>
-
-        <v-text class="pl-1 text-size">{{label}}</v-text>
+    <div v-else inline>
+      <v-badge color="#b3b3b3" :content="alerts" inline>
+        <svg-icon :icon="icon" :hasFill="false" color=""/>
+        <span class="pl-1 text-size">{{label}}</span>
       </v-badge>  
-
     </div> 
   </span>
 </template>
