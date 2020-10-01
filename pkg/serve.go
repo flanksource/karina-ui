@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	//"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -9,170 +10,60 @@ import (
 	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
   	"gopkg.in/yaml.v2"
-
-	//"context"
-	"fmt"
-	//"io/ioutil"
-	//"net/http"
-	//"sort"
-	//"strings"
-	//"time"
-
-	//"github.com/flanksource/canary-checker/api/external"
-	//"k8s.io/api/extensions/v1beta1"
-
-	//"k8s.io/apimachinery/pkg/util/intstr"
-
-	//canaryv1 "github.com/flanksource/canary-checker/api/v1"
-	//"github.com/flanksource/canary-checker/pkg"
-	//"github.com/flanksource/canary-checker/pkg/metrics"
-	//perrors "github.com/pkg/errors"
-	//v1 "k8s.io/api/core/v1"
-	//"k8s.io/apimachinery/pkg/api/errors"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	//"sigs.k8s.io/yaml"
-
-	//"golang.org/x/sync/semaphore"
-	"k8s.io/client-go/kubernetes"
-  
+  	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
+	"k8s.io/client-go/tools/clientcmd"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"	
 )
 
-
-const (
-	podLabelSelector   = "canary-checker.flanksource.com/podName"
-	podCheckSelector   = "canary-checker.flanksource.com/podCheck"
-	podGeneralSelector = "canary-checker.flanksource.com/generated"
-)
-
-type PodChecker struct {
-	//lock *semaphore.Weighted
-	k8s  *kubernetes.Clientset
-	//ng   *NameGenerator
-
-	latestNodeIndex int
-}
-
-var c *PodChecker
+var clientset *kubernetes.Clientset
 var config = make(map[string]api.ClusterConfiguration)
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
-
-	five := int64(5)
-	fmt.Printf("c wacho: %v\n", c)
-	if c != nil {
-		nodes, err := c.k8s.CoreV1().Nodes().List(metav1.ListOptions{TimeoutSeconds: &five})
-		fmt.Println(err)
-		fmt.Println(nodes)
-	} else{
-		fmt.Println(c)
-	}
-	
-	fmt.Println("5\n")
-
 	var clusters []api.Cluster
+
 	for name, cluster := range config {
+
+		clientset, clientsetErr := GetClient(cluster.Kubeconfig)
+		if clientsetErr != nil {
+			logger.Errorf("❗ Get K8s client failed with %s", clientsetErr)
+			continue
+		}
+
+		clientProp, clientPropErr := clientset.CoreV1().Nodes().List(metav1.ListOptions{})
+		if clientPropErr != nil {
+			logger.Errorf("❗ Get K8s client properties failed with %s", clientPropErr)
+			continue
+		}
+
+		var clusterProp api.Properties
+		//convert type *"k8s.io/api/core/v1".NodeList --> type api.Properties
+		jsonProp, jsonPropErr := json.Marshal(clientProp.Items[0].Status)
+
+		if jsonPropErr != nil {
+			logger.Errorf("❗ Kube client failed with %s", jsonPropErr)
+			continue
+		}
+		if jsonPropErr := json.Unmarshal([]byte(jsonProp), &clusterProp); jsonPropErr != nil {
+			logger.Errorf("❗ Failed to unmarshal json %s", jsonPropErr)
+			continue
+		}	
 
 		var canary api.Canarydata
 		canaryResp, err := net.GET(cluster.CanaryChecker)
 		if err != nil {
-			logger.Errorf("❌ Canary Check failed with %s", err)
+			logger.Errorf("❗ Canary Check failed with %s", err)
 			continue
 		}
 		if err := json.Unmarshal([]byte(canaryResp), &canary); err != nil {
-			logger.Errorf("❌ Failed to unmarshal json %s", err)
+			logger.Errorf("❗ Failed to unmarshal json %s", err)
 			continue
 		}
 
-
 		clusters = append(clusters, api.Cluster{
 			Name: name,
-			Properties: []api.Property{
-				{
-					Name:  "CPU",
-					Icon:  "cpu",
-					Type:  "cpu",
-					Value: "72",
-				},
-				{
-					Name:  "Memory",
-					Type:  "memory",
-					Value: "128",
-				},
-				{
-					Name:  "Disk",
-					Type:  "disk",
-					Value: "100",
-				},
-				{
-					Name:  "Commit",
-					Type:  "commit",
-					Value: "146cfae",
-					Alerts: []api.Alert{
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-					},
-				},
-				{
-					Name:  "Kernel",
-					Type:  "linux",
-					Value: "4.15.0-54-generic",
-					Alerts: []api.Alert{
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-					},
-				},
-				{
-					Name:  "Kubernetes",
-					Type:  "kubernetes",
-					Value: "v1.16.3",
-					Alerts: []api.Alert{
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-						{
-							Level:	"string",
-							//Since:	2012-04-23T18:25:43.511Z,
-							Message:"string",
-						},
-					},
-				},
-				{
-					Name:  "OSVersion",
-					Type:  "ubuntu",
-					Value: "18.04 LTS",
-					Alerts: []api.Alert{
-						{
-							Level:	"string",
-							//Since:	time.Time,
-							Message:"string",
-						},
-						{
-							Level:	"string",
-							//Since:	2012-04-23T18:25:43.511Z,
-							Message:"string",
-						},
-					},
-				},
-			},
+			Properties: clusterProp,
       		CanaryChecks: canary.Checks,
 			Nodes: []api.Node{
 				{
@@ -196,7 +87,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			},
 		})
 	}
-		
+
 	json, err := json.Marshal(clusters)
 	if err != nil {
 		resp.WriteHeader(500)
@@ -205,7 +96,6 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		resp.Write(json)
 	}
-
 }
 
 func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error) {
@@ -219,4 +109,13 @@ func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error
 		return nil, err
 	}
 	return config, err
+}
+
+func GetClient(configPath string) (*kubernetes.Clientset, error) {
+	var config *rest.Config
+	config, err := clientcmd.BuildConfigFromFlags("", configPath)
+	if err != nil {
+		return nil, err
+	}
+	return kubernetes.NewForConfig(config)
 }
