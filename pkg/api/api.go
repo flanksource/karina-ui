@@ -27,7 +27,7 @@ type Capacity struct {
 	OneGi 	string `json:"hugepages-1Gi,omitempty"`
 	TwoMi 	string `json:"hugepages-2Mi,omitempty"`
 	Memory 	string `json:"memory,omitempty"`
-	Pods 	string `'json:"pods,omitempty"`
+	Pods 	string `json:"pods,omitempty"`
 }
 
 type Allocatable struct {
@@ -36,7 +36,7 @@ type Allocatable struct {
 	OneGi 	string `json:"hugepages-1Gi,omitempty"`
 	TwoMi 	string `json:"hugepages-2Mi,omitempty"`
 	Memory 	string `json:"memory,omitempty"`
-	Pods 	string `'json:"pods,omitempty"`
+	Pods 	string `json:"pods,omitempty"`
 }
 
 type Condition struct {
@@ -104,7 +104,7 @@ type Nold struct {
 	KernelVersion 			string `json:"kernelVersion,omitempty"`
 	OsImage 				string `json:"osImage,omitempty"`
 	ContainerRuntimeVersion string `json:"containerRuntimeVersion,omitempty"`
-	kubeletVersion 			string `json:"kubeletVersion,omitempty"`
+	KubeletVersion 			string `json:"kubeletVersion,omitempty"`
 	KubeProxyVersion 		string `json:"kubeProxyVersion,omitempty"`
 	OperatingSystem 		string `json:"operatingSystem,omitempty"`
 	Architecture 			string `json:"architecture,omitempty"`
