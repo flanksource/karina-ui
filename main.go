@@ -41,10 +41,6 @@ func main() {
 		},
 	})
 
-	root.AddCommand(
-		pkg.GetKube,
-	)
-
 	root.AddCommand(&cobra.Command{
 		Use: "serve",
 		Run: func(cmd *cobra.Command, args []string){

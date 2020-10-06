@@ -19,6 +19,7 @@ type Properties struct {
 	Addresses 		[]Address 		`json:"addresses,omitempty"`
 	DaemonEndpoints KubeletEndpoint `json:"daemonendpoints,omitempty"`
 	NodeInfo 		Nold 			`json:"nodeInfo,omitempty"`
+	Alerts			[]Alert 		`json:"alerts,omitempty"`
 }
 
 type Capacity struct {
@@ -121,6 +122,8 @@ type Alert struct {
 	Level   string    `json:"level,omitempty"`
 	Since   time.Time `json:"since,omitempty"`
 	Message string    `json:"message,omitempty"`
+	Type 	string    `json:"type,omitempty"`
+	Cluster string    `json:"cluster,omitempty"`
 }
 
 type ClusterConfiguration struct {

@@ -21,15 +21,19 @@ import (
 var config = make(map[string]api.ClusterConfiguration)
 var clientset *kubernetes.Clientset
 var properties *api.Properties
+var freshproperties api.Properties
+
+var name string
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
 	var canary api.Canarydata
-	properties = &api.Properties{}
 
 	for name, cluster := range config {
+
+		properties = &api.Properties{}
 		
 		clientset, clientsetErr := GetClient(cluster.Kubeconfig)
 		if clientsetErr != nil {
@@ -42,10 +46,12 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		   logger.Errorf("❗ Get K8s client properties failed with %s", err)
 			continue
 		}
+		
 
 		for _, node := range nodeList.Items {
 
-		    properties := MergeNode(node, *properties)	
+		    properties := MergeNode(node, *properties, name)
+		    fmt.Printf("properties: %v", properties)
 			
 			canaryResp, err := net.GET(cluster.CanaryChecker)
 			if err != nil {
@@ -116,11 +122,7 @@ func GetClient(configPath string) (*kubernetes.Clientset, error) {
 	return kubernetes.NewForConfig(config)
 }
 
-func MergeNode(node v1.Node, properties api.Properties) api.Properties {
-	// extract the properties from the node and merge into cluster properties
-	// for memory/disk/cpu etc you add them to existing properties
-	// OS/Version etc if they differ from the existing property then add an alert to the property
-	// Handle memory/storage usage
+func MergeNode(node v1.Node, properties api.Properties, name string) api.Properties {
 
 	jsonProp, jsonPropErr := json.Marshal(node.Status)
 	if jsonPropErr != nil {
@@ -131,28 +133,38 @@ func MergeNode(node v1.Node, properties api.Properties) api.Properties {
 	}
 
 	if properties.NodeInfo.KernelVersion != node.Status.NodeInfo.KernelVersion {
-		fmt.Println("Raise Kernel version alert")
-		//then...
-	}
-	if properties.NodeInfo.OsImage != node.Status.NodeInfo.OSImage {
-		fmt.Println("Raise OS image alert")
-	}
-	if properties.NodeInfo.ContainerRuntimeVersion != node.Status.NodeInfo.ContainerRuntimeVersion {
-		fmt.Println("Raise Container alert")
-	}
-	if properties.NodeInfo.KubeletVersion != node.Status.NodeInfo.KubeletVersion {
-		fmt.Println("Raise Kubelet alert")
-	}
-	if properties.NodeInfo.KubeProxyVersion != node.Status.NodeInfo.KubeProxyVersion {
-		fmt.Println("Raise Kube Proxy alert")
-	}
-	if properties.NodeInfo.OperatingSystem != node.Status.NodeInfo.OperatingSystem {
-		fmt.Println("Raise OS alert")
-	}
-	if properties.NodeInfo.Architecture != node.Status.NodeInfo.Architecture {
-		fmt.Println("Raise OS arch alert")
+		properties.Alerts = append(freshproperties.Alerts, api.Alert{
+			Level:	"string",
+			//Since:	time.Time,
+			Message:"string",
+			Type: "Kernel Alert",
+			Cluster: name,
+		})
 	}
 
-	return properties
-    
+	//fmt.Printf("in merge node kernelalerts:\n %v\n", freshproperties.Alerts)
+	//fmt.Printf("----------------------------------------------\n")
+
+	/*
+	if freshproperties.NodeInfo.OsImage != node.Status.NodeInfo.OSImage {
+		fmt.Println("Raise OS image alert")
+	}
+	if freshproperties.NodeInfo.ContainerRuntimeVersion != node.Status.NodeInfo.ContainerRuntimeVersion {
+		fmt.Println("Raise Container alert")
+	}
+	if freshproperties.NodeInfo.KubeletVersion != node.Status.NodeInfo.KubeletVersion {
+		fmt.Println("Raise Kubelet alert")
+	}
+	if freshproperties.NodeInfo.KubeProxyVersion != node.Status.NodeInfo.KubeProxyVersion {
+		fmt.Println("Raise Kube Proxy alert")
+	}
+	if freshproperties.NodeInfo.OperatingSystem != node.Status.NodeInfo.OperatingSystem {
+		fmt.Println("Raise OS alert")
+	}
+	if freshproperties.NodeInfo.Architecture != node.Status.NodeInfo.Architecture {
+		fmt.Println("Raise OS arch alert")
+	}
+	*/
+
+	return properties  
 }
