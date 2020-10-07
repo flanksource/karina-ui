@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	//"reflect"
+	"strings"
 
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/commons/net"
@@ -20,10 +21,9 @@ import (
 
 var config = make(map[string]api.ClusterConfiguration)
 var clientset *kubernetes.Clientset
-var properties *api.Properties
-var freshproperties api.Properties
+var properties []api.Property
+var freshproperties []api.Property
 
-var name string
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 
@@ -33,7 +33,9 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	for name, cluster := range config {
 
-		properties = &api.Properties{}
+		//properties = []api.Property{}
+
+		fmt.Printf("start: %v\n\n", name)
 		
 		clientset, clientsetErr := GetClient(cluster.Kubeconfig)
 		if clientsetErr != nil {
@@ -46,13 +48,11 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		   logger.Errorf("❗ Get K8s client properties failed with %s", err)
 			continue
 		}
-		
 
 		for _, node := range nodeList.Items {
 
-		    properties := MergeNode(node, *properties, name)
-		    fmt.Printf("properties: %v", properties)
-			
+		    properties := MergeNode(node, properties)
+		    	
 			canaryResp, err := net.GET(cluster.CanaryChecker)
 			if err != nil {
 				logger.Errorf("❗ Canary Check failed with %s", err)
@@ -88,6 +88,8 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 					},
 				},
 			})
+
+			fmt.Printf("end: %v\n\n", name)
 		}
 	}
 	json, err := json.Marshal(clusters)
@@ -122,18 +124,29 @@ func GetClient(configPath string) (*kubernetes.Clientset, error) {
 	return kubernetes.NewForConfig(config)
 }
 
-func MergeNode(node v1.Node, properties api.Properties, name string) api.Properties {
+func MergeNode(node v1.Node, properties []api.Property) []api.Property {
+
+	var prop api.Properties
+
+
+
 
 	jsonProp, jsonPropErr := json.Marshal(node.Status)
 	if jsonPropErr != nil {
 		logger.Errorf("❗ Kube client failed with %s", jsonPropErr)
 	}
-	if jsonPropErr := json.Unmarshal([]byte(jsonProp), &properties); jsonPropErr != nil {
+	if jsonPropErr := json.Unmarshal([]byte(jsonProp), &prop); jsonPropErr != nil {
 		logger.Errorf("❗ Failed to unmarshal json %s", jsonPropErr)
 	}
 
-	if properties.NodeInfo.KernelVersion != node.Status.NodeInfo.KernelVersion {
-		properties.Alerts = append(freshproperties.Alerts, api.Alert{
+
+	fmt.Printf("old properties in merge method: %v\n\n", properties)
+	fmt.Printf("new properties: %v\n\n", prop)
+
+
+	/*if properties.NodeInfo.KernelVersion == node.Status.NodeInfo.KernelVersion {
+		fmt.Printf("Raise Kernel version alert %v\n", name)
+		properties = append(properties, api.Alert{
 			Level:	"string",
 			//Since:	time.Time,
 			Message:"string",
@@ -142,8 +155,112 @@ func MergeNode(node v1.Node, properties api.Properties, name string) api.Propert
 		})
 	}
 
-	//fmt.Printf("in merge node kernelalerts:\n %v\n", freshproperties.Alerts)
-	//fmt.Printf("----------------------------------------------\n")
+*/
+
+
+	properties = []api.Property {
+		{
+			Name: "Memory",
+			Value: prop.Allocatable.Memory,
+			Icon: "memory",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "CPU",
+			Value: prop.Allocatable.Cpu,
+			Icon: "cpu",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "Storage",
+			Value: prop.Allocatable.EphStor,
+			Icon: "storage",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "Node",
+			Value: prop.NodeInfo.MachineID,
+			Icon: "commit",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "Kernel",
+			Value: prop.NodeInfo.KernelVersion,
+			Icon: "linux",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "K8S Version",
+			Value: prop.NodeInfo.KubeletVersion,
+			Icon: "kubernetes",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "OS Version",
+			Value: prop.NodeInfo.OSImage,
+			Icon: GetOSIcon(prop.NodeInfo.OSImage),
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "Threats",
+			Value: "",
+			Icon: "threat",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "Updates",
+			Value: "", 
+			Icon: "safe",
+		},
+	}
 
 	/*
 	if freshproperties.NodeInfo.OsImage != node.Status.NodeInfo.OSImage {
@@ -166,5 +283,17 @@ func MergeNode(node v1.Node, properties api.Properties, name string) api.Propert
 	}
 	*/
 
+	//fmt.Printf("----------------------------------------------\n")
+
+	
+
 	return properties  
+}
+
+func GetOSIcon(image string) string {
+	icon := "null"
+	if strings.Contains(strings.ToLower(image), "ubuntu") == true {
+		icon = "ubuntu"
+	}
+	return icon
 }

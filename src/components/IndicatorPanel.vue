@@ -15,23 +15,6 @@
       </v-col>
     </v-row>
     <Pipeline :cluster="cluster"/>
-
-    <v-row no-gutters align="center" justify="space-around" class="py-2">
-
-      <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-
-       <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
-
-      </v-col>
-
-      <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
-      </v-col>
-
-      <v-col cols="3" xs="12" sm="3" md="3" lg="3" xl="3">
-        <ItemIcon icon="git" colour="#d5e8d4" label="Sample" count=" "/>
-      </v-col>
-    </v-row>
   </v-card>
 </template>
      

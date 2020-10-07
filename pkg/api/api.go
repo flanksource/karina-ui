@@ -6,10 +6,18 @@ import (
 
 type Cluster struct {
 	Name         string     `json:"name,omitempty"`
-	Properties   Properties `json:"properties,omitempty"`
+	Properties   []Property `json:"properties,omitempty"`
 	CanaryChecks []Chek     `json:"canary_checks,omitempty"`
 	Nodes        []Node     `json:"nodes,omitempty"`
 	Alerts       []Alert    `json:"alerts,omitempty"`
+}
+
+
+type Property struct {
+	Name   string  `json:"name,omitempty"`
+	Icon   string  `json:"icon,omitempty"`
+	Value  string  `json:"value,omitempty"`
+	Alerts []Alert `json:"alerts,omitempty"`
 }
 
 type Properties struct {
@@ -103,7 +111,7 @@ type Nold struct {
 	SystemUUID 				string `json:"systemUUID,omitempty"`
 	BootID 					string `json:"bootID,omitempty"`
 	KernelVersion 			string `json:"kernelVersion,omitempty"`
-	OsImage 				string `json:"osImage,omitempty"`
+	OSImage 				string `json:"osImage,omitempty"`
 	ContainerRuntimeVersion string `json:"containerRuntimeVersion,omitempty"`
 	KubeletVersion 			string `json:"kubeletVersion,omitempty"`
 	KubeProxyVersion 		string `json:"kubeProxyVersion,omitempty"`
@@ -122,8 +130,6 @@ type Alert struct {
 	Level   string    `json:"level,omitempty"`
 	Since   time.Time `json:"since,omitempty"`
 	Message string    `json:"message,omitempty"`
-	Type 	string    `json:"type,omitempty"`
-	Cluster string    `json:"cluster,omitempty"`
 }
 
 type ClusterConfiguration struct {
