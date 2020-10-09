@@ -7,7 +7,9 @@ import (
 	"net/http"
 	//"reflect"
 	"strings"
+	"strconv"
 
+	"github.com/dustin/go-humanize"
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
@@ -16,7 +18,8 @@ import (
   	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"	
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
 )
 
 var config = make(map[string]api.ClusterConfiguration)
@@ -128,9 +131,6 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 	var prop api.Properties
 
-
-
-
 	jsonProp, jsonPropErr := json.Marshal(node.Status)
 	if jsonPropErr != nil {
 		logger.Errorf("❗ Kube client failed with %s", jsonPropErr)
@@ -139,29 +139,10 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 		logger.Errorf("❗ Failed to unmarshal json %s", jsonPropErr)
 	}
 
-
-	fmt.Printf("old properties in merge method: %v\n\n", properties)
-	fmt.Printf("new properties: %v\n\n", prop)
-
-
-	/*if properties.NodeInfo.KernelVersion == node.Status.NodeInfo.KernelVersion {
-		fmt.Printf("Raise Kernel version alert %v\n", name)
-		properties = append(properties, api.Alert{
-			Level:	"string",
-			//Since:	time.Time,
-			Message:"string",
-			Type: "Kernel Alert",
-			Cluster: name,
-		})
-	}
-
-*/
-
-
 	properties = []api.Property {
 		{
 			Name: "Memory",
-			Value: prop.Allocatable.Memory,
+			Value: GetMemory(prop.Allocatable.Memory),
 			Icon: "memory",
 			Alerts:  []api.Alert {
 				{
@@ -185,8 +166,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 		},
 		{
 			Name: "Storage",
-			Value: prop.Allocatable.EphStor,
-			Icon: "storage",
+			Value: GetStorage(prop.Allocatable.EphStor),
 			Alerts:  []api.Alert {
 				{
 					Level:	"string",
@@ -211,6 +191,18 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			Name: "Kernel",
 			Value: prop.NodeInfo.KernelVersion,
 			Icon: "linux",
+			Alerts:  []api.Alert {
+				{
+					Level:	"string",
+					//Since:	time.Time,
+					Message:"string",
+				},
+			},
+		},
+		{
+			Name: "CRI Version",
+			Value: prop.NodeInfo.ContainerRuntimeVersion,
+			Icon: GetCRI(prop.NodeInfo.ContainerRuntimeVersion),
 			Alerts:  []api.Alert {
 				{
 					Level:	"string",
@@ -261,39 +253,92 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			Icon: "safe",
 		},
 	}
-
-	/*
-	if freshproperties.NodeInfo.OsImage != node.Status.NodeInfo.OSImage {
-		fmt.Println("Raise OS image alert")
-	}
-	if freshproperties.NodeInfo.ContainerRuntimeVersion != node.Status.NodeInfo.ContainerRuntimeVersion {
-		fmt.Println("Raise Container alert")
-	}
-	if freshproperties.NodeInfo.KubeletVersion != node.Status.NodeInfo.KubeletVersion {
-		fmt.Println("Raise Kubelet alert")
-	}
-	if freshproperties.NodeInfo.KubeProxyVersion != node.Status.NodeInfo.KubeProxyVersion {
-		fmt.Println("Raise Kube Proxy alert")
-	}
-	if freshproperties.NodeInfo.OperatingSystem != node.Status.NodeInfo.OperatingSystem {
-		fmt.Println("Raise OS alert")
-	}
-	if freshproperties.NodeInfo.Architecture != node.Status.NodeInfo.Architecture {
-		fmt.Println("Raise OS arch alert")
-	}
-	*/
-
-	//fmt.Printf("----------------------------------------------\n")
-
-	
-
 	return properties  
 }
 
+
+
+func GetCRI(cri string) string {
+
+	icon := ""
+	if strings.Contains(strings.ToLower(cri), "containerd") == true {
+		icon = "containerd"
+	}
+	return icon
+}
+
 func GetOSIcon(image string) string {
-	icon := "null"
+
+	icon := ""
 	if strings.Contains(strings.ToLower(image), "ubuntu") == true {
 		icon = "ubuntu"
 	}
 	return icon
+}
+
+func GetMemory(rawMemory string) string {
+
+	var memoryVal uint64
+	var err error
+
+	if strings.Contains(rawMemory, "Ki") == true {
+
+		rawMemory = strings.TrimSuffix(rawMemory, "Ki")
+
+		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to srting conversion: %s", err)
+		}
+		memoryVal = memoryVal * 1024
+
+	} else if strings.Contains(rawMemory, "Mi") == true {
+
+		rawMemory = strings.TrimSuffix(rawMemory, "Mi")
+
+		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to srting conversion: %s", err)
+		}
+		memoryVal = memoryVal * 1024 * 1024
+
+	} else if strings.Contains(rawMemory, "Gi") == true {
+
+		rawMemory = strings.TrimSuffix(rawMemory, "Gi")
+
+		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to srting conversion: %s", err)
+		}
+		memoryVal = memoryVal * 1024 * 1024 * 1024
+
+	} else if strings.Contains(rawMemory, "Ti") == true {
+
+		rawMemory = strings.TrimSuffix(rawMemory, "Ti")
+
+		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to srting conversion: %s", err)
+		}
+		memoryVal = memoryVal * 1024 * 1024 * 1024 * 1024
+
+	} else {
+		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to srting conversion: %s", err)
+		}
+	}
+
+	memory := humanize.Bytes(memoryVal)
+	return memory
+}
+
+
+func GetStorage(rawStorage string) string {
+
+	storageVal, err := strconv.ParseUint(rawStorage, 10, 64)
+	if err != nil {
+		logger.Errorf("❗ Failed to convert %s", err)
+	}
+	storage := humanize.Bytes(storageVal)
+	return storage
 }

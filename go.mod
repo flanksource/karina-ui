@@ -3,6 +3,7 @@ module github.com/flanksource/karina-ui
 go 1.14
 
 require (
+	github.com/dustin/go-humanize v1.0.0
 	github.com/flanksource/canary-checker v0.11.7
 	github.com/flanksource/commons v1.4.0
 	//
