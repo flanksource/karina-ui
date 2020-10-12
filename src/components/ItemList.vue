@@ -6,14 +6,14 @@
    <span
       v-for="(property, i) in properties"
       :key="i"
-    >
+    > 
       <ItemCard
         :label="property.value" 
         :icon="property.icon" 
-        :alerts="getPropertyAlerts(property.alerts)"
-        :alertscolour="property.badgecolour"
+        :alerts="getAlerts(property.alerts)"
+        :alertscolour="getAlertsColour(property.alerts)"
         class="clickable-icon"
-        @click.native="selectProperties(properties.capacity.memory, properties.allocatable.memory)"
+        @click.native="selectProperty(property.alerts)"
       />
 
     </span>
@@ -22,7 +22,21 @@
       <v-card>
         <v-card-title class="headline"> </v-card-title>
         <v-card-text>
-          <v-row no-gutters>
+         
+           <v-row>
+
+            <span
+              v-for="(selectedAlert, i) in selectedAlerts"
+              :key="i"
+            > 
+
+            <b>Alert {{ i + 1 }} </b> level {{ selectedAlert.level }}
+             since:  {{ selectedAlert.since }} <br/>
+             Message:  {{ selectedAlert.message }}
+
+
+          </span>
+
           </v-row>
         </v-card-text>
       </v-card>
@@ -49,29 +63,68 @@ import ItemCard from "./ItemCard.vue";
     data() {
       return {
         dialog: false,
-        selectedProperty: {},
+        selectedAlerts: {},
         propertyAllocatable: {},
         propertyCapacity: {},
       };
     },
 
     methods: {
-      getPropertyAlerts(alerts){
 
-        var count = 0;
+      getAlertsColour(alerts) {
         if (alerts) {
-          count = alerts.length;
+          var highest = 'one'
+
+          for (var i = 0; i < alerts.length; i++) {
+            var level = alerts[i].level
+            highest = this.setHighest(highest, level)
+          }
+          return this.pickColour(highest)
+        }       
+      },
+
+      getAlerts(alerts) {
+        var count = 0
+        if (alerts) {
+          count = alerts.length
         }
         return count;      
       },
-      selectProperty(property) {
-        this.selectedProperty = property
-        this.dialog = true;
+
+      setHighest(highest, level) {
+        if (highest == 'three' || level == 'three') {
+          highest = 'three'
+        
+        } else if (highest == 'two' || level == 'two') {
+          highest = 'two'
+
+        } else if (highest == 'one' || level == 'one') {
+          highest = 'one'
+
+        }
+        return highest
       },
-      selectProperties(propertycapacity, propertyallocatable) {
-        this.propertyAllocatable = propertyallocatable
-        this.propertyCapacity = propertycapacity
-        this.dialog = true;
+
+      pickColour(highest) {
+        var colour
+        if (highest == 'three') {
+          colour = '#f00'
+
+        } else if (highest == 'two') {
+          colour = '#ff9500'
+
+        } else {
+          colour = '#fc0'
+
+        }
+        return colour
+      },
+
+      selectProperty(alerts) {
+        if (alerts) {
+          this.selectedAlerts = alerts
+          this.dialog = true
+        }
       },
     }
   }

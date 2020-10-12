@@ -2,10 +2,8 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
-	"reflect"
 	"strings"
 	"strconv"
 	"time"
@@ -34,12 +32,10 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
 	var canary api.Canarydata
-	
-
 
 	for name, cluster := range config {
 
-		//properties = []api.Property{}
+		properties = []api.Property{}
 				
 		clientset, clientsetErr := GetClient(cluster.Kubeconfig)
 		if clientsetErr != nil {
@@ -93,10 +89,6 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 				},
 			},
 		})
-
-
-
-		fmt.Printf("end: %v\n\n", name)
 	}
 
 	json, err := json.Marshal(clusters)
@@ -147,18 +139,11 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 	if len(properties) > 0 {
 
 		if properties[4].Name == "Kernel Version" {
-			x := properties[4].Value
-			xt := reflect.TypeOf(x)
-			y := prop.NodeInfo.KernelVersion
-			yt := reflect.TypeOf(x)
-			fmt.Printf("found %+v of type %v\n", x, xt)
-			fmt.Printf("against %+v of type %v\n", y, yt)
 
-			if properties[4].Value == prop.NodeInfo.KernelVersion {
-				fmt.Printf("raise alert!\n")
+			if properties[4].Value != prop.NodeInfo.KernelVersion {
 				log := time.Now()
 				kernelAlert =  api.Alert {
-					Level:	"string",
+					Level:	"one",
 					Since:	log,
 					Message:"Node x has different kernel version from y",
 				}
@@ -167,10 +152,10 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 		if properties[5].Name == "CRI Version" {
 			
-			if properties[5].Value == prop.NodeInfo.ContainerRuntimeVersion {
+			if properties[5].Value != prop.NodeInfo.ContainerRuntimeVersion {
 				log := time.Now()
 				CRIAlert =  api.Alert {
-					Level:	"string",
+					Level:	"two",
 					Since:	log,
 					Message:"Node x has different CRI version from y",
 				}
@@ -179,10 +164,10 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 		if properties[6].Name == "K8S Version" {
 			
-			if properties[6].Value == prop.NodeInfo.KubeletVersion {
+			if properties[6].Value != prop.NodeInfo.KubeletVersion {
 				log := time.Now()
 				K8sAlert =  api.Alert {
-					Level:	"string",
+					Level:	"three",
 					Since:	log,
 					Message:"Node x has different K8s version from y",
 				}
@@ -191,10 +176,10 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 		if properties[7].Name == "OS Version" {
 			
-			if properties[7].Value == prop.NodeInfo.OSImage {
+			if properties[7].Value != prop.NodeInfo.OSImage {
 				log := time.Now()
 				OSAlert =  api.Alert {
-					Level:	"string",
+					Level:	"two",
 					Since:	log,
 					Message:"Node x has different OS version from y",
 				}
@@ -261,7 +246,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			Icon: "threat",
 			Alerts:  []api.Alert {
 				{
-					Level:	"string",
+					Level:	"three",
 					//Since:	time.Time,
 					Message:"string",
 				},

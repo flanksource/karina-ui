@@ -8,7 +8,7 @@
     </div>
 
     <div v-else inline>
-      <v-badge color="#b3b3b3" :content="alerts" inline>
+      <v-badge :color="alertscolour" :content="alerts" inline>
         <svg-icon :icon="icon" :hasFill="false" color=""/>
         <span class="pl-1 text-size">{{label}}</span>
       </v-badge>  

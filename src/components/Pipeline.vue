@@ -3,7 +3,7 @@
     <v-row no-gutters justify="" class="">   
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2"/>
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
-        <v-card flat class="ml-3 py-3">
+        <v-card flat class="ml-3 py-3 scroll">
           <ItemList :properties="cluster.properties" :name="cluster.name"/>
         </v-card>
       </v-col>
@@ -50,4 +50,23 @@ export default {
   border-left: 2px solid #222;
   border: 1px solid #444;
 }
+
+.scroll{
+  overflow-x: auto;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 5px;
+}
+ 
+.scroll::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 5px;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
+}
+
 </style>
