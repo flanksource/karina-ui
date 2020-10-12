@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -17,6 +18,43 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
 	for name, cluster := range config {
+
+
+		var prometheus api.PrometheusData
+
+		prometheusResp, err := net.GET(cluster.Prometheus)
+		if err != nil {
+			logger.Errorf("❌ Canary Check failed with %s", err)
+			continue
+		}
+	
+
+		if err := json.Unmarshal([]byte(prometheusResp), &prometheus); err != nil {
+			logger.Errorf("❌ Failed to unmarshal json %s", err)
+			continue
+		}
+
+		//fmt.Printf("promdata: %+v\n", prometheus)
+		//fmt.Printf("------------------------------------------------------\n\n\n\n\n\n", prometheus)
+
+		//metrics := ["node_memory_MemAvailable_bytes", "machine_cpu_cores", "kube_node_status_allocatable_cpu_cores"]
+
+
+
+		
+
+		for _, data := range prometheus.Data {
+
+			metrics := ["node_memory_MemAvailable_bytes", "machine_cpu_cores", "kube_node_status_allocatable_cpu_cores"]
+
+			for metric := range metrics
+			
+
+			fmt.Printf("%+v\n\n", data.Metric)
+
+
+		}
+
 
 		var canary api.Canarydata
 		canaryResp, err := net.GET(cluster.CanaryChecker)
@@ -52,6 +90,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 				},
 			},
 			CanaryChecks: canary.Checks,
+			Prometheus: prometheus.Data,
 		})
 	}
 

@@ -10,6 +10,7 @@ type Cluster struct {
 	CanaryChecks []Chek     `json:"canary_checks,omitempty"`
 	Nodes        []Node     `json:"nodes,omitempty"`
 	Alerts       []Alert    `json:"alerts,omitempty"`
+	Prometheus   []Promcheck `json:"prometheus,omitempty"`
 }
 
 type Property struct {
@@ -74,6 +75,39 @@ type ClusterConfiguration struct {
 	AlertManager  string `yaml:"alertmanager,omitempty"`
 	Kubeconfig    string `yaml:"kubeconfig,omitempty"`
 }
+
+type PrometheusData struct {
+	Status 	string 		`json:"status,omitempty"`
+	Data 	[]Promcheck `json:data,omitempty"`
+	// CPU		string `json:"cpu,omitempty"`
+	// Memory	string `json:"memory,omitempty"`
+	// Storage	string `json:"storage,omitempty"`
+	// Alerts 	string `json:"alert,omitempty"`
+}
+
+type Promcheck struct {
+	Target 	Target `json:"target,omitempty"`
+	Metric 	string `json:"metric,omitempty"`
+	Type 	string `json:"type,omitempty"`
+	Help 	string `json:"help,omitempty"`
+	Unit 	string `json:"unit,omitempty"`
+}
+
+type Target struct {
+	Endpoint 	string `json:"endpoint,omitempty"`
+	Instance 	string `json:"instance,omitempty"`
+	Job 		string `json:job,omitempty"`
+	Namespace 	string `json:namespace,omitempty"`
+	Service 	string `json:service,omitempty"`
+}
+
+
+
+
+
+
+
+
 
 /*type Combo struct {
 	Cluster []Cluster
