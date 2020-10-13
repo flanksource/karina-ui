@@ -128,7 +128,7 @@ type Node struct {
 
 type Alert struct {
 	Level   string    `json:"level,omitempty"`
-	Since   time.Time `json:"since,omitempty"`
+	Since   *time.Time `json:"since,omitempty"`
 	Message string    `json:"message,omitempty"`
 }
 

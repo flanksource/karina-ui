@@ -26,7 +26,6 @@ var clientset *kubernetes.Clientset
 var properties []api.Property
 var freshproperties []api.Property
 
-
 func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	logger.Infof("🚀 Fetching data")
@@ -126,7 +125,8 @@ func GetClient(configPath string) (*kubernetes.Clientset, error) {
 func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 	var prop api.Properties
-	kernelAlert, CRIAlert, K8sAlert, OSAlert := api.Alert{}, api.Alert{}, api.Alert{}, api.Alert{}
+	var kernelAlert, CRIAlert, K8sAlert, OSAlert = api.Alert{}, api.Alert{}, api.Alert{}, api.Alert{}
+	var Alerts []api.Alert
 
 	jsonProp, jsonPropErr := json.Marshal(node.Status)
 	if jsonPropErr != nil {
@@ -144,7 +144,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 				log := time.Now()
 				kernelAlert =  api.Alert {
 					Level:	"one",
-					Since:	log,
+					Since:	&log,
 					Message:"Node x has different kernel version from y",
 				}
 			}
@@ -156,7 +156,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 				log := time.Now()
 				CRIAlert =  api.Alert {
 					Level:	"two",
-					Since:	log,
+					Since:	&log,
 					Message:"Node x has different CRI version from y",
 				}
 			}
@@ -168,7 +168,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 				log := time.Now()
 				K8sAlert =  api.Alert {
 					Level:	"three",
-					Since:	log,
+					Since:	&log,
 					Message:"Node x has different K8s version from y",
 				}
 			}
@@ -180,7 +180,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 				log := time.Now()
 				OSAlert =  api.Alert {
 					Level:	"two",
-					Since:	log,
+					Since:	&log,
 					Message:"Node x has different OS version from y",
 				}
 			}
@@ -212,45 +212,31 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			Name: "Kernel Version",
 			Value: prop.NodeInfo.KernelVersion,
 			Icon: "linux",
-			Alerts:  []api.Alert {
-				kernelAlert, //append here
-			},
+			Alerts: append(Alerts, kernelAlert),			
 		},
 		{
 			Name: "CRI Version",
 			Value: prop.NodeInfo.ContainerRuntimeVersion,
 			Icon: GetCRI(prop.NodeInfo.ContainerRuntimeVersion),
-			Alerts:  []api.Alert {
-				CRIAlert, //append
-			},
+			Alerts:  append(Alerts, CRIAlert),
 		},
 		{
 			Name: "K8S Version",
 			Value: prop.NodeInfo.KubeletVersion,
 			Icon: "kubernetes",
-			Alerts:  []api.Alert {
-				K8sAlert, // append
-			},
+			Alerts: append(Alerts, K8sAlert),
 		},
 		{
 			Name: "OS Version",
 			Value: prop.NodeInfo.OSImage,
 			Icon: GetOSIcon(prop.NodeInfo.OSImage),
-			Alerts:  []api.Alert {
-				OSAlert, //append
-			},
+			Alerts: append(Alerts, OSAlert),
 		},
 		{
 			Name: "Threats",
 			Value: "",
 			Icon: "threat",
-			Alerts:  []api.Alert {
-				{
-					Level:	"three",
-					//Since:	time.Time,
-					Message:"string",
-				},
-			},
+			Alerts: Alerts,
 		},
 		{
 			Name: "Updates",
@@ -260,8 +246,6 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 	}
 	return properties  
 }
-
-
 
 func GetCRI(cri string) string {
 
@@ -336,7 +320,6 @@ func GetMemory(rawMemory string) string {
 	memory := humanize.Bytes(memoryVal)
 	return memory
 }
-
 
 func GetStorage(rawStorage string) string {
 
