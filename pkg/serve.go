@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -18,6 +19,8 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	var clusters []api.Cluster
 
 	for name, cluster := range config {
+
+		var prometheusAlert api.PrometheusAlert
 		
 		metrics := []string {"node_memory_MemAvailable_bytes","machine_cpu_cores","node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"}"}
 		prometheusData := make([]api.PrometheusData, len(metrics))
@@ -25,7 +28,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		for i, metric := range metrics {
 
 			var prometheus api.PrometheusData
-			prometheusResp, err := net.GET(cluster.Prometheus + metric)	
+			prometheusResp, err := net.GET(cluster.Prometheus + "query?query=" + metric)	
 			if err != nil {
 				logger.Errorf("❌ Prometheus extraction failed with %s", err)
 				continue
@@ -36,6 +39,21 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			}
 			prometheusData[i] = prometheus
 		}
+
+		prometheusAlertResp, err := net.GET(cluster.Prometheus + "alerts")
+		if err != nil {
+			logger.Errorf("❌ Prometheus extraction failed with %s", err)
+			continue
+		}
+		if err := json.Unmarshal([]byte(prometheusAlertResp), &prometheusAlert); err != nil {
+			logger.Errorf("❌ Failed to unmarshal json %s", err)
+			continue
+		}
+
+		fmt.Printf("%+v\n\n", prometheusAlert)
+
+		// ---feed to Alerts ;)
+
 
 		var canary api.Canarydata
 		canaryResp, err := net.GET(cluster.CanaryChecker)

@@ -77,6 +77,28 @@ type ClusterConfiguration struct {
 }
 
 
+type PrometheusAlert struct {
+	Status 	string 		`json:"status,omitempty"`
+	Data 	AlertData		`json:"data,omitempty"`
+}
+
+type AlertData struct {
+	Alerts 	[]Alerti
+}
+
+
+type Alerti struct {
+	Labels 		Label 
+	//State 		string
+	Since 	time.Time 	`json:"activeAt,omitempty"`
+	//Value 		[]interface{}
+}
+
+type Label struct {
+	AlertName 	string 	`json:"alertname,omitempty"`
+	Level 		string 	`json:"severity,omitempty"`
+}
+
 type PrometheusData struct {
 	//Status 	string 		`json:"status,omitempty"`
 	Data 	Data		`json:"data,omitempty"`
