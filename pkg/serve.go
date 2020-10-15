@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -17,44 +16,26 @@ var config = make(map[string]api.ClusterConfiguration)
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
+
 	for name, cluster := range config {
-
-
-		var prometheus api.PrometheusData
-
-		prometheusResp, err := net.GET(cluster.Prometheus)
-		if err != nil {
-			logger.Errorf("❌ Canary Check failed with %s", err)
-			continue
-		}
-	
-
-		if err := json.Unmarshal([]byte(prometheusResp), &prometheus); err != nil {
-			logger.Errorf("❌ Failed to unmarshal json %s", err)
-			continue
-		}
-
-		//fmt.Printf("promdata: %+v\n", prometheus)
-		//fmt.Printf("------------------------------------------------------\n\n\n\n\n\n", prometheus)
-
-		//metrics := ["node_memory_MemAvailable_bytes", "machine_cpu_cores", "kube_node_status_allocatable_cpu_cores"]
-
-
-
 		
+		metrics := []string {"node_memory_MemAvailable_bytes","machine_cpu_cores","node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"}"}
+		prometheusData := make([]api.PrometheusData, len(metrics))
 
-		for _, data := range prometheus.Data {
+		for i, metric := range metrics {
 
-			metrics := ["node_memory_MemAvailable_bytes", "machine_cpu_cores", "kube_node_status_allocatable_cpu_cores"]
-
-			for metric := range metrics
-			
-
-			fmt.Printf("%+v\n\n", data.Metric)
-
-
+			var prometheus api.PrometheusData
+			prometheusResp, err := net.GET(cluster.Prometheus + metric)	
+			if err != nil {
+				logger.Errorf("❌ Prometheus extraction failed with %s", err)
+				continue
+			}
+			if err := json.Unmarshal([]byte(prometheusResp), &prometheus); err != nil {
+				logger.Errorf("❌ Failed to unmarshal json %s", err)
+				continue
+			}
+			prometheusData[i] = prometheus
 		}
-
 
 		var canary api.Canarydata
 		canaryResp, err := net.GET(cluster.CanaryChecker)
@@ -90,7 +71,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 				},
 			},
 			CanaryChecks: canary.Checks,
-			Prometheus: prometheus.Data,
+			Prometheus: prometheusData,
 		})
 	}
 

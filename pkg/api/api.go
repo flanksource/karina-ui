@@ -5,12 +5,12 @@ import (
 )
 
 type Cluster struct {
-	Name         string     `json:"name,omitempty"`
-	Properties   []Property `json:"properties,omitempty"`
-	CanaryChecks []Chek     `json:"canary_checks,omitempty"`
-	Nodes        []Node     `json:"nodes,omitempty"`
-	Alerts       []Alert    `json:"alerts,omitempty"`
-	Prometheus   []Promcheck `json:"prometheus,omitempty"`
+	Name         string     		`json:"name,omitempty"`
+	Properties   []Property 		`json:"properties,omitempty"`
+	CanaryChecks []Chek     		`json:"canary_checks,omitempty"`
+	Nodes        []Node    			`json:"nodes,omitempty"`
+	Alerts       []Alert    		`json:"alerts,omitempty"`
+	Prometheus   []PrometheusData 	`json:"prometheus,omitempty"`
 }
 
 type Property struct {
@@ -76,56 +76,34 @@ type ClusterConfiguration struct {
 	Kubeconfig    string `yaml:"kubeconfig,omitempty"`
 }
 
+
 type PrometheusData struct {
-	Status 	string 		`json:"status,omitempty"`
-	Data 	[]Promcheck `json:data,omitempty"`
-	// CPU		string `json:"cpu,omitempty"`
-	// Memory	string `json:"memory,omitempty"`
-	// Storage	string `json:"storage,omitempty"`
-	// Alerts 	string `json:"alert,omitempty"`
+	//Status 	string 		`json:"status,omitempty"`
+	Data 	Data		`json:"data,omitempty"`
 }
 
-type Promcheck struct {
-	Target 	Target `json:"target,omitempty"`
-	Metric 	string `json:"metric,omitempty"`
-	Type 	string `json:"type,omitempty"`
-	Help 	string `json:"help,omitempty"`
-	Unit 	string `json:"unit,omitempty"`
+type Data struct {
+	//ResultType 	string 	`json:"resultType,omitempty"`
+	Result 		[]Result 	`json:"result,omitempty"`
 }
 
-type Target struct {
+
+type Result struct {
+	Metric Metric 			`json:"metric,omitempty"`
+	Value  []interface{} 	`json:"value,omitempty"`
+}
+
+type Metric struct {
+	Name 		string `json:"__name__,omitempty"`
 	Endpoint 	string `json:"endpoint,omitempty"`
 	Instance 	string `json:"instance,omitempty"`
-	Job 		string `json:job,omitempty"`
-	Namespace 	string `json:namespace,omitempty"`
-	Service 	string `json:service,omitempty"`
+	Job 		string `json:"job,omitempty"`
+	MetricsPath string `json:"metrics_path,omitempty"`
+	Namespace 	string `json:"namespace,omitempty"`
+	Node 		string `json:"node,omitempty"`
+	Service 	string `json:"service,omitempty"`
+	Pod 		string `json:"pod,omitempty"`
+	Device 		string `json:"device,omitempty"`
+	FSType 		string `json:"fstype,omitempty"`
+	MountPoint 	string `json:"mountpoint,omitempty"`
 }
-
-
-
-
-
-
-
-
-
-/*type Combo struct {
-	Cluster []Cluster
-	Canary 	Canarydata
-}*/
-
-/*type CanaryCheck struct {
-	Name      string              `json:"name,omitempty"`
-	Namespace string              `json:"namespace,omitempty"`
-	Type      string              `json:"type,omitempty"`
-	Endpoint  string              `json:"endpoint,omitempty"`
-	Latency1H string              `json:"latency_1_h,omitempty"`
-	Uptime1H  string              `json:"uptime_1_h,omitempty"`
-	Status    []CanaryCheckStatus `json:"status,omitempty"`
-}
-
-type CanaryCheckStatus struct {
-	Pass      bool      `json:"pass,omitempty"`
-	Timestamp time.Time `json:"timestamp,omitempty"`
-	Message   string    `json:"message,omitempty"`
-}*/
