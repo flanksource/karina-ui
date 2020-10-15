@@ -14,11 +14,10 @@ import (
 	"github.com/flanksource/karina-ui/pkg/api"
   	"gopkg.in/yaml.v2"
   	v1 "k8s.io/api/core/v1"
+  	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
   	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
 )
 
 var config = make(map[string]api.ClusterConfiguration)
@@ -125,7 +124,7 @@ func GetClient(configPath string) (*kubernetes.Clientset, error) {
 func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 	var prop api.Properties
-	var kernelAlert, CRIAlert, K8sAlert, OSAlert = api.Alert{}, api.Alert{}, api.Alert{}, api.Alert{}
+	var kernelAlerts, CRIAlerts, K8sAlerts, OSAlerts = []api.Alert{}, []api.Alert{}, []api.Alert{}, []api.Alert{}
 	var Alerts []api.Alert
 
 	jsonProp, jsonPropErr := json.Marshal(node.Status)
@@ -142,11 +141,12 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 
 			if properties[4].Value != prop.NodeInfo.KernelVersion {
 				log := time.Now()
-				kernelAlert =  api.Alert {
+				mesg := "Node: " + prop.NodeInfo.MachineID + "has different kernel version from node: " + properties[3].Value
+				kernelAlerts =  append(kernelAlerts, api.Alert {
 					Level:	"one",
-					Since:	&log,
-					Message:"Node x has different kernel version from y",
-				}
+					Since:	log,
+					Message: mesg,
+				})
 			}
 		}
 
@@ -154,11 +154,12 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			
 			if properties[5].Value != prop.NodeInfo.ContainerRuntimeVersion {
 				log := time.Now()
-				CRIAlert =  api.Alert {
+				mesg := "Node: " + prop.NodeInfo.MachineID + "has different CRI version from node: " + properties[3].Value
+				CRIAlerts =  append(CRIAlerts, api.Alert {
 					Level:	"two",
-					Since:	&log,
-					Message:"Node x has different CRI version from y",
-				}
+					Since:	log,
+					Message: mesg,
+				})
 			}
 		}
 
@@ -166,11 +167,12 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			
 			if properties[6].Value != prop.NodeInfo.KubeletVersion {
 				log := time.Now()
-				K8sAlert =  api.Alert {
+				mesg := "Node: " + prop.NodeInfo.MachineID + "has different K8s version from node: " + properties[3].Value
+				K8sAlerts = append(K8sAlerts, api.Alert {
 					Level:	"three",
-					Since:	&log,
-					Message:"Node x has different K8s version from y",
-				}
+					Since:	log,
+					Message: mesg,
+				})
 			}
 		}
 
@@ -178,11 +180,12 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			
 			if properties[7].Value != prop.NodeInfo.OSImage {
 				log := time.Now()
-				OSAlert =  api.Alert {
+				mesg := "Node: " + prop.NodeInfo.MachineID + "has different OS version from node: " + properties[3].Value
+				OSAlerts = append(OSAlerts, api.Alert {
 					Level:	"two",
-					Since:	&log,
-					Message:"Node x has different OS version from y",
-				}
+					Since:	log,
+					Message: mesg,
+				})
 			}
 		}
 	}
@@ -212,25 +215,25 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 			Name: "Kernel Version",
 			Value: prop.NodeInfo.KernelVersion,
 			Icon: "linux",
-			Alerts: append(Alerts, kernelAlert),			
+			Alerts: kernelAlerts,			
 		},
 		{
 			Name: "CRI Version",
 			Value: prop.NodeInfo.ContainerRuntimeVersion,
 			Icon: GetCRI(prop.NodeInfo.ContainerRuntimeVersion),
-			Alerts:  append(Alerts, CRIAlert),
+			Alerts: CRIAlerts,
 		},
 		{
 			Name: "K8S Version",
 			Value: prop.NodeInfo.KubeletVersion,
 			Icon: "kubernetes",
-			Alerts: append(Alerts, K8sAlert),
+			Alerts: K8sAlerts,
 		},
 		{
 			Name: "OS Version",
 			Value: prop.NodeInfo.OSImage,
 			Icon: GetOSIcon(prop.NodeInfo.OSImage),
-			Alerts: append(Alerts, OSAlert),
+			Alerts: OSAlerts,
 		},
 		{
 			Name: "Threats",
@@ -276,7 +279,7 @@ func GetMemory(rawMemory string) string {
 
 		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
 		if err != nil {
-			logger.Errorf("❗ Failed to srting conversion: %s", err)
+			logger.Errorf("❗ Failed string conversion: %s", err)
 		}
 		memoryVal = memoryVal * 1024
 
@@ -286,7 +289,7 @@ func GetMemory(rawMemory string) string {
 
 		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
 		if err != nil {
-			logger.Errorf("❗ Failed to srting conversion: %s", err)
+			logger.Errorf("❗ Failed string conversion: %s", err)
 		}
 		memoryVal = memoryVal * 1024 * 1024
 
@@ -296,7 +299,7 @@ func GetMemory(rawMemory string) string {
 
 		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
 		if err != nil {
-			logger.Errorf("❗ Failed to srting conversion: %s", err)
+			logger.Errorf("❗ Failed to string conversion: %s", err)
 		}
 		memoryVal = memoryVal * 1024 * 1024 * 1024
 
@@ -306,14 +309,14 @@ func GetMemory(rawMemory string) string {
 
 		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
 		if err != nil {
-			logger.Errorf("❗ Failed to srting conversion: %s", err)
+			logger.Errorf("❗ Failed to string conversion: %s", err)
 		}
 		memoryVal = memoryVal * 1024 * 1024 * 1024 * 1024
 
 	} else {
 		memoryVal, err = strconv.ParseUint(rawMemory, 10, 64)
 		if err != nil {
-			logger.Errorf("❗ Failed to srting conversion: %s", err)
+			logger.Errorf("❗ Failed to string conversion: %s", err)
 		}
 	}
 
@@ -325,7 +328,7 @@ func GetStorage(rawStorage string) string {
 
 	storageVal, err := strconv.ParseUint(rawStorage, 10, 64)
 	if err != nil {
-		logger.Errorf("❗ Failed to convert %s", err)
+		logger.Errorf("❗ Failed conversion %s", err)
 	}
 	storage := humanize.Bytes(storageVal)
 	return storage

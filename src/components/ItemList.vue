@@ -108,13 +108,13 @@ import ItemCard from "./ItemCard.vue";
       pickColour(highest) {
         var colour
         if (highest == 'three') {
-          colour = '#f00'
+          colour = '#990000'
 
         } else if (highest == 'two') {
-          colour = '#ff9500'
+          colour = '#f68c1f'
 
         } else {
-          colour = '#fc0'
+          colour = '#eae229'
 
         }
         return colour
