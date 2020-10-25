@@ -13,27 +13,36 @@
         :canarychecks="canarychecks"
       />
     </span>
+
+    <span>
+      <IndicatorCardPrometheus
+        indicatoricon="idea.svg"
+        :prometheusChecks="prometheusChecks"
+      />
+    </span>
   </span>
 </template>
 
-
 <script>
-import IndicatorCard from "./IndicatorCard.vue";
-import IndicatorCardCanary from "./IndicatorCardCanary.vue";
+  import IndicatorCard from "./IndicatorCard.vue";
+  import IndicatorCardCanary from "./IndicatorCardCanary.vue";
+  import IndicatorCardPrometheus from "./IndicatorCardPrometheus.vue"
 
-export default {
-  name: "IndicatorList",
+  export default {
+    name: "IndicatorList",
 
-  components: {
-    IndicatorCard,
-    IndicatorCardCanary,
-  },
+    components: {
+      IndicatorCard,
+      IndicatorCardCanary,
+      IndicatorCardPrometheus
+    },
 
-  props: {
-    indicators: Array,
-    canarychecks: Array,
-  },
-};
+    props: {
+      indicators: Array,
+      canarychecks: Array,
+      prometheusChecks: Array
+    },
+  };
 </script>
 
 

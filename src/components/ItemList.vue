@@ -1,136 +1,77 @@
 <template>
   <span>
     <span class="cluster-title">
-      {{ id }}
+      {{ name }}
     </span>
 
-
-    <span v-if="alerts">
-
-      <ItemCard
-        label="alerts"
-        icon="threat"
-        :alerts="countPromAlerts(alerts)"
-        :alertscolour="getPromColour(alerts)"
-        class="clickable-icon"
-        @click.native="viewPromAlerts(alerts)"
-      />
+    <span>
+      Prometheus Data
     </span>
 
-        <v-dialog v-model="dialog" max-width="50%">
-          <v-card>
-            <v-card-title class="headline"></v-card-title>
+    <span
+      v-for="(prometheusProp, i) in prometheusProps"
+      :key="i"
+      class="ten-abreast"
+    >
+      <span v-if="prometheusProp.data.result[0].metric.__name__ == 'node_memory_MemAvailable_bytes'">
+        <ItemCard
+          :label="prometheusProp.data.result[0].value[1]+' bytes'" 
+          icon="ram" 
+          alerts=""
+          alertscolour=""
+          class="clickable-icon"
+        />
+      </span>
 
-            <v-card-text>
+      <span v-if="prometheusProp.data.result[0].metric.__name__ == 'machine_cpu_cores'">
+        <ItemCard
+          :label="prometheusProp.data.result[0].value[1]" 
+          icon="cpu" 
+          alerts=""
+          alertscolour=""
+          class="clickable-icon"
+        />
+      </span>
 
-              <v-row>
-                 <span v-for="(alert, i) in alerts" :key="i">
-
-                  <b>{{i + 1}} {{alert.labels.alertname}}</b>
-                   {{alert.labels.severity}}<br/>
-                  {{alert.annotations.message}}
-                  since:{{alert.since}}<br/>
-                 
-                </span>
-              </v-row>
-            </v-card-text>
-          </v-card>
-        </v-dialog>
-
-
-
-  
+      <span v-if="prometheusProp.data.result[0].metric.__name__ == 'node_filesystem_size_bytes'">
+        <ItemCard
+          :label="prometheusProp.data.result[0].value[1]+' bytes'" 
+          icon="storage" 
+          alerts=""
+          alertscolour=""
+          class="clickable-icon"
+        />
+      </span>
+    </span>
   </span>
 </template>
 
 <script>
 import ItemCard from "./ItemCard.vue";
-
-export default {
-  name: "ItemList",
-
-  components: {
-    ItemCard,
-  },
-
-  props: {
-    id: String,
-    items: Array,
-    alerts: Array,
-  },
-
-  data() {
-    return {
-      dialog: false,
-    };
-  },
-
-  methods: {
-    countPromAlerts(alerts) {
-      var count = 0
-      if (alerts) {
-        count = alerts.length
-      }
-      return count;      
+  export default {
+    name: 'ItemList',
+    
+    components:{
+      ItemCard
     },
-      
-    viewPromAlerts(alerts) {
-      this.dialog = true;
-      this.alerts = alerts;
+    props: {
+      name: String,
+      properties: Object,
+      prometheusProps: Array,
     },
 
-    getPromColour(alerts) {
-        if (alerts) {
-        var highest = 'none'
-        for (var i = 0; i < alerts.length; i++) {
-          var level = alerts[i].labels.severity
-        
-          highest = this.getPromHighest(highest, level)
-          
-        }
-        return this.pickPromColour(highest)
-      }       
-    },
-
-    getPromHighest(highest, level) {
-      if (highest == 'critical' || level == 'critical') {
-        highest = 'critical'
-      } else if (highest == 'warning' || level == 'warning') {
-        highest = 'warning'
-        
-      } else {
-        highest = 'info'
-       
-      }
-      return highest
-    },
-
-     pickPromColour(highest) {
-        var colour
-        if (highest == 'critical') {
-          colour = '#990000'
-        } else if (highest == 'warning') {
-          colour = '#f68c1f'
-        } else {
-          colour = '#eae229'
-        }
-        console.log(colour)
-        return colour
-      },
   }
-};
 </script>
 
 <style scoped>
-.no-events {
-  pointer-events: none;
-}
-
-.cluster-title {
-  text-decoration: underline;
-  font-weight: bold;
-}
-
+  .no-events{
+    pointer-events: none
+  }
+  
+  .cluster-title {
+    text-decoration: underline;
+    font-weight: bold;
+  }
   .clickable-icon {
     cursor: pointer;
   }

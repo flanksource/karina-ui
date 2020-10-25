@@ -5,7 +5,7 @@
 
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
         <v-card flat class="ml-3 py-3">
-          <ItemList :items="cluster.properties" :id="cluster.name" :alerts="cluster.alerts" />
+          <ItemList :items="cluster.properties" :id="cluster.name" :prometheusProps="cluster.prometheus"/>
         </v-card>
       </v-col>
 
@@ -22,6 +22,7 @@
           <IndicatorList
             :canarychecks="cluster.canary_checks"
             :indicators="cluster.indicators"
+            :prometheusChecks="cluster.alerts"
           />
         </v-card>
       </v-col>
