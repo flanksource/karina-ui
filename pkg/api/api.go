@@ -9,8 +9,9 @@ type Cluster struct {
 	Properties   []Property 		`json:"properties,omitempty"`
 	CanaryChecks []Chek     		`json:"canary_checks,omitempty"`
 	Nodes        []Node    			`json:"nodes,omitempty"`
-	Alerts       []Alert    		`json:"alerts,omitempty"`
+	Alerts       []Alerti  `json:"alerts,omitempty"`
 	Prometheus   []PrometheusData 	`json:"prometheus,omitempty"`
+
 }
 
 type Property struct {
@@ -86,13 +87,17 @@ type AlertData struct {
 	Alerts 	[]Alerti
 }
 
-
 type Alerti struct {
-	Labels 		Label 
-	//State 		string
-	Since 	time.Time 	`json:"activeAt,omitempty"`
+	Label 		Label		`json:"labels,omitempty"` 
+	Annotation Annotation 	`json:"annotations,omitempty"`
+	Since 	time.Time 		`json:"since,omitempty"`
 	//Value 		[]interface{}
 }
+
+type Annotation struct {
+	Message 	string 	`json:"message,omitempty"`
+}
+
 
 type Label struct {
 	AlertName 	string 	`json:"alertname,omitempty"`

@@ -50,9 +50,10 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			continue
 		}
 
-		fmt.Printf("%+v\n\n", prometheusAlert)
+		fmt.Printf("%+v\n\n", prometheusAlert.Data.Alerts)
 
 		// ---feed to Alerts ;)
+		promAlerts :=  prometheusAlert.Data.Alerts
 
 
 		var canary api.Canarydata
@@ -90,6 +91,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			},
 			CanaryChecks: canary.Checks,
 			Prometheus: prometheusData,
+			Alerts: promAlerts,
 		})
 	}
 

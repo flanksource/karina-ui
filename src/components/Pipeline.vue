@@ -5,7 +5,7 @@
 
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
         <v-card flat class="ml-3 py-3">
-          <ItemList :items="cluster.properties" :id="cluster.name" />
+          <ItemList :items="cluster.properties" :id="cluster.name" :alerts="cluster.alerts" />
         </v-card>
       </v-col>
 
