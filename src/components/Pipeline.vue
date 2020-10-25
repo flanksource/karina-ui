@@ -1,7 +1,11 @@
 <template>
   <div class="pb-12">
     <v-row no-gutters>
-      <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2" />
+      <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
+        <UsageBar value="75" min="0" max="100" colour="#0f0"/>
+        <UsageBar value="50" min="1" max="0" colour="#f00"/>
+        <UsageBar value="25"/>
+      </v-col>
 
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
         <v-card flat class="ml-3 py-3">
@@ -32,6 +36,7 @@
 <script>
 import IndicatorList from "./IndicatorList.vue";
 import ItemList from "./ItemList.vue";
+import UsageBar from "./UsageBar"
 
 export default {
   name: "IndicatorPanel",
@@ -39,6 +44,7 @@ export default {
   components: {
     ItemList,
     IndicatorList,
+    UsageBar
   },
 
   props: {
