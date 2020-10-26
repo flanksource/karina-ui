@@ -1,72 +1,182 @@
 <template>
-	<div class="region">
+	<div class="bar">
 		<span class="unit-min">{{min}}</span>
 		<span class="unit-max">{{max}}</span>
 
-		<v-progress-linear
-			v-model="value"
-			height="25"
-			rounded
-			background-color="#333"
-			:color="colour"
+		<div class="scale">
+			<v-progress-linear
+				:value="getValue(value, min, max)"
+				height="5"
+				rounded
+				background-color="#999"
+				:color="getColour(value,optimum)"
+				:title="metric + ': ' + getTitle(value, min, max)"
+			>
+			</v-progress-linear>
+		</div>
+
+		<div
+			class="marker"
+			v-bind:style="{marginLeft: `${getValue(optimum, min, max)}%`}"
 		>
-			
-		</v-progress-linear>
+			<svg-icon
+				icon="triangle-marker"
+				:style="markerStyles"
+				:title="getTitle(optimum, min, max)"
+			/>
+		</div>
 	</div>
 </template>
 
-
-
 <script>
+	import SvgIcon from "./SVGIcon.vue";
 	
 	export default{
+
+		components: {
+			SvgIcon,
+		},
 
 		props: {
 			value: Number,
 			min: Number,
 			max: Number,
 			colour: String,
+			optimum: Number,
+			metric: String,
 		},
 
-		data() {
-			
+		methods : {
+			getValue(value, min, max) {
+
+				var usageValue;
+
+				if (min < max) {
+
+					usageValue = (value/max) * 100;
+					return usageValue;
+				}
+
+				if (min > max) {
+
+					usageValue =  (value/min) *100;
+					return usageValue;
+				}
+			},
+
+			getOptimum(optimum, min, max) {
+
+				var optimumValue;
+
+				if (min < max) {
+
+					optimumValue = (optimum/max) * 100;
+					return optimumValue;
+				}
+
+				if (min > max) {
+
+					optimumValue =  (optimum/min) *100;
+					return optimumValue;
+				}
+			},
+
+			getTitle(value, min, max){
+
+				var title;
+
+				if (min < max) {
+
+					title = value;
+					return title;
+				}
+
+				if (min > max) {
+
+					title =  value * -1;
+					return title;
+				}
+			},
+
+			getColour(value, optimum){
+
+				var colour;
+
+				if (value < optimum) {
+
+					colour = "#336600";
+					return colour;
+				}
+
+				if (value > optimum) {
+
+					colour = "#990000";
+					return colour;
+				}
+			},
+
+		},
+
+		computed: {
+			markerStyles() {
+
+				var colour;
+
+				if (this.value < this.optimum) {
+					colour = "#336600";
+				}
+
+				else if (this.value > this.optimum) {
+					colour = "#990000";	
+				}
+
+				return {
+					color: colour,
+				};
+			},
 		},
 	}
 </script>
 
 
 <style scoped>
-	.unit-min{
+
+	.bar {
+		padding: 25px 0;
 		position: relative;
-		margin-top: -1px;
-		margin-left: 0;
+		margin: 0 10px;
+	}
+
+	.scale {
+		position: absolute;
+		margin-top: 0;
+		margin-left: 5px;
+		width: 100%;
+	}
+
+	.marker {
+		position: absolute;
+		margin-top: 3%;
+		font-size: 10px;
+
+	}
+
+	.unit-min {
+		position: relative;
 		float: left;
+		margin-left: 5px;
+		margin-top: -10%;
 		z-index: 200;
-
+		font-size: 12px;
 	}
 
-	.unit-max{
+	.unit-max {
 		position: relative;
-		margin-top: -1px;
-		margin-right: 0;
 		float: right;
+		margin-right: -5px;
+		margin-top: -10%;	
 		z-index: 200;
-
+		font-size: 12px;
 	}
-
-	.region{
-		border: 2px solid #000;
-	}
-
-
 	
 </style>
-
-<!-- <UsageBar
-min=35
-max=50
-green=45
-red=0
-greenArrow=50
-redArrow=-1
-/> -->

@@ -2,9 +2,10 @@
   <div class="pb-12">
     <v-row no-gutters>
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
-        <UsageBar value="75" min="0" max="100" colour="#0f0"/>
-        <UsageBar value="50" min="1" max="0" colour="#f00"/>
-        <UsageBar value="25"/>
+        <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0"/>
+        <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0"/>
+        <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00"/>
+        <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00"/>
       </v-col>
 
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">

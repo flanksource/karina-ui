@@ -29,7 +29,7 @@ export default {
     colour: String,
     shape: String,
     overlay: String,
-    hover: Boolean,
+    //hover: Boolean,
     title: String,
   },
 
