@@ -8,7 +8,7 @@
 				:value="getValue(value, min, max)"
 				height="5"
 				rounded
-				background-color="#999"
+				background-color="#4a4a4a"
 				:color="getColour(value,optimum)"
 				:title="metric + ': ' + getTitle(value, min, max)"
 			>
@@ -104,13 +104,13 @@
 
 				if (value < optimum) {
 
-					colour = "#336600";
+					colour = "#29d1b3";
 					return colour;
 				}
 
 				if (value > optimum) {
 
-					colour = "#990000";
+					colour = "#fa3861";
 					return colour;
 				}
 			},
@@ -123,11 +123,11 @@
 				var colour;
 
 				if (this.value < this.optimum) {
-					colour = "#336600";
+					colour = "#29d1b3";
 				}
 
 				else if (this.value > this.optimum) {
-					colour = "#990000";	
+					colour = "#fa3861";	
 				}
 
 				return {
@@ -156,7 +156,7 @@
 
 	.marker {
 		position: absolute;
-		margin-top: 3%;
+		margin-top: 2px;
 		font-size: 10px;
 
 	}
@@ -165,7 +165,7 @@
 		position: relative;
 		float: left;
 		margin-left: 5px;
-		margin-top: -10%;
+		margin-top: -15px;
 		z-index: 200;
 		font-size: 12px;
 	}
@@ -174,7 +174,7 @@
 		position: relative;
 		float: right;
 		margin-right: -5px;
-		margin-top: -10%;	
+		margin-top: -15px;	
 		z-index: 200;
 		font-size: 12px;
 	}
