@@ -49,6 +49,7 @@
               @click.native="selectCheck(canarycheck)"
             />
           </span>
+        </span>
 
           <v-dialog v-model="dialog" max-width="50%">
             <v-card>
@@ -88,7 +89,6 @@
               </v-card-text>
             </v-card>
           </v-dialog>
-        </span>
       </v-row>
     </v-col>
   </v-row>
