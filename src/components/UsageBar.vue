@@ -166,7 +166,7 @@
 		float: left;
 		margin-left: 5px;
 		margin-top: -15px;
-		z-index: 200;
+		z-index: 3;
 		font-size: 12px;
 	}
 
@@ -175,7 +175,7 @@
 		float: right;
 		margin-right: -5px;
 		margin-top: -15px;	
-		z-index: 200;
+		z-index: 3;
 		font-size: 12px;
 	}
 	
