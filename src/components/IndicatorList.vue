@@ -34,11 +34,12 @@
           </v-col> 
           <v-col cols="2" xs="2" sm="2" md="2" lg="1" xl="1" class="px-0">
             <span 
-              class="d-block text-size"
+              class="d-block text-size alerts"
               v-if="getAlerts(indicator.indicator_icons) > 0"
             >
               {{ getAlerts(indicator.indicator_icons) }}</span>
-            <span class="d-block text-size"
+              
+            <span class="d-block text-size indicators"
             v-if="getIndicators(indicator.indicator_icons) > 0"
             >{{ getIndicators(indicator.indicator_icons) }}</span>
           </v-col>
@@ -145,9 +146,21 @@ export default {
     height: 2px;
     left: 20%;
     position: absolute;
-    width: 73%;
+    width: 80%;
   }
   .text-size {
     font-size: 12px;
+  }
+  .alerts {
+    margin-top: -1px;
+    margin-left: -20px;
+    position: absolute;
+    z-index: 222;
+  }
+  .indicators {
+    margin-top: 20px;
+    margin-left: -20px;
+    position: absolute;
+    z-index: 222;
   }
 </style>
