@@ -58,8 +58,8 @@
               @click.native="selectCheck(prometheusCheck)"
             />
           </span>
-
-          <v-dialog v-model="dialog" max-width="50%">
+        </span> 
+         <v-dialog v-model="dialog" max-width="50%">
             <v-card>
               <v-card-title class="headline">
                   {{ selectedCheck.labels.alertname }}
@@ -74,7 +74,6 @@
               </v-card-text>
             </v-card>
           </v-dialog>
-        </span> 
       </v-row>
     </v-col>
   </v-row>
