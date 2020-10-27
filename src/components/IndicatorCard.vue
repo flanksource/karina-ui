@@ -1,11 +1,11 @@
 <template>
   <v-row align="center" class="pl-5">
     <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="pa-0">
-      <v-img
+     <!--  <v-img
         :aspect-ratio="1 / 1"
         :src="require(`@/assets/svg/${iconlg}`)"
         width="32"
-      />
+      /> -->
     </v-col>
 
     <v-col cols="10" xs="10" sm="8" md="8" lg="8" xl="8" class="pa-0 bordered">
