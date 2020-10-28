@@ -73,8 +73,7 @@ export default {
     if (window.DEMO_MODE) {
       return {
         clusters: stats.clusters,
-        loading: false,
-
+        loading: true,
       };
     } else {
       return {
@@ -86,7 +85,6 @@ export default {
 
   beforeCreate () {
     if (!window.DEMO_MODE) {
-
       /*
       this.$axios
       .get("http://localhost:8080/api")
@@ -95,10 +93,16 @@ export default {
       .finally(() => (this.loading = false))  
        */
       this.$axios
-      .get("/api")
-      .then(response => (this.clusters = response.data))
-      .catch(error => console.log(error))
-      .finally(() => (this.loading = false));     
+        .get("/api")
+        .then(response => (this.clusters = response.data))
+        .catch(error => console.log(error))
+        .finally(() => (this.loading = false)); 
+
+    } else {
+      
+      setTimeout(() => (this.loading = false)
+        .bind(this), (3 * 1000))
+        .catch(error => console.log(error));
     }
   }
 };
