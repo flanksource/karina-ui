@@ -73,6 +73,8 @@ export default {
     if (window.DEMO_MODE) {
       return {
         clusters: stats.clusters,
+        loading: false,
+
       };
     } else {
       return {
