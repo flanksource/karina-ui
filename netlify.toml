@@ -1,3 +1,3 @@
 [build]
-command = "mv public/demo.html public/index.html && npm run build"
+command = "mv public/demo.html public/index.html && mv src/main-demo.js src/main.js && npm run build"
 publish = "dist/"
