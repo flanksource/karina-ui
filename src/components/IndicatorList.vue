@@ -27,24 +27,35 @@
                 width="48"
                 class="icon"
               />
+            
               <span 
-                class="alert-overlay"
                 v-if="getAlerts(indicator.indicator_icons) > 0"
               >
-                {{ getAlerts(indicator.indicator_icons) }}
+                <v-badge
+                  :content="getAlerts(indicator.indicator_icons)"
+                  color="#990000"
+                  offset-x=-50
+                  offset-y=5
+                >
+                </v-badge>
               </span>
                 
               <span
-                class="indicator-overlay"
                 v-if="getIndicators(indicator.indicator_icons) > 0"
               >
-                {{ getIndicators(indicator.indicator_icons) }}
+                <v-badge
+                  :content="getIndicators(indicator.indicator_icons)"
+                  color="#336600"
+                  offset-x=-50
+                  offset-y=30
+                >
+                </v-badge>
               </span>
             </div>
           </v-col>
 
-          <v-col cols="10" xs="10" sm="10" md="10" lg="8" xl="8" class="bordered">
-            <v-expansion-panel-content class="regulate-padding">
+          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-4">
+            <v-expansion-panel-content class="regulate-padding bordered">
               <IndicatorCard
                 :indicatoricons="indicator.indicator_icons"
               />
@@ -114,7 +125,6 @@ export default {
         for (var i=0; i<icons.length; i++) {
           if (icons[i].color == '#990000' || icons[i].color == '#994c00'){
             sum = sum + 1;
-            console.log(sum)
           }
         }
       }
@@ -151,7 +161,7 @@ export default {
   content: '';
   display: block;
   height: 1px;
-  left: 25%;
+  left: 30%;
   position: absolute;
   width: 60%;
 }
@@ -186,6 +196,7 @@ export default {
 }
 .regulate-padding {
   padding-top: 16px;
+  padding-left: 0px !important;
 }
 .btn-expand {
   position: absolute;
@@ -205,5 +216,9 @@ i {
 .up {
   transform: rotate(-135deg);
   margin-top: 2px;
+}
+.border{
+  border: 2px solid #0f0;
+  margin-left: 15px;
 }
 </style>
