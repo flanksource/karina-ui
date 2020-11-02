@@ -1,12 +1,12 @@
 <template>
-  <span>
+  <div>
     <v-btn
       class="btn-expand"
-      @click="expansion"
+      @click="selectMode"
       outlined
       x-small
     >
-      <i :class="{ 'up': expand, 'down': !expand  }"> </i>
+      <i :class="{ 'up': listExpand, 'down': !listExpand  }"> </i>
     </v-btn>  
         
     <v-expansion-panels
@@ -27,12 +27,12 @@
                 width="48"
                 class="icon"
               />
-            
+
               <span 
-                v-if="getAlerts(indicator.indicator_icons) > 0"
+                v-if="getDemoAlerts(indicator.indicator_icons) > 0"
               >
                 <v-badge
-                  :content="getAlerts(indicator.indicator_icons)"
+                  :content="getDemoAlerts(indicator.indicator_icons)"
                   color="#990000"
                   offset-x=-50
                   offset-y=5
@@ -64,15 +64,67 @@
         </v-row>
       </v-expansion-panel>
     </v-expansion-panels>
+
     <span
       v-if="!demo"
     >
-      <IndicatorCardCanary
-        indicatoricon="birdie.svg"
-        :canarychecks="canarychecks"
-      />
-    </span>
+    <v-expansion-panels
+      v-model="list"
+      multiple
+      flat
+    >
+          <v-expansion-panel>
+          <v-row no-gutters align="center" class="pl-3">
+             <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
+            <div class="parent">
+              <v-img
+                :aspect-ratio="1 / 1"
+                :src="require(`@/assets/svg/birdie.svg`)"
+                width="48"
+                class="icon"
+              />
+
+            <span 
+                v-if="getCanaryAlerts(canarychecks) > 0"
+              >
+                <v-badge
+                  :content="getCanaryAlerts(canarychecks)"
+                  color="#990000"
+                  offset-x=-50
+                  offset-y=5
+                >
+                </v-badge>
+              </span>
+                
+              <span
+                v-if="getIndicators(canarychecks) > 0"
+              >
+                <v-badge
+                  :content="getIndicators(canarychecks)"
+                  color="#336600"
+                  offset-x=-50
+                  offset-y=30
+                >
+                </v-badge>
+              </span>
+            </div>
+          </v-col>
+          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-4">
+            <v-expansion-panel-content class="regulate-padding bordered">
+
+               <IndicatorCardCanary
+               
+                :canarychecks="canarychecks"
+              />
+            </v-expansion-panel-content>
+            
+          </v-col>
+        </v-row>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </span>
+
+  </div>
 </template>
 
 <script>
@@ -91,24 +143,30 @@ export default {
     indicators: Array,
     canarychecks: Array,
     indicator: Array,
+    expandMode: Boolean
   },
 
   data () {
     return {
       list: [],
-      expand: false,
+      listExpand: this.expandMode,
       demo: window.DEMO_MODE,
     }
   },
 
   methods: {
-    expansion() {
-      this.expand = !this.expand;
-      if (this.expand == true) {
-        this.list = [...this.indicators.keys()].map((k,i) => i)
+    selectMode() {
+      this.listExpand = !this.listExpand;
+      if (this.listExpand == true) {
+        if (!this.demo) {
+          this.list = [...this.canarychecks.keys()].map((k,i) => i)
+        } else {
+          this.list = [...this.indicators.keys()].map((k,i) => i)
+        }
       } else {
         this.list = []
       }
+      this.$emit('expand');
     },
 
     getIndicators(icons) {
@@ -119,7 +177,8 @@ export default {
       return count;
     },
 
-    getAlerts(icons) {
+
+    getDemoAlerts(icons) {
       var sum = 0
       if (icons) {
         for (var i=0; i<icons.length; i++) {
@@ -128,8 +187,20 @@ export default {
           }
         }
       }
-       return sum;
+      return sum;
     },
+
+    getCanaryAlerts(icons) {
+      var sum = 0
+      if (icons) {
+        for (var i=0; i<icons.length; i++) {
+          if (icons[i].checkStatuses[0].Status != true) {
+            sum = sum + 1;
+          }
+        }
+      }
+      return sum;
+    }
   },
 }
 </script>
@@ -221,4 +292,5 @@ i {
   border: 2px solid #0f0;
   margin-left: 15px;
 }
+
 </style>

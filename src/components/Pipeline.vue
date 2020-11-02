@@ -16,12 +16,17 @@
         md="7"
         lg="6"
         xl="6"
-        class="indicator-list"
+        :class="{ 'expand-list': expandMode, 'collapse-list': !expandMode  }"
+
+       
       >
         <v-card flat class="mr-4 py-3">
           <IndicatorList
             :canarychecks="cluster.canary_checks"
             :indicators="cluster.indicators"
+            :expandMode="expandMode"
+            :list="list"
+            @expand="expansion"
           />
         </v-card>
       </v-col>
@@ -43,8 +48,34 @@ export default {
 
   props: {
     cluster: Object,
+    bgColor: {
+      type: String,
+      default: "#0099CC"
+    },
+    height: {
+      type: Number,
+      default: 100
+    },
+    maxWidth: {
+      type: Number,
+      default: 150,
+    },
   },
-};
+
+  data () {
+    return {
+      list: [],
+      expandMode: false,
+      demo: window.DEMO_MODE,
+    }
+  },
+
+  methods: {
+    expansion() {
+      this.expandMode = !this.expandMode;
+    },
+  }
+}
 </script>
 
 <style scoped>
@@ -56,10 +87,19 @@ export default {
   border: 1px solid #444;
 }
 
-.indicator-list {
+.expand-list {
   border-top-right-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
   border-left: 2px solid #222;
   border: 1px solid #444;
 }
+
+.collapse-list {
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  border-left: 2px solid #222;
+  border: 1px solid #444;
+  max-width:150px !important;
+}
+
 </style>
