@@ -230,29 +230,29 @@
 	}
 
 	.vertical-bar {
-	    transform: rotate(-90deg);
-	    padding: 10px 0;
-	    position: relative;
-	    margin-bottom: 10px;
-	    width: 45px;
-	    height: 50px;
+		transform: rotate(-90deg);
+		padding: 10px 0;
+		position: relative;
+		margin-bottom: 10px;
+		width: 45px;
+		height: 50px;
 	}
 
 	.vertical-scale {
-	    position: absolute;
-	    margin-top: 0;
-	    width: 100%;
+		position: absolute;
+		margin-top: 0;
+		width: 100%;
 	}
 
 	.vertical-marker {
-    	display: none;
-    }
+		display: none;
+	}
 
 	.vertical-unit-min {
-    	display: none;
-    }
+		display: none;
+	}
 
 	.vertical-unit-max {
-    	display: none;
-    }
+		display: none;
+	}
 </style>
