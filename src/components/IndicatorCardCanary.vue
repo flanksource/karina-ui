@@ -1,14 +1,4 @@
 <template>
-  <v-row align="center" class="pl-5">
-    <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="pa-0">
-      <v-img
-        :aspect-ratio="1 / 1"
-        :src="require(`@/assets/svg/${indicatoricon}`)"
-        width="32"
-      />
-    </v-col>
-
-    <v-col cols="10" xs="10" sm="8" md="8" lg="8" xl="8" class="pa-0 bordered">
       <v-row no-gutters>
         <span
           v-for="(canarycheck, i) in canarychecks"
@@ -112,8 +102,6 @@
           </v-card>
         </v-dialog>
       </v-row>
-    </v-col>
-  </v-row>
 </template>
 <!-- 
 // <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">

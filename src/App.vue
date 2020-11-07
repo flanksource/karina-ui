@@ -16,57 +16,44 @@
       v-else-if="loading == false"
     >
       <v-main>
-        <v-container fluid>
-          <v-row 
-            v-if="clusters==null"
-            class="fill-height mt-10"
-            align-content="center"
-            justify="center"
-          >
-            <v-col
-              class="subtitle-1 text-center"
-              cols="12"
-            >
-             No Data Found!
-            </v-col>
-          </v-row>
+        <v-row no-gutters>
+          <v-col cols="1" class="left-pane">
+            <Menu :clusters="clusters" @selectState="setState($event)"/>
+          </v-col>
 
-          <v-row v-else>
-            <v-col
-              cols="12"
-              xs="12"
-              sm="12"
-              md="6"
-              lg="6"
-              xl="6"
-              v-for="(cluster, i) in clusters"
-              :key="i"
+          <v-col cols="11" class="right-pane">
+
+            <span
+               v-if="state == 'iframe'"
             >
-              <v-row no-gutters>
-                <v-col cols="12" xs="12" sm="12" md="12" lg="12" xl="12">
-                  <IndicatorPanel
-                    :cluster="cluster"
-                    :itemicons="cluster.itemicons"
-                  />
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-container>
+              <IframeView/>
+            </span>
+       
+            <span 
+              v-if="state == 'native'"
+            > 
+              <NativeView :clusters="clusters"/>
+            </span> 
+          </v-col>
+        </v-row>
       </v-main>
     </div>
   </v-app>
 </template>
 
 <script>
-import IndicatorPanel from "./components/IndicatorPanel.vue";
-import Loader from "./components/Loader.vue";
-import stats from "./data/sample.json";
+  import IframeView from "./components/IframeView.vue";
+  import Loader from "./components/Loader.vue";
+  import Menu from "./components/Menu.vue";
+  import NativeView from "./components/NativeView.vue";
+  import stats from "./data/sample.json";
 
 export default {
   components: {
-    IndicatorPanel,
+    IframeView,
     Loader,
+    Menu,
+    NativeView,
   },
 
   data() {
@@ -74,12 +61,21 @@ export default {
       return {
         clusters: stats.clusters,
         loading: true,
+        state: 'native'
       };
     } else {
       return {
         clusters: null,
         loading: true,
+        state: 'native',
       };
+    }
+  },
+
+  methods: {
+    setState(state) {
+      this.state = state;
+      console.log(this.state)
     }
   },
 
@@ -107,3 +103,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  
+  .left-pane {
+    position: fixed;
+    max-width: 8vw;
+    height: 92vh;
+  }
+
+  .right-pane {
+    margin-left: 8vw;
+  }
+</style>
