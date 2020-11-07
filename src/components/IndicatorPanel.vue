@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="card-height">
     <v-row no-gutters align="center" justify="space-around" class="py-2 ml-4">
       <v-col
         cols="3"
@@ -41,20 +41,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.item-list {
-  border-top-left-radius: 20px !important;
-  border-bottom-left-radius: 20px !important;
-  min-height: 100%;
-  border-right: none;
-  border: 1px solid #444;
-}
-
-.indicator-list {
-  border-top-right-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
-  border-left: 2px solid #222;
-  border: 1px solid #444;
-}
-</style>

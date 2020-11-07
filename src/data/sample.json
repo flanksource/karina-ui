@@ -25,18 +25,12 @@
           "id": 1,
           "indicator_icon_lg": "heartline.svg",
           "indicator_icons": [
-            {"id":1,"color":"", "shape":"none", "overlay":""},
-            {"id":2,"color":"", "shape":"none", "overlay":""},
-            {"id":3,"color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
           "id": 2,
           "indicator_icon_lg": "cluster.svg",
           "indicator_icons": [
-            {"id":1,"color":"", "shape":"none", "overlay":""},
-            {"id":2,"color":"", "shape":"none", "overlay":""},
-            {"id":3,"color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
@@ -148,18 +142,12 @@
           "id": 1,
           "indicator_icon_lg": "heartline.svg",
           "indicator_icons": [
-            {"id":1,"color":"", "shape":"none", "overlay":""},
-            {"id":2,"color":"", "shape":"none", "overlay":""},
-            {"id":3,"color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
           "id": 2,
           "indicator_icon_lg": "cluster.svg",
           "indicator_icons": [
-            {"id":1,"color":"", "shape":"none", "overlay":""},
-            {"id":2,"color":"", "shape":"none", "overlay":""},
-            {"id":3,"color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
@@ -271,18 +259,12 @@
           "id": 1,
           "indicator_icon_lg": "heartline.svg",
           "indicator_icons": [
-            {"id":"1","color":"", "shape":"none", "overlay":""},
-            {"id":"2","color":"", "shape":"none", "overlay":""},
-            {"id":"3","color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
           "id": 2,
           "indicator_icon_lg": "cluster.svg",
           "indicator_icons": [
-            {"id":1,"color":"", "shape":"none", "overlay":""},
-            {"id":2,"color":"", "shape":"none", "overlay":""},
-            {"id":3,"color":"", "shape":"none", "overlay":""}
           ]
         },
         { 
