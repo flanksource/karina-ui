@@ -29,7 +29,7 @@
               />
 
               <span 
-                v-if="getDemoAlerts(indicator.indicator_icons) > 0"
+                v-if="getDemoAlerts(indicator.indicator_icons) > 0 && !listExpand"
               >
                 <v-badge
                   :content="getDemoAlerts(indicator.indicator_icons)"
@@ -41,7 +41,7 @@
               </span>
                 
               <span
-                v-if="getIndicators(indicator.indicator_icons) > 0"
+                v-if="getIndicators(indicator.indicator_icons) > 0 && !listExpand"
               >
                 <v-badge
                   :content="getIndicators(indicator.indicator_icons)"
@@ -54,7 +54,7 @@
             </div>
           </v-col>
 
-          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-4">
+          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-1">
             <v-expansion-panel-content class="regulate-padding bordered">
               <IndicatorCard
                 :indicatoricons="indicator.indicator_icons"
@@ -85,7 +85,7 @@
               />
 
             <span 
-                v-if="getCanaryAlerts(canarychecks) > 0"
+                v-if="getCanaryAlerts(canarychecks) > 0 && !listExpand"
               >
                 <v-badge
                   :content="getCanaryAlerts(canarychecks)"
@@ -97,7 +97,7 @@
               </span>
                 
               <span
-                v-if="getIndicators(canarychecks) > 0"
+                v-if="getIndicators(canarychecks) > 0 && !listExpand"
               >
                 <v-badge
                   :content="getIndicators(canarychecks)"
@@ -109,7 +109,7 @@
               </span>
             </div>
           </v-col>
-          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-4">
+          <v-col cols="10" xs="10" sm="10" md="10" lg="9" xl="9" class="ml-1">
             <v-expansion-panel-content class="regulate-padding bordered">
 
                <IndicatorCardCanary
@@ -232,9 +232,9 @@ export default {
   content: '';
   display: block;
   height: 1px;
-  left: 30%;
+  left: 25%;
   position: absolute;
-  width: 60%;
+  width: 64%;
 }
 .text-size {
   font-size: 12px;

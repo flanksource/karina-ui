@@ -106,7 +106,7 @@ export default {
   border-bottom-right-radius: 20px !important;
   border-left: 2px solid #222;
   border: 1px solid #444;
-  max-width:150px !important;
+  max-width: 150px !important;
 }
 
 </style>
