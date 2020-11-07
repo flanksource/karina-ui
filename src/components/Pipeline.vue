@@ -18,7 +18,6 @@
             <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :expandUsageBar="expandUsageBar"/>
             <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :expandUsageBar="expandUsageBar"/>
           </div>
-
         </v-card>
       </v-col>
 
