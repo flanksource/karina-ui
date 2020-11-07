@@ -53,55 +53,95 @@
 
           <v-dialog v-model="dialog" max-width="50%">
             <v-card>
-              <v-card-title class="headline">{{
-                selectedCheck.name
-              }}</v-card-title>
 
-              <v-card-text>
-                <v-row no-gutters>
-                  <v-col class="ml-0">
-                    <b>Type</b>: {{ selectedCheck.type }}
-                  </v-col>
+  <table>
+    <thead>
+      <tr class="">
+        <th class="border"><strong>Name</strong></th>
+        <th class=""><strong>Type</strong></th>
+        <th class=""><strong>Uptime</strong></th>
+        <th class=""><strong>Latency</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{selectedCheck.name}}</td>
+        <td>{{ selectedCheck.type }}</td>
+        <td>{{ selectedCheck.uptime }} </td>
+        <td>{{ selectedCheck.latency }}</td>
+      </tr>
+      <tr>
+        <td colspan="6" class="">
+          <table class="">
+            <tbody>
+              <tr>
+                <th class="border">Description</th>
+                <td>{{ selectedCheck.description }}</td>
+              </tr>  
 
-                  <v-col> <b>Uptime</b>: {{ selectedCheck.uptime }} </v-col>
+              <tr
+                v-for="(status, i) in selectedCheck.checkStatuses"
+                :key="i"
+              >
+                <td>Status {{ i + 1 }}</td>
+                <td>
+                  <tr>
+                    <td>
+                      Status: {{ status.Status }}
+                    </td>
+                    <td>
+                      Validity: {{ status.Invalid }}
+                    </td>
+                    <td>
+                      <vue-moments-ago 
+                        prefix="Flag Raised"
+                        suffix="ago"
+                        :date="status.Time"
+                      >
+                      </vue-moments-ago>
+                    </td>
+                    <td>
+                       Duration: {{ status.Duration }}
+                    </td>
+                    <td>
+                       Message: {{ status.Message }} 
+                    </td>
+                  </tr>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-                  <v-col> <b>Latency</b>: {{ selectedCheck.latency }} </v-col>
-                </v-row>
 
-                <v-row>
-                  <b>Description</b>: {{ selectedCheck.description }}
-                </v-row>
-
-                <v-row>
-                  <span
-                    v-for="(status, i) in selectedCheck.checkStatuses"
-                    :key="i"
-                  >
-                    <b>Status {{ i + 1 }}</b
-                    >: <br />
-                    Status: {{ status.Status }} <br />
-                    Validity: {{ status.Invalid }} <br />
-                    Time: {{ status.Time }} <br />
-                    Duration: {{ status.Duration }} <br />
-                    Message: {{ status.Message }} <br />
-                  </span>
-                </v-row>
-              </v-card-text>
             </v-card>
           </v-dialog>
       </v-row>
     </v-col>
   </v-row>
 </template>
+<!-- 
+// <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+  
 
+//</script>
+ -->
 <script>
 import IndicatorIcon from "./IndicatorIcon.vue";
+import VueMomentsAgo from "vue-moments-ago";
+
+
+
 
 export default {
   name: "IndicatorCard",
 
   components: {
     IndicatorIcon,
+    VueMomentsAgo,
   },
 
   props: {
@@ -136,5 +176,13 @@ export default {
 
 .clickable-icon {
   cursor: pointer;
+}
+.border{
+  border: 2px solid #f00;
+}
+
+table {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 </style>
