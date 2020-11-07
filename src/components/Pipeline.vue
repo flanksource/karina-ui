@@ -2,10 +2,24 @@
   <div class="pb-12">
     <v-row no-gutters>
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
-        <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0"/>
-        <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0"/>
-        <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00"/>
-        <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00"/>
+        <v-card :class="{ 'card-wide': expandUsageBar, 'card-narrow': !expandUsageBar  }">
+          <v-btn
+            class="btn-usage"
+            @click="selectUsageBarMode"
+            outlined
+            x-small
+          >
+            <i :class="{ 'up': expandUsageBar, 'down': !expandUsageBar  }"> </i>
+          </v-btn> 
+          <div class="pt-4">
+
+            <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0" :expandUsageBar="expandUsageBar"/>
+            <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0" :expandUsageBar="expandUsageBar"/>
+            <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :expandUsageBar="expandUsageBar"/>
+            <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :expandUsageBar="expandUsageBar"/>
+          </div>
+
+        </v-card>
       </v-col>
 
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
@@ -42,15 +56,15 @@
 <script>
 import IndicatorList from "./IndicatorList.vue";
 import ItemList from "./ItemList.vue";
-import UsageBar from "./UsageBar"
-
+import UsageBar from "./UsageBar";
+  
 export default {
   name: "IndicatorPanel",
 
   components: {
     ItemList,
     IndicatorList,
-    UsageBar
+    UsageBar,
   },
 
   props: {
@@ -73,6 +87,7 @@ export default {
     return {
       list: [],
       expandMode: false,
+      expandUsageBar: false,
       demo: window.DEMO_MODE,
     }
   },
@@ -81,8 +96,11 @@ export default {
     expansion() {
       this.expandMode = !this.expandMode;
     },
+    selectUsageBarMode() {
+      this.expandUsageBar = !this.expandUsageBar;
+    },
   }
-}
+};
 </script>
 
 <style scoped>
@@ -109,4 +127,36 @@ export default {
   max-width: 150px !important;
 }
 
+.btn-usage {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  z-index: 3;
+}
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.down {
+  transform: rotate(45deg);
+  margin-top: -3px;
+}
+.up {
+  transform: rotate(-135deg);
+  margin-top: 2px;
+}
+
+.card-narrow {
+  border: 1px solid #111;
+  width: 50px;
+  padding-top: 20px;
+  height:100%;
+}
+.card-wide {
+  border: 1px solid #111;
+  height: 100%;
+  border-bottom-right-radius: 25px;
+}
 </style>
