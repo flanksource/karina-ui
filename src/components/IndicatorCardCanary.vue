@@ -169,9 +169,6 @@ export default {
 .clickable-icon {
   cursor: pointer;
 }
-.border{
-  border: 2px solid #f00;
-}
 
 table, th, td {
   border: 1px solid black;
