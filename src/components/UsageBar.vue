@@ -40,7 +40,7 @@
 			<div class="vertical-scale">
 				<v-progress-linear
 					:value="getValue(value, min, max)"
-					height="5"
+					height="10"
 					rounded
 					background-color="#4a4a4a"
 					:color="getColour(value,optimum)"
@@ -229,31 +229,30 @@
 		font-size: 12px;
 	}
 
-.vertical-bar {
-    transform: rotate(-90deg);
-    padding: 10px 0;
-    position: relative;
-    margin-bottom: 10px;
-    width: 50px;
-    height: 50px;
-  }
+	.vertical-bar {
+	    transform: rotate(-90deg);
+	    padding: 10px 0;
+	    position: relative;
+	    margin-bottom: 10px;
+	    width: 45px;
+	    height: 50px;
+	}
 
-  .vertical-scale {
-    position: absolute;
-    margin-top: 0;
-    margin-left: 5px;
-    width: 100%;
-  }
+	.vertical-scale {
+	    position: absolute;
+	    margin-top: 0;
+	    width: 100%;
+	}
 
-  .vertical-marker {
-    display: none;
-  }
+	.vertical-marker {
+    	display: none;
+    }
 
-  .vertical-unit-min {
-    display: none;
-  }
+	.vertical-unit-min {
+    	display: none;
+    }
 
-  .vertical-unit-max {
-    display: none;
-  }
+	.vertical-unit-max {
+    	display: none;
+    }
 </style>
