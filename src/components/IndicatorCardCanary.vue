@@ -51,74 +51,66 @@
           </span>
         </span>
 
-          <v-dialog v-model="dialog" max-width="50%">
-            <v-card>
-
-  <table>
-    <thead>
-      <tr class="">
-        <th class="border"><strong>Name</strong></th>
-        <th class=""><strong>Type</strong></th>
-        <th class=""><strong>Uptime</strong></th>
-        <th class=""><strong>Latency</strong></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{selectedCheck.name}}</td>
-        <td>{{ selectedCheck.type }}</td>
-        <td>{{ selectedCheck.uptime }} </td>
-        <td>{{ selectedCheck.latency }}</td>
-      </tr>
-      <tr>
-        <td colspan="6" class="">
-          <table class="">
-            <tbody>
-              <tr>
-                <th class="border">Description</th>
-                <td>{{ selectedCheck.description }}</td>
-              </tr>  
-
-              <tr
+        <v-dialog v-model="dialog" max-width="75%">
+          <v-card class="pa-3">
+            <table style="width:100%">
+              <col>
+              <col>
+              <colgroup span="12"></colgroup>
+              <thead>
+                <tr>
+                  <th colspan="3" scope="colgroup">Name</th>
+                  <th colspan="3" scope="colgroup">Type</th>
+                  <th colspan="3" scope="colgroup">Uptime</th>
+                  <th colspan="3" scope="colgroup">Latency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3">{{selectedCheck.name}}</td>
+                    <td colspan="3">{{ selectedCheck.type }}</td>
+                    <td colspan="3">{{ selectedCheck.uptime }}</td>
+                    <td colspan="3">{{ selectedCheck.latency }}</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th colspan="2" scope="rowgroup">Description</th>
+                  <td colspan="10" scope="colgroup">{{ selectedCheck.description }}</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th colspan="1" scope="rowgroup"></th>
+                  <th colspan="1">Status</th>
+                  <th colspan="1">Valid</th>
+                  <th colspan="1">Duration</th>
+                  <th colspan="2">Raised</th>
+                  <th colspan="6">Message</th>
+                </tr>   
+              </tbody>
+              <tbody
                 v-for="(status, i) in selectedCheck.checkStatuses"
                 :key="i"
               >
-                <td>Status {{ i + 1 }}</td>
-                <td>
-                  <tr>
-                    <td>
-                      Status: {{ status.Status }}
-                    </td>
-                    <td>
-                      Validity: {{ status.Invalid }}
-                    </td>
-                    <td>
-                      <vue-moments-ago 
-                        prefix="Flag Raised"
-                        suffix="ago"
-                        :date="status.Time"
-                      >
-                      </vue-moments-ago>
-                    </td>
-                    <td>
-                       Duration: {{ status.Duration }}
-                    </td>
-                    <td>
-                       Message: {{ status.Message }} 
-                    </td>
-                  </tr>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-            </v-card>
-          </v-dialog>
+                <tr>
+                  <th colspan="1" scope="rowgroup"> Check {{ i + 1 }}</th>
+                  <td colspan="1">{{ status.Status }}</td>
+                  <td colspan="1">{{ status.Invalid }}</td>
+                  <td colspan="1">{{ status.Duration }}</td>
+                  <td colspan="2">
+                    <vue-moments-ago 
+                      prefix=""
+                      suffix="ago"
+                      :date="status.Time"
+                    />
+                  </td>
+                  <td colspan="6">{{ status.Message }} </td>
+                </tr>
+              </tbody>
+            </table>
+          </v-card>
+        </v-dialog>
       </v-row>
     </v-col>
   </v-row>
@@ -181,8 +173,12 @@ export default {
   border: 2px solid #f00;
 }
 
-table {
-  padding-left: 5px;
-  padding-right: 5px;
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;    
 }
 </style>
