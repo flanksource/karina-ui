@@ -1,44 +1,40 @@
 <template>
   <span>
-    <div v-if="content > 0">
-      <v-badge :color="colour" :content="content" inline>
-        <svg-icon :icon="icon" :hasFill="false" :color="colour" />
-
-        <span class="pl-1 text-size">{{ label }} </span>
-      </v-badge>
+    <div v-if="alerts === 0">
+      <v-badge color="" :content="alerts" inline>
+        <svg-icon :icon="icon" :hasFill="false" color=""/>
+        <span class="pl-1 text-size">{{label}}</span>
+      </v-badge>  
     </div>
 
     <div v-else inline>
-      <v-badge value="false" color="white" inline>
-        <svg-icon :icon="icon" :hasFill="false" :color="colour" />
-        <span class="pl-1 text-size">{{ label }} </span>
-      </v-badge>
-    </div>
+      <v-badge :color="alertscolour" :content="alerts" inline>
+        <svg-icon :icon="icon" :hasFill="false" color=""/>
+        <span class="pl-1 text-size">{{label}}</span>
+      </v-badge>  
+    </div> 
   </span>
 </template>
 
 <script>
-import SvgIcon from "./SVGIcon.vue";
+  import SvgIcon from './SVGIcon.vue';
 
-export default {
-  name: "ItemCard",
-
-  components: {
-    "svg-icon": SvgIcon,
-  },
-
-  props: {
-    source: String,
-    icon: String,
-    label: String,
-    content: Number,
-    colour: String,
-  },
-};
+  export default {
+    name: 'ItemCard',
+    components: {
+      'svg-icon': SvgIcon,
+    },
+    props: {
+      icon: String,
+      label: String,
+      alerts: String,
+      alertscolour: String,
+    },
+  }
 </script>
 
 <style scoped>
-.text-size {
-  font-size: 12px;
-}
+  .text-size{
+    font-size: 12px;
+  }
 </style>

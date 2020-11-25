@@ -1,4 +1,4 @@
-<template>
+<template> 
   <div class="pb-12">
     <v-row no-gutters>
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
@@ -20,10 +20,10 @@
           </div>
         </v-card>
       </v-col>
-
+      
       <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
-        <v-card flat class="ml-3 py-3">
-          <ItemList :items="cluster.properties" :id="cluster.name" />
+        <v-card flat class="ml-3 py-3 scroll">
+          <ItemList :properties="cluster.properties" :name="cluster.name"/>
         </v-card>
       </v-col>
 
@@ -46,6 +46,7 @@
             :list="list"
             @expand="expansion"
           />
+
         </v-card>
       </v-col>
     </v-row>

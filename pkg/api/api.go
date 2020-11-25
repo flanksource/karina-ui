@@ -12,13 +12,62 @@ type Cluster struct {
 	Alerts       []Alert    `json:"alerts,omitempty"`
 }
 
+
 type Property struct {
 	Name   string  `json:"name,omitempty"`
-	Value  string  `json:"label,omitempty"`
-	Type   string  `json:"type,omitempty"`
 	Icon   string  `json:"icon,omitempty"`
+	Value  string  `json:"value,omitempty"`
 	Alerts []Alert `json:"alerts,omitempty"`
 }
+
+type Properties struct {
+	Capacity 		Capacity		`json:"capacity,omitempty"`
+	Allocatable 	Allocatable 	`json:"allocatable,omitempty"`
+	Condititions 	[]Condition 	`json:"conditions,omitempty"`
+	Addresses 		[]Address 		`json:"addresses,omitempty"`
+	DaemonEndpoints KubeletEndpoint `json:"daemonendpoints,omitempty"`
+	NodeInfo 		Nold 			`json:"nodeInfo,omitempty"`
+	Alerts			[]Alert 		`json:"alerts,omitempty"`
+}
+
+type Capacity struct {
+	Cpu 	string `json:"cpu,omitempty"`
+	EphStor string `json:"ephemeral-storage,omitempty"`
+	OneGi 	string `json:"hugepages-1Gi,omitempty"`
+	TwoMi 	string `json:"hugepages-2Mi,omitempty"`
+	Memory 	string `json:"memory,omitempty"`
+	Pods 	string `json:"pods,omitempty"`
+}
+
+type Allocatable struct {
+	Cpu 	string `json:"cpu,omitempty"`
+	EphStor string `json:"ephemeral-storage,omitempty"`
+	OneGi 	string `json:"hugepages-1Gi,omitempty"`
+	TwoMi 	string `json:"hugepages-2Mi,omitempty"`
+	Memory 	string `json:"memory,omitempty"`
+	Pods 	string `json:"pods,omitempty"`
+}
+
+type Condition struct {
+	Type 			string 		`json:"type,omitempty"`
+	Status 			string 		`json:"status,omitempty"`
+	LastHeartbeat 	time.Time 	`json:"lastHeartbeatTime,omitempty"`
+	LastTransition 	time.Time 	`json:"lastTransitionTime,omitempty"`
+	Reason 			string 		`json:"reason,omitempty"`
+	Message 		string 		`json:"message,omitempty"`
+}
+
+
+type Address struct {
+	Type 	string `json:"type,omitempty"`
+	Address string `json:"type,omitempty"`
+}
+
+
+type KubeletEndpoint struct {
+	Port string `json:"Port,omitempty"`
+}
+
 
 type Canarydata struct {
 	ServerName string `json:"server_name,omitempty"`
@@ -56,6 +105,21 @@ type ChekConf struct {
 	ThresholdMillis int
 }
 
+
+type Nold struct {
+	MachineID 				string `json:"machineID,omitempty"`
+	SystemUUID 				string `json:"systemUUID,omitempty"`
+	BootID 					string `json:"bootID,omitempty"`
+	KernelVersion 			string `json:"kernelVersion,omitempty"`
+	OSImage 				string `json:"osImage,omitempty"`
+	ContainerRuntimeVersion string `json:"containerRuntimeVersion,omitempty"`
+	KubeletVersion 			string `json:"kubeletVersion,omitempty"`
+	KubeProxyVersion 		string `json:"kubeProxyVersion,omitempty"`
+	OperatingSystem 		string `json:"operatingSystem,omitempty"`
+	Architecture 			string `json:"architecture,omitempty"`
+}
+
+
 type Node struct {
 	Name   string  `json:"name,omitempty"`
 	IP     string  `json:"ip,omitempty"`
@@ -80,7 +144,16 @@ type ClusterConfiguration struct {
 	Canary 	Canarydata
 }*/
 
-/*type CanaryCheck struct {
+/*
+type Property struct {
+	Name   string  `json:"name,omitempty"`
+	Value  string  `json:"label,omitempty"`
+	Type   string  `json:"type,omitempty"`
+	Icon   string  `json:"icon,omitempty"`
+	Alerts []Alert `json:"alerts,omitempty"`
+}
+
+type CanaryCheck struct {
 	Name      string              `json:"name,omitempty"`
 	Namespace string              `json:"namespace,omitempty"`
 	Type      string              `json:"type,omitempty"`
