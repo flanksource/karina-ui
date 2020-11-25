@@ -27,15 +27,21 @@
                   <th colspan="3" scope="colgroup">Colour</th>
                   <th colspan="3" scope="colgroup">Shape</th>
                   <th colspan="3" scope="colgroup">Overlay</th>
-                  <th colspan="3" scope="colgroup">Data</th>
+                  <th colspan="3" scope="colgroup">Time</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td colspan="3">{{selectedCheck.color}}</td>
-                    <td colspan="3">{{ selectedCheck.shape }}</td>
-                    <td colspan="3">{{ selectedCheck.overlay }}</td>
-                    <td colspan="3">{{ selectedCheck }}</td>
+                  <td colspan="3">{{ selectedCheck.shape }}</td>
+                  <td colspan="3">{{ selectedCheck.overlay }}</td>
+                  <td colspan="3">
+                    <vue-moments-ago 
+                      prefix=""
+                      suffix="ago"
+                      :date="selectedCheck.time"
+                    />
+                  </td>
                 </tr>
               </tbody>
               <tbody>
@@ -46,12 +52,12 @@
               </tbody>
               <tbody>
                 <tr>
-                  <th colspan="1" scope="rowgroup"></th>
-                  <th colspan="1">Data</th>
-                  <th colspan="1">Data</th>
-                  <th colspan="1">Data</th>
-                  <th colspan="2">Data</th>
-                  <th colspan="6">Data</th>
+                  <th colspan="1" scope="rowgroup">Data Header Col</th>
+                  <th colspan="1">Data Col 1</th>
+                  <th colspan="1">Data Col 2</th>
+                  <th colspan="1">Data Col 3</th>
+                  <th colspan="2">Data Col 4</th>
+                  <th colspan="6">Data Col 5</th>
                 </tr>   
               </tbody>
               <tbody
@@ -59,21 +65,19 @@
                 :key="i"
               >
                 <tr>
-                  <th colspan="1" scope="rowgroup"> Check {{ i + 1 }}</th>
-                  <td colspan="1">{{ status }}</td>
-                  <td colspan="1">{{ status }}</td>
-                  <td colspan="1">{{ status }}</td>
-                  <td colspan="2">
-                    <vue-moments-ago 
-                      prefix=""
-                      suffix="ago"
-                      :date="status.Time"
-                    />
+                  <th colspan="1" scope="rowgroup"> </th>
+                  <td colspan="1"> </td>
+                  <td colspan="1"></td>
+                  <td colspan="1">
                   </td>
-                  <td colspan="6">{{ status.Message }} </td>
+                  <td colspan="2">
+                   
+                  </td>
+                  <td colspan="6"> </td>
                 </tr>
               </tbody>
             </table>
+        
           </v-card>
         </v-dialog>
   </v-row>
@@ -81,12 +85,14 @@
 
 <script>
 import IndicatorIcon from "./IndicatorIcon.vue";
+import VueMomentsAgo from "vue-moments-ago";
 
 export default {
   name: "IndicatorCard",
 
   components: {
     IndicatorIcon,
+    VueMomentsAgo,
   },
 
   props: {
