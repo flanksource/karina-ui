@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-if="expandUsageBar"
+		v-if="collapsed"
 	>
 		<div class="bar">
 			<span class="unit-min">{{min}}</span>
@@ -77,7 +77,7 @@
 			colour: String,
 			optimum: Number,
 			metric: String,
-			expandUsageBar: Boolean,
+			collapsed: Boolean,
 		},
 
 		methods : {
