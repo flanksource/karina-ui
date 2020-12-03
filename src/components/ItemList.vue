@@ -12,7 +12,7 @@
         :icon="property.icon" 
         :alerts="getAlerts(property.alerts)"
         :alertscolour="getAlertsColour(property.alerts)"
-        class="clickable-icon"
+        :title="property.value"
         @click.native="selectProperty(property.alerts)"
       />
 
@@ -22,21 +22,16 @@
       <v-card>
         <v-card-title class="headline"> </v-card-title>
         <v-card-text>
-         
-           <v-row>
-
+          <v-row>
             <span
               v-for="(selectedAlert, i) in selectedAlerts"
               :key="i"
             > 
-
-            <b>Alert {{ i + 1 }} </b> level {{ selectedAlert.level }}
-             since:  {{ selectedAlert.since }} <br/>
-             Message:  {{ selectedAlert.message }}
-
-
-          </span>
-
+              <b>Alert {{ i + 1 }} </b>
+              Level {{ selectedAlert.level }}
+              Since:  {{ selectedAlert.since }} <br/>
+              Message:  {{ selectedAlert.message }}
+            </span>
           </v-row>
         </v-card-text>
       </v-card>

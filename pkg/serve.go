@@ -10,7 +10,7 @@ import (
 
 	"github.com/dustin/go-humanize"
 	"github.com/flanksource/commons/logger"
-	"github.com/flanksource/commons/net"
+	//"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
   	"gopkg.in/yaml.v2"
   	v1 "k8s.io/api/core/v1"
@@ -29,7 +29,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
-	var canary api.Canarydata
+	//var canary api.Canarydata
 
 	for name, cluster := range config {
 
@@ -52,7 +52,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			properties = MergeNode(node, properties)   	
 		}
 
-		canaryResp, err := net.GET(cluster.CanaryChecker)
+/*		canaryResp, err := net.GET(cluster.CanaryChecker)
 		if err != nil {
 			logger.Errorf("❗ Canary Check failed with %s", err)
 			continue
@@ -61,11 +61,11 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			logger.Errorf("❗ Failed to unmarshal json %s", err)
 			continue
 		}
-
+*/
 		clusters = append(clusters, api.Cluster{
 			Name: name,
 			Properties: properties,
-      		CanaryChecks: canary.Checks,
+      		/*CanaryChecks: canary.Checks,*/
 			Nodes: []api.Node {
 				{
 					Name:   "string",
@@ -209,7 +209,7 @@ func MergeNode(node v1.Node, properties []api.Property) []api.Property {
 		{
 			Name: "Node",
 			Value: prop.NodeInfo.MachineID,
-			Icon: "commit",
+			Icon: "node",
 		},
 		{
 			Name: "Kernel Version",
@@ -255,6 +255,8 @@ func GetCRI(cri string) string {
 	icon := ""
 	if strings.Contains(strings.ToLower(cri), "containerd") == true {
 		icon = "containerd"
+	} else if strings.Contains(strings.ToLower(cri), "docker") == true {
+		icon = "docker"
 	}
 	return icon
 }
@@ -326,10 +328,56 @@ func GetMemory(rawMemory string) string {
 
 func GetStorage(rawStorage string) string {
 
-	storageVal, err := strconv.ParseUint(rawStorage, 10, 64)
-	if err != nil {
-		logger.Errorf("❗ Failed conversion %s", err)
+	var storageVal uint64
+	var err error
+
+	if strings.Contains(rawStorage, "Ki") == true {
+
+		rawStorage = strings.TrimSuffix(rawStorage, "Ki")
+
+		storageVal, err = strconv.ParseUint(rawStorage, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed string conversion: %s", err)
+		}
+		storageVal = storageVal * 1024
+
+	} else if strings.Contains(rawStorage, "Mi") == true {
+
+		rawStorage = strings.TrimSuffix(rawStorage, "Mi")
+
+		storageVal, err = strconv.ParseUint(rawStorage, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed string conversion: %s", err)
+		}
+		storageVal = storageVal * 1024 * 1024
+
+	} else if strings.Contains(rawStorage, "Gi") == true {
+
+		rawStorage = strings.TrimSuffix(rawStorage, "Gi")
+
+		storageVal, err = strconv.ParseUint(rawStorage, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to string conversion: %s", err)
+		}
+		storageVal = storageVal * 1024 * 1024 * 1024
+
+	} else if strings.Contains(rawStorage, "Ti") == true {
+
+		rawStorage = strings.TrimSuffix(rawStorage, "Ti")
+
+		storageVal, err = strconv.ParseUint(rawStorage, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to string conversion: %s", err)
+		}
+		storageVal = storageVal * 1024 * 1024 * 1024 * 1024
+
+	} else {
+		storageVal, err = strconv.ParseUint(rawStorage, 10, 64)
+		if err != nil {
+			logger.Errorf("❗ Failed to string conversion: %s", err)
+		}
 	}
+
 	storage := humanize.Bytes(storageVal)
 	return storage
 }

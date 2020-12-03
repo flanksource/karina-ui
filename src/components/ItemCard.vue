@@ -8,11 +8,12 @@
     </div>
 
     <div v-else inline>
-      <v-badge :color="alertscolour" :content="alerts" inline>
+      <v-badge :color="alertscolour" :content="alerts" inline class="clickable-icon">
         <svg-icon :icon="icon" :hasFill="false" color=""/>
         <span class="pl-1 text-size">{{label}}</span>
       </v-badge>  
     </div> 
+
   </span>
 </template>
 
@@ -36,5 +37,15 @@
 <style scoped>
   .text-size{
     font-size: 12px;
+    max-width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+    .clickable-icon {
+    cursor: pointer;
   }
 </style>
+
+
+
