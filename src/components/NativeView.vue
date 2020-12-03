@@ -4,7 +4,7 @@
 	>
 		<v-row
 			v-if="clusters==null"
-			class="fill-height mt-10"
+			class="fill-height"
 			align-content="center"
 			justify="center"
 		>
@@ -63,3 +63,9 @@
 		},
 	};
 </script>
+
+<style scoped>
+	.fill-height{
+		min-height: 89vh;
+	}
+</style>

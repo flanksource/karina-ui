@@ -1,9 +1,17 @@
 <template>
-    <v-navigation-drawer permanent>
+    <v-navigation-drawer
+      v-model="drawer"
+      absolute
+      temporary
+    >
       <v-list-item
-      link
-      @click="selectState('native')"
-      >
+        link
+        @click="selectState('native')"
+      > 
+        <v-list-item-icon class="icon" >
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-icon>
+
         <v-list-item-title class="title">
           Home
         </v-list-item-title>
@@ -12,7 +20,7 @@
       <v-divider></v-divider>
 
       <v-list
-        dense 
+         
       >
        <span v-for="(menuItem, i) in menuItems" :key="i">
         <v-list-item
@@ -20,6 +28,7 @@
           :href="menuItem.url"
           target="menuFrame"
           @click="selectState('iframe')"
+          @click.stop="drawer = !drawer"
         >
           <svg-icon :icon="menuItem.icon" class="icon" />
           <v-list-item-title>{{menuItem.title}}</v-list-item-title>
@@ -42,6 +51,7 @@ export default {
   props: {
     state: String,
     clusters: Array,
+    drawer: Boolean,
   },
 
   data: () => ({
@@ -82,11 +92,21 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .icon {
   position: relative;
   top: 0;
   left: 0;
-  padding-right: 5px;
+  padding-right: 15px;
+  padding-left: 5px;
+}
+
+.v-application--is-ltr .v-list-item__action:first-child, .v-application--is-ltr .v-list-item__icon:first-child {
+  margin-right: -3px !important;
+}
+
+.v-list-item__icon {
+  align-self: flex-start;
+  margin: 11px 0 !important;
 }
 </style>
