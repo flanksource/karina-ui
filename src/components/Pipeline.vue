@@ -2,7 +2,7 @@
   <div class="pb-12">
     <v-row no-gutters>
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
-        <v-card :class="{ 'card-wide': collapsed, 'card-narrow': !collapsed  }">
+        <v-card :class="{ 'card-narrow': collapsed, 'card-wide': !collapsed  }">
           <v-btn
             class="btn-usage"
             @click="selectUsageBarMode"
@@ -13,10 +13,10 @@
           </v-btn> 
           <div class="pt-4">
 
-            <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0" :collapsed="collapsed"/>
-            <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" colour="#0f0" :collapsed="collapsed"/>
-            <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :collapsed="collapsed"/>
-            <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" colour="#f00" :collapsed="collapsed"/>
+            <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
+            <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
+            <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
+            <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
           </div>
         </v-card>
       </v-col>
@@ -86,7 +86,7 @@ export default {
     return {
       list: [],
       expandMode: false,
-      collapsed: false,
+      collapsed: true,
       demo: window.DEMO_MODE,
     }
   },

@@ -2,6 +2,36 @@
 	<div
 		v-if="collapsed"
 	>
+		<div class="vertical-bar">
+			<span class="vertical-unit-min">{{min}}</span>
+			<span class="vertical-unit-max">{{max}}</span>
+
+			<div class="vertical-scale">
+				<v-progress-linear
+					:value="getValue(value, min, max)"
+					height="10"
+					rounded
+					background-color="#4a4a4a"
+					:color="getColour(value,optimum)"
+					:title="getCollapsedTitle(metric, value, optimum, min, max)"
+				/>
+			</div>
+
+			<div
+				class="vertical-marker"
+				v-bind:style="{marginLeft: `20%`}"
+			>
+				<svg-icon
+					icon="triangle-marker"
+					title="title"
+				/>
+			</div>
+		</div>
+	</div>
+
+	<div 
+		v-else
+	>
 		<div class="bar">
 			<span class="unit-min">{{min}}</span>
 			<span class="unit-max">{{max}}</span>
@@ -29,36 +59,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div 
-		v-else
-	>
-		<div class="vertical-bar">
-			<span class="vertical-unit-min">{{min}}</span>
-			<span class="vertical-unit-max">{{max}}</span>
-
-			<div class="vertical-scale">
-				<v-progress-linear
-					:value="getValue(value, min, max)"
-					height="10"
-					rounded
-					background-color="#4a4a4a"
-					:color="getColour(value,optimum)"
-					:title="getCollapsedTitle(metric, value, optimum, min, max)"
-				/>
-			</div>
-
-			<div
-				class="vertical-marker"
-				v-bind:style="{marginLeft: `20%`}"
-			>
-				<svg-icon
-					icon="triangle-marker"
-					title="title"
-				/>
-			</div>
-		</div>
-	</div>
 </template>
 
 <script>
@@ -74,7 +74,6 @@
 			value: Number,
 			min: Number,
 			max: Number,
-			colour: String,
 			optimum: Number,
 			metric: String,
 			collapsed: Boolean,
