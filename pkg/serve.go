@@ -10,7 +10,7 @@ import (
 
 	"github.com/dustin/go-humanize"
 	"github.com/flanksource/commons/logger"
-	//"github.com/flanksource/commons/net"
+	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
   	"gopkg.in/yaml.v2"
   	v1 "k8s.io/api/core/v1"
@@ -29,7 +29,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
-	//var canary api.Canarydata
+	var canary api.Canarydata
 
 	for name, cluster := range config {
 
@@ -52,7 +52,7 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			properties = MergeNode(node, properties)   	
 		}
 
-/*		canaryResp, err := net.GET(cluster.CanaryChecker)
+		canaryResp, err := net.GET(cluster.CanaryChecker)
 		if err != nil {
 			logger.Errorf("❗ Canary Check failed with %s", err)
 			continue
@@ -61,11 +61,12 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 			logger.Errorf("❗ Failed to unmarshal json %s", err)
 			continue
 		}
-*/
+
 		clusters = append(clusters, api.Cluster{
 			Name: name,
 			Properties: properties,
-      		/*CanaryChecks: canary.Checks,*/
+      		CanaryChecks: canary.Checks,
+
 			Nodes: []api.Node {
 				{
 					Name:   "string",
