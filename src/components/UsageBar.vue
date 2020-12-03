@@ -13,7 +13,7 @@
 					rounded
 					background-color="#4a4a4a"
 					:color="getColour(value,optimum)"
-					:title="getCollapsedTitle(metric, value, optimum, min, max)"
+					:title="getCollapsedTitle(value, optimum, min, max)"
 				/>
 			</div>
 
@@ -43,7 +43,7 @@
 					rounded
 					background-color="#4a4a4a"
 					:color="getColour(value,optimum)"
-					:title="metric + ': ' + getTitle(value, min, max)"
+					:title="getTitle(value, min, max)"
 				/>
 			</div>
 
@@ -75,7 +75,6 @@
 			min: Number,
 			max: Number,
 			optimum: Number,
-			metric: String,
 			collapsed: Boolean,
 		},
 
@@ -148,19 +147,19 @@
 				}
 			},
 
-			getCollapsedTitle(metric, value, optimum, min, max) {
+			getCollapsedTitle(value, optimum, min, max) {
 
 				var title;
 
 				if (min < max) {
 
-					title = metric + ': ' + ' value(' + value + ')' + ' optimum(' + optimum + ')';
+					title = ' value(' + value + ')' + ' optimum(' + optimum + ')';
 					return title;
 				}
 
 				if (min > max) {
 
-					title = metric + ': ' + ' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
+					title = ' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
 					return title;
 				}
 			}		

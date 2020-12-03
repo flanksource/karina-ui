@@ -13,10 +13,10 @@
           </v-btn> 
           <div class="pt-4">
 
-            <UsageBar metric="metric1" v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
-            <UsageBar metric="metric2" v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
-            <UsageBar metric="metric3" v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
-            <UsageBar metric="metric4" v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
+            <UsageBar v-bind:value="45" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
+            <UsageBar v-bind:value="80" v-bind:min="0" v-bind:max="100" v-bind:optimum="75" :collapsed="collapsed"/>
+            <UsageBar v-bind:value="25" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
+            <UsageBar v-bind:value="78" v-bind:min="100" v-bind:max="0" v-bind:optimum="66" :collapsed="collapsed"/>
           </div>
         </v-card>
       </v-col>
