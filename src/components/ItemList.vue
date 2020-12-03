@@ -12,17 +12,42 @@
         :colour="item.badgecolour"
       />
     </span>
+
+    <UsageBarItemCard
+      icon="cpu"
+      content="2"
+      badgecolour="#336600"
+      metric="cpu"
+      v-bind:value="45"
+      v-bind:min="0"
+      v-bind:max="100"
+      v-bind:optimum="75"
+    />
+
+    <UsageBarItemCard
+      icon="ram"
+      content="0"
+      badgecolour="#f00"
+      metric="ram"
+      v-bind:value="45"
+      v-bind:min="0"
+      v-bind:max="100"
+      v-bind:optimum="75"
+    />
+
   </span>
 </template>
 
 <script>
 import ItemCard from "./ItemCard.vue";
+import UsageBarItemCard from "./UsageBarItemCard.vue";
 
 export default {
   name: "ItemList",
 
   components: {
     ItemCard,
+    UsageBarItemCard,
   },
 
   props: {
