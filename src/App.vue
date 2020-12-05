@@ -17,12 +17,16 @@
     >
       <v-main>
         <v-row no-gutters>
-          <v-col cols="1" class="left-pane">
+
+           <div class="left-pane">
+            <left-nav-bar  :clusters="clusters" @selectState="setState($event)"/> 
+          </div>
+
+          <v-col cols="1" class="right-pane-menu">
             <Menu :clusters="clusters" @selectState="setState($event)"/>
           </v-col>
 
-          <v-col cols="11" class="right-pane">
-
+          <v-col cols="10" class="right-pane-content">
             <span
                v-if="state == 'iframe'"
             >
@@ -43,6 +47,7 @@
 
 <script>
   import IframeView from "./components/IframeView.vue";
+  import LeftNavBar from "./components/LeftNavBar.vue";
   import Loader from "./components/Loader.vue";
   import Menu from "./components/Menu.vue";
   import NativeView from "./components/NativeView.vue";
@@ -51,6 +56,7 @@
 export default {
   components: {
     IframeView,
+    LeftNavBar,
     Loader,
     Menu,
     NativeView,
@@ -109,11 +115,20 @@ export default {
   
   .left-pane {
     position: fixed;
-    max-width: 8vw;
+    max-width: 13vw;
     height: 92vh;
+    z-index: 4; 
   }
 
-  .right-pane {
-    margin-left: 8vw;
+  .right-pane-menu {
+    position: fixed;
+    max-width: 10vw;
+    margin-left: 3vw;
+    height: 92vh;
+    z-index: 3;
+  }
+
+   .right-pane-content {
+    margin-left: 13vw;
   }
 </style>

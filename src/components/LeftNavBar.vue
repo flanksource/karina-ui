@@ -1,20 +1,8 @@
 <template>
     <v-navigation-drawer
       permanent
+      expand-on-hover
     >
-      <v-list-item
-      link
-      @click="selectState('native')"
-      >
-         <v-list-item-icon class="icon" >
-          <v-icon>mdi-home</v-icon>
-        </v-list-item-icon>
-        <v-list-item-title class="title">
-          Home
-        </v-list-item-title>
-      </v-list-item>
-
-      <v-divider></v-divider>
 
       <v-list
         dense 
@@ -26,7 +14,10 @@
           target="menuFrame"
           @click="selectState('iframe')"
         >
-          <svg-icon :icon="menuItem.icon" class="icon" />
+     <!--      <svg-icon :icon="menuItem.icon" class="icon" /> -->
+          <v-list-item-icon class="icon" >
+          <v-icon>{{ menuItem.icon }}</v-icon>
+        </v-list-item-icon>
           <v-list-item-title>{{menuItem.title}}</v-list-item-title>
         </v-list-item>
       </span>
@@ -35,13 +26,13 @@
 </template>
 
 <script>
-  import SvgIcon from "./SVGIcon.vue";
+ // import SvgIcon from "./SVGIcon.vue";
  
 export default {
   name: "Menu",
 
   components: {
-    SvgIcon,
+  //  SvgIcon,
   },
 
   props: {
@@ -52,29 +43,29 @@ export default {
   data: () => ({
     menuItems: [
       {
-        "title": "Canary",
-        "icon": "canary-checker",
-        "url": "https://canaries.hetzner.lab.flanksource.com/",
+        "title": "Menu Item",
+        "icon": "mdi-menu-open",
+        "url": "",
       },
       {
-        "title": "Grafana",
-        "icon": "grafana",
-        "url": "https://httpstat.us/200",
+        "title": "Menu Item",
+        "icon": "mdi-menu-open",
+        "url": "",
       },
       {
-        "title": "Karma",
-        "icon": "karma",
-        "url": "https://httpstat.us/200",
+        "title": "Menu Item",
+        "icon": "mdi-menu-open",
+        "url": "",
       },
       {
-        "title": "Kibana",
-        "icon": "kibana",
-        "url": "https://httpstat.us/200",
+         "title": "Menu Item",
+        "icon": "mdi-menu-open",
+        "url": "",
       },
       {
-        "title": "Prometheus",
-        "icon": "prometheus",
-        "url": "https://prometheus.hetzner.lab.flanksource.com/graph",
+         "title": "Menu Item",
+        "icon": "mdi-menu-open",
+        "url": "",
       }
     ]  
   }),
