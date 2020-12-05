@@ -17,24 +17,45 @@
       icon="cpu"
       content="2"
       badgecolour="#336600"
-      metric="cpu"
       v-bind:value="45"
       v-bind:min="0"
       v-bind:max="100"
       v-bind:optimum="75"
+      orientation="horizontal"
+    />
+
+    <UsageBarItemCard
+      icon="cpu"
+      content="2"
+      badgecolour="#336600"
+      v-bind:value="45"
+      v-bind:min="0"
+      v-bind:max="100"
+      v-bind:optimum="75"
+      orientation="vertical"
     />
 
     <UsageBarItemCard
       icon="ram"
       content="0"
       badgecolour="#f00"
-      metric="ram"
       v-bind:value="45"
       v-bind:min="0"
       v-bind:max="100"
       v-bind:optimum="75"
+      orientation="horizontal"
     />
 
+    <UsageBarItemCard
+      icon="ram"
+      content="0"
+      badgecolour="#f00"
+      v-bind:value="45"
+      v-bind:min="0"
+      v-bind:max="100"
+      v-bind:optimum="75"
+      orientation="vertical"
+    />
   </span>
 </template>
 

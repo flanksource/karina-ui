@@ -1,7 +1,12 @@
 <template>
 	<span>
 		<div v-if="content > 0">
-			<v-badge :color="badgecolour" :content="content" inline>
+			<v-badge
+				v-if="orientation == 'horizontal'"
+				:color="badgecolour"
+				:content="content"
+				inline
+			>
 				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
@@ -14,7 +19,7 @@
 							rounded
 							background-color="#4a4a4a"
 							:color="getColour(value,optimum)"
-							:title="metric + ': ' + getTitle(value, min, max)"
+							:title="getTitle(value, min, max)"
 						/>
 					</div>
 
@@ -30,10 +35,49 @@
 					</div>
 				</div>
 			</v-badge>
+
+			<v-badge
+				v-if="orientation == 'vertical'"
+				:color="badgecolour"
+				:content="content"
+				inline
+			>
+				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<div class="vertical-bar">
+					<span class="vertical-unit-min">{{min}}</span>
+					<span class="vertical-unit-max">{{max}}</span>
+
+					<div class="vertical-scale">
+						<v-progress-linear
+							:value="getValue(value, min, max)"
+							height="10"
+							rounded
+							background-color="#4a4a4a"
+							:color="getColour(value,optimum)"
+							:title="getCollapsedTitle(value, optimum, min, max)"
+						/>
+					</div>
+
+					<div
+						class="vertical-marker"
+						v-bind:style="{marginLeft: `20%`}"
+					>
+						<svg-icon
+							icon="triangle-marker"
+							title="title"
+						/>
+					</div>
+				</div>
+			</v-badge>
 		</div>
 
 		<div v-else inline>
-			<v-badge value="false" color="white" inline>
+			<v-badge
+				v-if="orientation == 'horizontal'"
+				value="false"
+				color="white"
+				inline
+			>
 				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
@@ -46,7 +90,7 @@
 							rounded
 							background-color="#4a4a4a"
 							:color="getColour(value,optimum)"
-							:title="metric + ': ' + getTitle(value, min, max)"
+							:title="getTitle(value, min, max)"
 						/>
 					</div>
 
@@ -58,6 +102,41 @@
 							icon="triangle-marker"
 							:style="markerStyles"
 							:title="getTitle(optimum, min, max)"
+						/>
+					</div>
+				</div>
+			</v-badge>
+
+
+			<v-badge
+				v-if="orientation == 'vertical'"
+				value="false"
+				color="white"
+				inline
+			>
+				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<div class="vertical-bar">
+					<span class="vertical-unit-min">{{min}}</span>
+					<span class="vertical-unit-max">{{max}}</span>
+
+					<div class="vertical-scale">
+						<v-progress-linear
+							:value="getValue(value, min, max)"
+							height="10"
+							rounded
+							background-color="#4a4a4a"
+							:color="getColour(value,optimum)"
+							:title="getCollapsedTitle(value, optimum, min, max)"
+						/>
+					</div>
+
+					<div
+						class="vertical-marker"
+						v-bind:style="{marginLeft: `20%`}"
+					>
+						<svg-icon
+							icon="triangle-marker"
+							title="title"
 						/>
 					</div>
 				</div>
@@ -84,7 +163,7 @@
 			min: Number,
 			max: Number,
 			optimum: Number,
-			metric: String,
+			orientation: String,
 		},
 
 		methods : {
@@ -156,19 +235,19 @@
 				}
 			},
 
-			getCollapsedTitle(metric, value, optimum, min, max) {
+			getCollapsedTitle(value, optimum, min, max) {
 
 				var title;
 
 				if (min < max) {
 
-					title = metric + ': ' + ' value(' + value + ')' + ' optimum(' + optimum + ')';
+					title = ' value(' + value + ')' + ' optimum(' + optimum + ')';
 					return title;
 				}
 
 				if (min > max) {
 
-					title = metric + ': ' + ' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
+					title = ' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
 					return title;
 				}
 			}		
@@ -237,4 +316,29 @@
 		font-size: 12px;
 	}
 
+	.vertical-bar {
+		transform: rotate(-90deg);
+		padding: 15px 0;
+		position: relative;
+		width: 35px;
+		height: 50px;
+	}
+
+	.vertical-scale {
+		position: absolute;
+		margin-top: 0;
+		width: 100%;
+	}
+
+	.vertical-marker {
+		display: none;
+	}
+
+	.vertical-unit-min {
+		display: none;
+	}
+
+	.vertical-unit-max {
+		display: none;
+	}
 </style>
