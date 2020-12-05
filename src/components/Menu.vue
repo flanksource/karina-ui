@@ -9,6 +9,7 @@
          <v-list-item-icon class="icon" >
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
+
         <v-list-item-title class="title">
           Home
         </v-list-item-title>
@@ -17,7 +18,7 @@
       <v-divider></v-divider>
 
       <v-list
-        dense 
+         
       >
        <span v-for="(menuItem, i) in menuItems" :key="i">
         <v-list-item
@@ -25,6 +26,7 @@
           :href="menuItem.url"
           target="menuFrame"
           @click="selectState('iframe')"
+          @click.stop="drawer = !drawer"
         >
           <svg-icon :icon="menuItem.icon" class="icon" />
           <v-list-item-title>{{menuItem.title}}</v-list-item-title>
@@ -47,6 +49,7 @@ export default {
   props: {
     state: String,
     clusters: Array,
+    drawer: Boolean,
   },
 
   data: () => ({

@@ -1,6 +1,8 @@
 <template>
   <v-app>
     <v-app-bar app>
+      <v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>  
+
       <v-toolbar-title
         ><b>Karina</b> - The Kubernetes Dashboard</v-toolbar-title
       >
@@ -67,13 +69,15 @@ export default {
       return {
         clusters: stats.clusters,
         loading: true,
-        state: 'native'
+        state: 'native',
+        drawer: null,
       };
     } else {
       return {
         clusters: null,
         loading: true,
         state: 'native',
+        drawer: null,
       };
     }
   },
@@ -81,7 +85,7 @@ export default {
   methods: {
     setState(state) {
       this.state = state;
-      console.log(this.state)
+      this.drawer = !this.drawer;
     }
   },
 
@@ -131,4 +135,8 @@ export default {
    .right-pane-content {
     margin-left: 13vw;
   }
+
+  .v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:first-child + .v-toolbar__title, .v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:first-child + .v-toolbar__title {
+  padding-left: unset !important;
+}
 </style>
