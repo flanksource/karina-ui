@@ -1,14 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon  @click="setLNBState"></v-app-bar-nav-icon>  
-
-
-
-      <v-toolbar-title
-        ><b>Karina</b> - The Kubernetes Dashboard</v-toolbar-title
-      >
-    </v-app-bar>
+  
 
     <div
       v-if="loading == true"
@@ -21,12 +13,6 @@
     >
       <v-main>
         <v-row no-gutters>
-
-           <!-- <div class="left-pane">
-            <left-nav-bar  :clusters="clusters" @selectState="setState($event)"/> 
-          </div>
- -->
-
           <v-col cols="1" :class="{ 'left-pane-collapsed': collapsedLNB, 'left-pane-expanded': !collapsedLNB  }">
             <Menu :clusters="clusters" @selectState="setState($event)" @selectLNBState="setLNBState()" :collapsedLNB="collapsedLNB"/>
           </v-col>
@@ -119,7 +105,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
   
   .left-pane {
@@ -141,23 +126,21 @@ export default {
     position: fixed;
     width: 50px;
     margin-left: 0vw;
-    height: 92vh;
+    height: 192vh;
     z-index: 333;
+
   }
 
-    .left-pane-expanded{
+  .left-pane-expanded{
     position: fixed;
-    max-width: 13vw;
+    max-width: 220px;
     margin-left: 0vw;
-    height: 92vh;
+    height: 192vh;
     z-index: 333;
   }
 
-   .right-pane-content {
+  .right-pane-content {
     margin-left: 50px;
   }
 
-  .v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:first-child + .v-toolbar__title, .v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:first-child + .v-toolbar__title {
-  padding-left: unset !important;
-}
 </style>

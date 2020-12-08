@@ -4,6 +4,15 @@
       absolute
       permanent
     >
+      
+       <v-list-item
+        v-if="collapsedLNB"
+        @click.stop="collapsedLNB = !collapsedLNB"
+        @click="selectLNBState()"
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-list-item>
+
       <v-list-item
         v-if="!collapsedLNB"
         @click.stop="collapsedLNB = !collapsedLNB"
@@ -16,12 +25,12 @@
       link
       @click="selectState('native')"
       >
-        <v-list-item-icon class="icon" >
+        <v-list-item-icon class="menu-icon" >
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
 
         <v-list-item-title class="title">
-          Home
+          Karina
         </v-list-item-title>
       </v-list-item>
 
@@ -112,6 +121,13 @@ export default {
   padding-left: 5px;
 }
 
+.menu-icon {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding-right: 15px !important;
+}
+
 .v-application--is-ltr .v-list-item__action:first-child, .v-application--is-ltr .v-list-item__icon:first-child {
    margin-right: unset !important;
 }
@@ -120,4 +136,6 @@ export default {
   align-self: flex-start;
   margin: 11px 0 !important;
 }
+
+
 </style>
