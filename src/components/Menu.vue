@@ -26,6 +26,15 @@
         </v-list-item>
       </span>
       </v-list>
+
+      <v-list-item
+        @click="toggleDarkMode"
+      >
+        <v-icon>mdi-theme-light-dark</v-icon>
+         <v-list-item-title>
+          Switch Theme
+        </v-list-item-title>
+      </v-list-item>
     </v-navigation-drawer>
 </template>
 
@@ -77,6 +86,22 @@ export default {
   methods: {
     selectState(state) {
       this.$emit('selectState',state);
+    },
+
+    toggleDarkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
+    }
+  },
+
+  mounted() {
+    const theme = localStorage.getItem("dark_theme");
+    if (theme) {
+      if (theme == "true") {
+        this.$vuetify.theme.dark = true;
+      } else {
+        this.$vuetify.theme.dark = false;
+      }
     }
   },
 }
