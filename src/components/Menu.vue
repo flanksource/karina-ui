@@ -1,12 +1,22 @@
 <template>
+
     <v-navigation-drawer
+      absolute
       permanent
     >
+      <v-list-item
+        v-if="!collapsedLNB"
+        @click.stop="collapsedLNB = !collapsedLNB"
+        @click="selectLNBState()"
+      >
+        <v-icon>mdi-backburger</v-icon>
+      </v-list-item>
+
       <v-list-item
       link
       @click="selectState('native')"
       >
-         <v-list-item-icon class="icon" >
+        <v-list-item-icon class="icon" >
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
 
@@ -49,7 +59,7 @@ export default {
   props: {
     state: String,
     clusters: Array,
-    drawer: Boolean,
+    collapsedLNB: Boolean,
   },
 
   data: () => ({
@@ -85,6 +95,9 @@ export default {
   methods: {
     selectState(state) {
       this.$emit('selectState',state);
+    },
+    selectLNBState() {
+      this.$emit('selectLNBState',this.collapsedLNB);
     }
   },
 }

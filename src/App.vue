@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon  @click.stop="drawer = !drawer"></v-app-bar-nav-icon>  
+      <v-app-bar-nav-icon  @click="setLNBState"></v-app-bar-nav-icon>  
+
+
 
       <v-toolbar-title
         ><b>Karina</b> - The Kubernetes Dashboard</v-toolbar-title
@@ -20,12 +22,13 @@
       <v-main>
         <v-row no-gutters>
 
-           <div class="left-pane">
+           <!-- <div class="left-pane">
             <left-nav-bar  :clusters="clusters" @selectState="setState($event)"/> 
           </div>
+ -->
 
-          <v-col cols="1" class="right-pane-menu">
-            <Menu :clusters="clusters" @selectState="setState($event)"/>
+          <v-col cols="1" :class="{ 'left-pane-collapsed': collapsedLNB, 'left-pane-expanded': !collapsedLNB  }">
+            <Menu :clusters="clusters" @selectState="setState($event)" @selectLNBState="setLNBState()" :collapsedLNB="collapsedLNB"/>
           </v-col>
 
           <v-col cols="10" class="right-pane-content">
@@ -49,7 +52,7 @@
 
 <script>
   import IframeView from "./components/IframeView.vue";
-  import LeftNavBar from "./components/LeftNavBar.vue";
+ // import LeftNavBar from "./components/LeftNavBar.vue";
   import Loader from "./components/Loader.vue";
   import Menu from "./components/Menu.vue";
   import NativeView from "./components/NativeView.vue";
@@ -58,7 +61,7 @@
 export default {
   components: {
     IframeView,
-    LeftNavBar,
+    //LeftNavBar,
     Loader,
     Menu,
     NativeView,
@@ -70,14 +73,14 @@ export default {
         clusters: stats.clusters,
         loading: true,
         state: 'native',
-        drawer: null,
+        collapsedLNB: true,
       };
     } else {
       return {
         clusters: null,
         loading: true,
         state: 'native',
-        drawer: null,
+        collapsedLNB: true,
       };
     }
   },
@@ -85,8 +88,10 @@ export default {
   methods: {
     setState(state) {
       this.state = state;
-      this.drawer = !this.drawer;
-    }
+    },
+    setLNBState() {
+      this.collapsedLNB = !this.collapsedLNB;
+    },
   },
 
   beforeCreate () {
@@ -126,14 +131,30 @@ export default {
 
   .right-pane-menu {
     position: fixed;
-    max-width: 10vw;
-    margin-left: 3vw;
+    width: 50px;
+    margin-left: 0vw;
     height: 92vh;
     z-index: 3;
   }
 
+  .left-pane-collapsed {
+    position: fixed;
+    width: 50px;
+    margin-left: 0vw;
+    height: 92vh;
+    z-index: 333;
+  }
+
+    .left-pane-expanded{
+    position: fixed;
+    max-width: 13vw;
+    margin-left: 0vw;
+    height: 92vh;
+    z-index: 333;
+  }
+
    .right-pane-content {
-    margin-left: 13vw;
+    margin-left: 50px;
   }
 
   .v-application--is-ltr .v-toolbar__content > .v-btn.v-btn--icon:first-child + .v-toolbar__title, .v-application--is-ltr .v-toolbar__extension > .v-btn.v-btn--icon:first-child + .v-toolbar__title {
