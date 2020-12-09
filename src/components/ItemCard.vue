@@ -9,7 +9,7 @@
     </div>
 
     <div v-else inline>
-      <v-badge value="false" color="white" inline>
+      <v-badge value="false" color="transparent" inline>
         <svg-icon :icon="icon" :hasFill="false" :color="colour" />
         <span class="pl-1 text-size">{{ label }} </span>
       </v-badge>

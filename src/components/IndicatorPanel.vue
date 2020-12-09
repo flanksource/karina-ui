@@ -1,5 +1,5 @@
 <template>
-  <v-card class="card-height">
+  <v-card class="card-height shade3">
     <v-row no-gutters align="center" justify="space-around" class="py-2 ml-4">
       <v-col
         cols="3"

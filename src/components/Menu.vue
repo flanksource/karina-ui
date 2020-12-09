@@ -31,10 +31,11 @@
         @click="toggleDarkMode"
       >
         <v-icon>mdi-theme-light-dark</v-icon>
-         <v-list-item-title>
+         <v-list-item-title class="button-text">
           Switch Theme
         </v-list-item-title>
       </v-list-item>
+
     </v-navigation-drawer>
 </template>
 
@@ -93,17 +94,6 @@ export default {
       localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
     }
   },
-
-  mounted() {
-    const theme = localStorage.getItem("dark_theme");
-    if (theme) {
-      if (theme == "true") {
-        this.$vuetify.theme.dark = true;
-      } else {
-        this.$vuetify.theme.dark = false;
-      }
-    }
-  },
 }
 </script>
 
@@ -113,5 +103,9 @@ export default {
   top: 0;
   left: 0;
   padding-right: 5px;
+}
+
+.button-text {
+  
 }
 </style>

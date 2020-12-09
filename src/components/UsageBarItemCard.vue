@@ -75,7 +75,7 @@
 			<v-badge
 				v-if="orientation == 'horizontal'"
 				value="false"
-				color="white"
+				color="transparent"
 				inline
 			>
 				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
@@ -111,7 +111,7 @@
 			<v-badge
 				v-if="orientation == 'vertical'"
 				value="false"
-				color="white"
+				color="transparent"
 				inline
 			>
 				<svg-icon :icon="icon" :hasFill="false" :color="colour" />

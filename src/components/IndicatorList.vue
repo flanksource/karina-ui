@@ -17,6 +17,7 @@
       <v-expansion-panel
         v-for="(indicator,i) in indicators"
         :key="i"
+        :class="{ 'shade4': listExpand, 'shade3': !listExpand  }"
       >
         <v-row no-gutters align="center" class="pl-3">
           <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">

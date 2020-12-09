@@ -2,7 +2,7 @@
   <div class="pb-12">
     <v-row no-gutters>
       <v-col cols="12" xs="12" sm="2" md="2" lg="3" xl="3" class="px-2">
-        <v-card :class="{ 'card-narrow': collapsed, 'card-wide': !collapsed  }">
+        <v-card :class="{ 'card-narrow shade3': collapsed, 'card-wide shade4': !collapsed  }">
           <v-btn
             class="btn-usage"
             @click="selectUsageBarMode"
@@ -21,8 +21,8 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list">
-        <v-card flat class="ml-3 py-3">
+      <v-col cols="12" xs="12" sm="3" md="3" lg="2" xl="2" class="item-list shade4">
+        <v-card flat class="ml-3 py-3 shade4">
           <ItemList :items="cluster.properties" :id="cluster.name" />
         </v-card>
       </v-col>
@@ -34,11 +34,14 @@
         md="7"
         lg="6"
         xl="6"
-        :class="{ 'expand-list': expandMode, 'collapse-list': !expandMode  }"
+        :class="{ 'expand-list shade4': expandMode, 'collapse-list shade3': !expandMode  }"
 
        
       >
-        <v-card flat class="mr-4 py-3">
+        <v-card
+          flat
+          :class="{ 'mr-4 py-3 shade4': expandMode, 'mr-4 py-3 shade3': !expandMode  }"
+        >
           <IndicatorList
             :canarychecks="cluster.canary_checks"
             :indicators="cluster.indicators"
@@ -157,5 +160,14 @@ i {
   border: 1px solid #111;
   height: 100%;
   border-bottom-right-radius: 25px;
+}
+
+.border {
+  border: 2px solid #3f6a95 !important;
+}
+
+
+.v-application .shade4, .v-application .shade3 {
+  border-color: #3f6a95 !important;
 }
 </style>
