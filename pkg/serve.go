@@ -8,7 +8,8 @@ import (
 	"github.com/flanksource/commons/logger"
 	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
-	"gopkg.in/yaml.v2"
+	"github.com/pkg/errors"
+	"gopkg.in/flanksource/yaml.v3"
 )
 
 var config = make(map[string]api.ClusterConfiguration)
@@ -66,14 +67,15 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 }
 
 func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error) {
+	if path == "" {
+		return nil, errors.Errorf("config file flag is missing")
+	}
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
-		logger.Fatalf("❌ Cluster configuration failed with: %v", err)
-		return nil, err
+		return nil, errors.Wrap(err, "failed to read config file")
 	}
 	if err := yaml.Unmarshal(data, &config); err != nil {
-		logger.Fatalf("❌ Cluster configuration failed with: %v", err)
-		return nil, err
+		return nil, errors.Wrap(err, "failed to unmarshal config file")
 	}
-	return config, err
+	return config, nil
 }
