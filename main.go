@@ -41,20 +41,27 @@ func main() {
 		},
 	})
 
-	root.AddCommand(&cobra.Command{
+	serve := &cobra.Command{
 		Use: "serve",
-		Run: func(cmd *cobra.Command, args []string){
+		Run: func(cmd *cobra.Command, args []string) {
 			file, _ := cmd.Flags().GetString("config")
-			pkg.ParseConfiguration(file)
+			port, _ := cmd.Flags().GetUint("port")
+			_, err := pkg.ParseConfiguration(file)
+			if err != nil {
+				logger.Fatalf("Failed to parse karina-ui configuration: %v", err)
+			}
 			http.Handle("/", http.FileServer(http.Dir("./dist/")))
-			http.HandleFunc("/api", pkg.Serve)		
-			logger.Infof("👂 Listening on %s", ":8080")
+			http.HandleFunc("/api", pkg.Serve)
 
-			if err := http.ListenAndServe(":8080", nil); err != nil {
-				logger.Fatalf("❌ %v", err)
+			addr := fmt.Sprintf(":%d", port)
+			logger.Infof("👂 Listening on %s", addr)
+			if err := http.ListenAndServe(addr, nil); err != nil {
+				logger.Fatalf("Failed to start http server: %v", err)
 			}
 		},
-	})
+	}
+	serve.Flags().UintP("port", "p", 8080, "Port to use for webserver")
+	root.AddCommand(serve)
 	root.SetUsageTemplate(root.UsageTemplate() + fmt.Sprintf("\nversion: %s\n ", version))
 	root.PersistentFlags().String("config", "", "Specify a kubeconfig to use")
 
