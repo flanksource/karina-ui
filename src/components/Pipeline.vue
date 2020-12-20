@@ -40,7 +40,7 @@
       >
         <v-card flat class="mr-4 py-3">
           <IndicatorList
-            :canarychecks="cluster.canary_checks"
+            :canarychecks="cluster.canaryChecks"
             :indicators="cluster.indicators"
             :expandMode="expandMode"
             :list="list"

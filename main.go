@@ -46,7 +46,7 @@ func main() {
 		Run: func(cmd *cobra.Command, args []string) {
 			file, _ := cmd.Flags().GetString("config")
 			port, _ := cmd.Flags().GetUint("port")
-			_, err := pkg.ParseConfiguration(file)
+			err := pkg.ParseConfiguration(file)
 			if err != nil {
 				logger.Fatalf("Failed to parse karina-ui configuration: %v", err)
 			}

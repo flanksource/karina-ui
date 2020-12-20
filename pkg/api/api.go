@@ -7,7 +7,7 @@ import (
 type Cluster struct {
 	Name         string     `json:"name,omitempty"`
 	Properties   []Property `json:"properties,omitempty"`
-	CanaryChecks []Chek     `json:"canary_checks,omitempty"`
+	CanaryChecks []Check    `json:"canaryChecks,omitempty"`
 	Nodes        []Node     `json:"nodes,omitempty"`
 	Alerts       []Alert    `json:"alerts,omitempty"`
 }
@@ -21,23 +21,21 @@ type Property struct {
 }
 
 type Canarydata struct {
-	ServerName string `json:"server_name,omitempty"`
-	Checks     []Chek `json:"checks,omitempty"`
+	ServerName string  `json:"server_name,omitempty"`
+	Checks     []Check `json:"checks,omitempty"`
 }
 
-type Chek struct {
-	Key           string       `json:"key,omitempty"`
-	Type          string       `json:"type,omitempty"`
-	Name          string       `json:"name,omitempty"`
-	Description   string       `json:"description,omitempty"`
-	Uptime        string       `json:"uptime,omitempty"`
-	Latency       string       `json:"latency,omitempty"`
-	CheckStatuses []ChekStatus `json:"checkStatuses,omitempty"`
-	checkConf     ChekConf     //`json:"checkConf,omitempty"`
-
+type Check struct {
+	Key           string        `json:"key,omitempty"`
+	Type          string        `json:"type,omitempty"`
+	Name          string        `json:"name,omitempty"`
+	Description   string        `json:"description,omitempty"`
+	Uptime        string        `json:"uptime,omitempty"`
+	Latency       string        `json:"latency,omitempty"`
+	CheckStatuses []CheckStatus `json:"checkStatuses,omitempty"`
 }
 
-type ChekStatus struct {
+type CheckStatus struct {
 	Status   bool
 	Invalid  bool
 	Time     string
@@ -57,9 +55,14 @@ type ChekConf struct {
 }
 
 type Node struct {
-	Name   string  `json:"name,omitempty"`
-	IP     string  `json:"ip,omitempty"`
-	Alerts []Alert `json:"alerts,omitempty"`
+	Name             string  `json:"name"`
+	InternalIP       string  `json:"internalIP"`
+	ExternalIP       string  `json:"externalIP"`
+	KernelVersion    string  `json:"kernelVersion"`
+	KubeletVersion   string  `json:"kubeletVersion"`
+	ContainerRuntime string  `json:"containerRuntime"`
+	OSImage          string  `json:"osImage"`
+	Alerts           []Alert `json:"alerts"`
 }
 
 type Alert struct {
@@ -73,6 +76,10 @@ type ClusterConfiguration struct {
 	Prometheus    string `yaml:"prometheus,omitempty"`
 	AlertManager  string `yaml:"alertmanager,omitempty"`
 	Kubeconfig    string `yaml:"kubeconfig,omitempty"`
+}
+
+type Config struct {
+	Clusters map[string]ClusterConfiguration `yaml:"clusters,omitempty"`
 }
 
 /*type Combo struct {
