@@ -6,54 +6,58 @@ import (
 	"net/http"
 
 	"github.com/flanksource/commons/logger"
-	"github.com/flanksource/commons/net"
 	"github.com/flanksource/karina-ui/pkg/api"
+	"github.com/flanksource/karina-ui/pkg/providers"
 	"github.com/pkg/errors"
 	"gopkg.in/flanksource/yaml.v3"
 )
 
-var config = make(map[string]api.ClusterConfiguration)
+var config = api.Config{}
+
+var providersMap = map[string]providers.ProviderFn{
+	"canary":     providers.NewCanary,
+	"kubernetes": providers.NewKubernetes,
+}
+
+var providersList []providers.Provider
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
-	for name, cluster := range config {
+	for name, clusterConfig := range config.Clusters {
+		cluster := &api.Cluster{Name: name, Properties: []api.Property{}}
 
-		var canary api.Canarydata
-		canaryResp, err := net.GET(cluster.CanaryChecker)
-		if err != nil {
-			logger.Errorf("❌ Canary Check failed with %s", err)
-			continue
-		}
-		if err := json.Unmarshal([]byte(canaryResp), &canary); err != nil {
-			logger.Errorf("❌ Failed to unmarshal json %s", err)
-			continue
+		for _, provider := range providersList {
+			if err := provider.Fetch(cluster, clusterConfig); err != nil {
+				logger.Errorf("❌ failed to run provider %s for cluster %s", provider.Name(), name)
+				continue
+			}
 		}
 
-		clusters = append(clusters, api.Cluster{
-			Name: name,
-			Properties: []api.Property{
-				{
-					Name:  "CPU",
-					Icon:  "cpu",
-					Type:  "cpu",
-					Value: "72",
-				},
-				{
-					Name:  "Memory",
-					Icon:  "memory",
-					Type:  "mem",
-					Value: "128",
-				},
-				{
-					Name:  "Disk",
-					Icon:  "disk",
-					Type:  "disk",
-					Value: "100",
-				},
-			},
-			CanaryChecks: canary.Checks,
-		})
+		clusters = append(clusters, *cluster)
+		// 	Name: name,
+		// 	Properties: []api.Property{
+		// 		{
+		// 			Name:  "CPU",
+		// 			Icon:  "cpu",
+		// 			Type:  "cpu",
+		// 			Value: "72",
+		// 		},
+		// 		{
+		// 			Name:  "Memory",
+		// 			Icon:  "memory",
+		// 			Type:  "mem",
+		// 			Value: "128",
+		// 		},
+		// 		{
+		// 			Name:  "Disk",
+		// 			Icon:  "disk",
+		// 			Type:  "disk",
+		// 			Value: "100",
+		// 		},
+		// 	},
+		// 	CanaryChecks: canary.Checks,
+		// })
 	}
 
 	json, err := json.Marshal(clusters)
@@ -66,16 +70,31 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func ParseConfiguration(path string) (map[string]api.ClusterConfiguration, error) {
+func ParseConfiguration(path string) error {
 	if path == "" {
-		return nil, errors.Errorf("config file flag is missing")
+		return errors.Errorf("config file flag is missing")
 	}
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
-		return nil, errors.Wrap(err, "failed to read config file")
+		return errors.Wrap(err, "failed to read config file")
 	}
 	if err := yaml.Unmarshal(data, &config); err != nil {
-		return nil, errors.Wrap(err, "failed to unmarshal config file")
+		return errors.Wrap(err, "failed to unmarshal config file")
 	}
-	return config, nil
+	if err := loadProviders(); err != nil {
+		return errors.Wrap(err, "failed to load providers")
+	}
+	return nil
+}
+
+func loadProviders() error {
+	providersList = []providers.Provider{}
+	for name, providerFn := range providersMap {
+		provider, err := providerFn(config)
+		if err != nil {
+			return errors.Wrapf(err, "failed to create provider %s", name)
+		}
+		providersList = append(providersList, provider)
+	}
+	return nil
 }
