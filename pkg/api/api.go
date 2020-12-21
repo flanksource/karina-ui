@@ -6,9 +6,9 @@ import (
 
 type Cluster struct {
 	Name         string     `json:"name,omitempty"`
+	Kubernetes   Kubernetes `json:"kubernetes,omitempty"`
 	Properties   []Property `json:"properties,omitempty"`
 	CanaryChecks []Check    `json:"canaryChecks,omitempty"`
-	Nodes        []Node     `json:"nodes,omitempty"`
 	Alerts       []Alert    `json:"alerts,omitempty"`
 }
 
@@ -43,17 +43,6 @@ type CheckStatus struct {
 	Message  string
 }
 
-type ChekConf struct {
-	Server          string
-	Port            int
-	Query           string
-	QueryType       string
-	Minrecords      string
-	ExactReply      []string
-	Timeout         int
-	ThresholdMillis int
-}
-
 type Node struct {
 	Name             string  `json:"name"`
 	InternalIP       string  `json:"internalIP"`
@@ -82,23 +71,18 @@ type Config struct {
 	Clusters map[string]ClusterConfiguration `yaml:"clusters,omitempty"`
 }
 
-/*type Combo struct {
-	Cluster []Cluster
-	Canary 	Canarydata
-}*/
+type Kubernetes struct {
+	CPU            int    `json:"cpu"`
+	Memory         int64  `json:"memory"`
+	Disk           int64  `json:"disk"`
+	KubeletVersion string `json:"kubeletVersion"`
+	KernelVersion  string `json:"kernelVersion"`
+	OSVersion      string `json:"osVersion"`
+	CRIVersion     string `json:"criVersion"`
+	Nodes          []Node `json:"nodes"`
 
-/*type CanaryCheck struct {
-	Name      string              `json:"name,omitempty"`
-	Namespace string              `json:"namespace,omitempty"`
-	Type      string              `json:"type,omitempty"`
-	Endpoint  string              `json:"endpoint,omitempty"`
-	Latency1H string              `json:"latency_1_h,omitempty"`
-	Uptime1H  string              `json:"uptime_1_h,omitempty"`
-	Status    []CanaryCheckStatus `json:"status,omitempty"`
+	KubeletAlerts []Alert `json:"kubeletAlerts"`
+	KernelAlerts  []Alert `json:"kernelAlerts"`
+	OSAlerts      []Alert `json:"osAlerts"`
+	CRIAlerts     []Alert `json:"criAlerts"`
 }
-
-type CanaryCheckStatus struct {
-	Pass      bool      `json:"pass,omitempty"`
-	Timestamp time.Time `json:"timestamp,omitempty"`
-	Message   string    `json:"message,omitempty"`
-}*/
