@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
-	"strconv"
 	"strings"
 
 	"github.com/Masterminds/semver"
@@ -15,8 +14,6 @@ import (
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
-
-const gb = 1024 * 1024 * 1024
 
 type Kubernetes struct {
 	clients map[string]*kommons.Client
@@ -72,34 +69,25 @@ func (k *Kubernetes) Fetch(cluster *api.Cluster, config api.ClusterConfiguration
 		nodesList = append(nodesList, getNodeInfo(node))
 	}
 
-	addAlerts(nodesList, "Kernel", kernelVersion)
-	addAlerts(nodesList, "Kubelet", kubeletVersion)
-	addAlerts(nodesList, "CRI", criVersion)
-	addAlerts(nodesList, "OS", osVersion)
-	cluster.Nodes = nodesList
+	knv, kernelAlerts := addAlerts(nodesList, "Kernel", kernelVersion)
+	kbv, kubeletAlerts := addAlerts(nodesList, "Kubelet", kubeletVersion)
+	crv, criAlerts := addAlerts(nodesList, "CRI", criVersion)
+	osv, osAlerts := addAlerts(nodesList, "OS", osVersion)
 
-	properties := []api.Property{
-		{
-			Name:  "CPU",
-			Icon:  "cpu",
-			Type:  "cpu",
-			Value: strconv.FormatInt(cpus, 10),
-		},
-		{
-			Name:  "Memory",
-			Icon:  "memory",
-			Type:  "mem",
-			Value: fmt.Sprintf("%d GB", memory/gb),
-		},
-		{
-			Name:  "Disk",
-			Icon:  "disk",
-			Type:  "disk",
-			Value: fmt.Sprintf("%d GB", diskSize/gb),
-		},
+	cluster.Kubernetes = api.Kubernetes{
+		CPU:            int(cpus),
+		Memory:         memory,
+		Disk:           diskSize,
+		KubeletVersion: kbv,
+		KernelVersion:  knv,
+		OSVersion:      osv,
+		CRIVersion:     crv,
+		KubeletAlerts:  kubeletAlerts,
+		KernelAlerts:   kernelAlerts,
+		OSAlerts:       osAlerts,
+		CRIAlerts:      criAlerts,
+		Nodes:          nodesList,
 	}
-
-	cluster.Properties = append(cluster.Properties, properties...)
 
 	return nil
 }
@@ -135,12 +123,13 @@ func getNodeInfo(node v1.Node) api.Node {
 
 type versionGetterFn func(api.Node) string
 
-func addAlerts(nodes []api.Node, component string, fn versionGetterFn) {
+func addAlerts(nodes []api.Node, component string, fn versionGetterFn) (string, []api.Alert) {
 	latestVersionSemver, _ := semver.NewVersion("v0.0.0")
 	latestVersion := "v0"
+	alerts := []api.Alert{}
 
 	if len(nodes) == 0 {
-		return
+		return "", alerts
 	}
 
 	for _, node := range nodes {
@@ -148,7 +137,7 @@ func addAlerts(nodes []api.Node, component string, fn versionGetterFn) {
 		sv, err := semver.NewVersion(version)
 		if err != nil {
 			logger.Errorf("could not parse version %s: %v", version, err)
-			return
+			return "", alerts
 		}
 
 		if sv.GreaterThan(latestVersionSemver) {
@@ -167,8 +156,16 @@ func addAlerts(nodes []api.Node, component string, fn versionGetterFn) {
 				Message: fmt.Sprintf("%s version %s is behind latest version: %s", component, version, latestVersion),
 			}
 			nodes[index].Alerts = append(nodes[index].Alerts, alert)
+
+			alert = api.Alert{
+				Level:   "warning",
+				Message: fmt.Sprintf("Node %s with version %s is behind latest version: %s", node.Name, version, latestVersion),
+			}
+			alerts = append(alerts, alert)
 		}
 	}
+
+	return latestVersion, alerts
 }
 
 func criVersion(node api.Node) string {

@@ -51,7 +51,8 @@ func main() {
 				logger.Fatalf("Failed to parse karina-ui configuration: %v", err)
 			}
 			http.Handle("/", http.FileServer(http.Dir("./dist/")))
-			http.HandleFunc("/api", pkg.Serve)
+			http.HandleFunc("/api", pkg.ServeAPI)
+			http.HandleFunc("/api/ui", pkg.ServeUIAPI)
 
 			addr := fmt.Sprintf(":%d", port)
 			logger.Infof("👂 Listening on %s", addr)

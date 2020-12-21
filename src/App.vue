@@ -83,13 +83,13 @@ export default {
     if (!window.DEMO_MODE) {
       /*
       this.$axios
-      .get("http://localhost:8080/api")
+      .get("http://localhost:8080/api/ui")
       .then(response => (this.clusters = response.data))
       .catch(error => console.log(error))
       .finally(() => (this.loading = false))  
        */
       this.$axios
-        .get("/api")
+        .get("/api/ui")
         .then(response => (this.clusters = response.data))
         .catch(error => console.log(error))
         .finally(() => (this.loading = false)); 
