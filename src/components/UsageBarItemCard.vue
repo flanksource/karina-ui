@@ -7,7 +7,7 @@
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="color" />
+				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -42,7 +42,7 @@
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="color" />
+				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -53,7 +53,7 @@
 							height="10"
 							rounded
 							background-color="#4a4a4a"
-							:color="getcolor(value,optimum)"
+							:color="getColor(value,optimum)"
 							:title="getCollapsedTitle(value, optimum, min, max)"
 						/>
 					</div>
@@ -78,7 +78,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="color" />
+				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -89,7 +89,7 @@
 							height="5"
 							rounded
 							background-color="#4a4a4a"
-							:color="getcolor(value,optimum)"
+							:color="getColor(value,optimum)"
 							:title="getTitle(value, min, max)"
 						/>
 					</div>
@@ -114,7 +114,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="color" />
+				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -125,7 +125,7 @@
 							height="10"
 							rounded
 							background-color="#4a4a4a"
-							:color="getcolor(value,optimum)"
+							:color="getColor(value,optimum)"
 							:title="getCollapsedTitle(value, optimum, min, max)"
 						/>
 					</div>
@@ -157,7 +157,7 @@
 
 		props: {
 			icon: String,
-			content: Number,
+			content: String,
 			badgecolor: String,
 			value: Number,
 			min: Number,
