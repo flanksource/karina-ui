@@ -25,13 +25,13 @@ export default {
     label: String,
     icon: String,
     count: [Number, String],
-    colour: String,
+    color: String,
   },
 
   computed: {
     iconStyles() {
       return {
-        color: this.colour,
+        color: this.color,
       };
     },
   },

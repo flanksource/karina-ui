@@ -8,7 +8,7 @@
         >
           <IndicatorIcon
             :shape="indicatoricon.shape"
-            :colour="indicatoricon.color"
+            :color="indicatoricon.color"
             :overlay="indicatoricon.overlay"
             class="clickable-icon"
             @click.native="selectCheck()"

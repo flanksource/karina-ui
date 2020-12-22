@@ -12,7 +12,7 @@
       >
         <ItemIcon
           :icon="itemicon.icon"
-          :colour="itemicon.colour"
+          :color="itemicon.color"
           :label="itemicon.label"
           :count="itemicon.count"
         />

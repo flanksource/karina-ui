@@ -4,21 +4,21 @@
       "id": 1,
       "name": "Cluster 01",
       "itemicons": [
-        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
-        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
+        {"name": "", "icon":"git", "color": "#f8cecc", "label":"Change Config", "count":5},
+        {"name": "", "icon":"git", "color": "#666666", "label":"Downgrade Version", "count":2},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Bump Replicas", "count":0},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Sample ", "count":0}
       ],
       "properties": [
-        {"id":1, "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
-        {"id":2, "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
-        {"id":3, "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":4, "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":5, "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":6, "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":7, "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":8, "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolour": ""},
-        {"id":9, "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolour": ""}
+        {"id":1, "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolor": ""},
+        {"id":2, "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolor": ""},
+        {"id":3, "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolor": ""},
+        {"id":4, "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolor": "#336600"},
+        {"id":5, "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolor": "#990000"},
+        {"id":6, "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolor": "#b3b3b3"},
+        {"id":7, "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolor": ""},
+        {"id":8, "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolor": ""},
+        {"id":9, "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolor": ""}
       ],
       "indicators": [
         { 
@@ -121,21 +121,21 @@
       "id": 2,
       "name": "Cluster 02",
       "itemicons": [
-        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
-        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
+        {"name": "", "icon":"git", "color": "#f8cecc", "label":"Change Config", "count":5},
+        {"name": "", "icon":"git", "color": "#666666", "label":"Downgrade Version", "count":2},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Bump Replicas", "count":0},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Sample ", "count":0}
       ],
       "properties": [
-        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
-        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
-        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolour": ""},
-        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolour": ""}
+        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolor": ""},
+        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolor": ""},
+        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolor": ""},
+        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolor": "#336600"},
+        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolor": "#990000"},
+        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolor": "#b3b3b3"},
+        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolor": ""},
+        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolor": ""},
+        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolor": ""}
       ],
       "indicators": [
         { 
@@ -238,21 +238,21 @@
       "id": 3,
       "name": "Cluster 03",
       "itemicons": [
-        {"name": "", "icon":"git", "colour": "#f8cecc", "label":"Change Config", "count":5},
-        {"name": "", "icon":"git", "colour": "#666666", "label":"Downgrade Version", "count":2},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Bump Replicas", "count":0},
-        {"name": "", "icon":"git", "colour": "#d5e8d4", "label":"Sample ", "count":0}
+        {"name": "", "icon":"git", "color": "#f8cecc", "label":"Change Config", "count":5},
+        {"name": "", "icon":"git", "color": "#666666", "label":"Downgrade Version", "count":2},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Bump Replicas", "count":0},
+        {"name": "", "icon":"git", "color": "#d5e8d4", "label":"Sample ", "count":0}
       ],
       "properties": [
-        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolour": ""},
-        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolour": ""},
-        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolour": ""},
-        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolour": "#336600"},
-        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolour": "#990000"},
-        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolour": "#b3b3b3"},
-        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolour": ""},
-        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolour": ""},
-        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolour": ""}
+        {"id":"1", "service": "memory", "icon": "ram", "label": "512GB", "badge": 0, "badgecolor": ""},
+        {"id":"2", "service": "cpu", "icon": "cpu", "label": "96",   "badge": 0, "badgecolor": ""},
+        {"id":"3", "service": "storage", "icon": "storage", "label": "3TB", "badge": 0, "badgecolor": ""},
+        {"id":"4", "service": "node", "icon": "node", "label": "146cfae", "badge": 1, "badgecolor": "#336600"},
+        {"id":"5", "service": "kernel", "icon": "linux", "label": "4.15.-66", "badge": 3, "badgecolor": "#990000"},
+        {"id":"6", "service": "kubernetes", "icon": "kubernetes", "label": "v1.16.3", "badge": 2, "badgecolor": "#b3b3b3"},
+        {"id":"7", "service": "os", "icon": "ubuntu", "label": "18.04.1 LTS", "badge": 0, "badgecolor": ""},
+        {"id":"8", "service": "vulnerability", "icon": "threat", "label": "", "badge": 0, "badgecolor": ""},
+        {"id":"9", "service": "updates", "icon": "safe", "label": "", "badge": 0, "badgecolor": ""}
       ],
       "indicators": [
         { 

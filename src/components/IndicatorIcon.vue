@@ -26,7 +26,7 @@ export default {
 
   props: {
     id: String,
-    colour: String,
+    color: String,
     shape: String,
     overlay: String,
     //hover: Boolean,
@@ -36,7 +36,7 @@ export default {
   computed: {
     iconStyles() {
       return {
-        color: this.colour,
+        color: this.color,
       };
     },
   },
