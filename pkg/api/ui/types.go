@@ -11,7 +11,7 @@ type Cluster struct {
 type ItemIcon struct {
 	Name  string `json:"name"`
 	Icon  string `json:"icon"`
-	Color string `json:"colour"`
+	Color string `json:"color"`
 	Label string `json:"label"`
 	Count int    `json:"count"`
 }
@@ -22,7 +22,7 @@ type Property struct {
 	Icon       string `json:"icon"`
 	Label      string `json:"label"`
 	Badge      int    `json:"badge"`
-	BadgeColor string `json:"badgecolour"`
+	BadgeColor string `json:"badgecolor"`
 }
 
 type Indicator struct {

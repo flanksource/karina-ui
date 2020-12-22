@@ -12,7 +12,7 @@
 					height="10"
 					rounded
 					background-color="#4a4a4a"
-					:color="getColour(value,optimum)"
+					:color="getColor(value,optimum)"
 					:title="getCollapsedTitle(metric, value, optimum, min, max)"
 				/>
 			</div>
@@ -42,7 +42,7 @@
 					height="5"
 					rounded
 					background-color="#4a4a4a"
-					:color="getColour(value,optimum)"
+					:color="getColor(value,optimum)"
 					:title="metric + ': ' + getTitle(value, min, max)"
 				/>
 			</div>
@@ -131,20 +131,20 @@
 				}
 			},
 
-			getColour(value, optimum){
+			getColor(value, optimum){
 
-				var colour;
+				var color;
 
 				if (value < optimum) {
 
-					colour = "#29d1b3";
-					return colour;
+					color = "#29d1b3";
+					return color;
 				}
 
 				if (value > optimum) {
 
-					colour = "#fa3861";
-					return colour;
+					color = "#fa3861";
+					return color;
 				}
 			},
 
@@ -169,18 +169,18 @@
 		computed: {
 			markerStyles() {
 
-				var colour;
+				var color;
 
 				if (this.value < this.optimum) {
-					colour = "#29d1b3";
+					color = "#29d1b3";
 				}
 
 				else if (this.value > this.optimum) {
-					colour = "#fa3861";	
+					color = "#fa3861";	
 				}
 
 				return {
-					color: colour,
+					color: color,
 				};
 			},
 		},

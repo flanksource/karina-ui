@@ -1,8 +1,8 @@
 <template>
   <span>
     <div v-if="content > 0">
-      <v-badge :color="colour" :content="content" inline>
-        <svg-icon :icon="icon" :hasFill="false" :color="colour" />
+      <v-badge :color="color" :content="content" inline>
+        <svg-icon :icon="icon" :hasFill="false" :color="color" />
 
         <span class="pl-1 text-size">{{ label }} </span>
       </v-badge>
@@ -10,7 +10,7 @@
 
     <div v-else inline>
       <v-badge value="false" color="white" inline>
-        <svg-icon :icon="icon" :hasFill="false" :color="colour" />
+        <svg-icon :icon="icon" :hasFill="false" :color="color" />
         <span class="pl-1 text-size">{{ label }} </span>
       </v-badge>
     </div>
@@ -32,7 +32,7 @@ export default {
     icon: String,
     label: String,
     content: Number,
-    colour: String,
+    color: String,
   },
 };
 </script>

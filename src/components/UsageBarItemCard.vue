@@ -3,11 +3,11 @@
 		<div v-if="content > 0">
 			<v-badge
 				v-if="orientation == 'horizontal'"
-				:color="badgecolour"
+				:color="badgecolor"
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<svg-icon :icon="icon" :hasFill="false" :color="color" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -18,7 +18,7 @@
 							height="5"
 							rounded
 							background-color="#4a4a4a"
-							:color="getColour(value,optimum)"
+							:color="getColor(value,optimum)"
 							:title="getTitle(value, min, max)"
 						/>
 					</div>
@@ -38,11 +38,11 @@
 
 			<v-badge
 				v-if="orientation == 'vertical'"
-				:color="badgecolour"
+				:color="badgecolor"
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<svg-icon :icon="icon" :hasFill="false" :color="color" />
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -53,7 +53,7 @@
 							height="10"
 							rounded
 							background-color="#4a4a4a"
-							:color="getColour(value,optimum)"
+							:color="getcolor(value,optimum)"
 							:title="getCollapsedTitle(value, optimum, min, max)"
 						/>
 					</div>
@@ -78,7 +78,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<svg-icon :icon="icon" :hasFill="false" :color="color" />
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -89,7 +89,7 @@
 							height="5"
 							rounded
 							background-color="#4a4a4a"
-							:color="getColour(value,optimum)"
+							:color="getcolor(value,optimum)"
 							:title="getTitle(value, min, max)"
 						/>
 					</div>
@@ -114,7 +114,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="colour" />
+				<svg-icon :icon="icon" :hasFill="false" :color="color" />
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -125,7 +125,7 @@
 							height="10"
 							rounded
 							background-color="#4a4a4a"
-							:color="getColour(value,optimum)"
+							:color="getcolor(value,optimum)"
 							:title="getCollapsedTitle(value, optimum, min, max)"
 						/>
 					</div>
@@ -158,7 +158,7 @@
 		props: {
 			icon: String,
 			content: Number,
-			badgecolour: String,
+			badgecolor: String,
 			value: Number,
 			min: Number,
 			max: Number,
@@ -218,20 +218,17 @@
 				}
 			},
 
-			getColour(value, optimum){
-
-				var colour;
+			getColor(value, optimum){
+				var color;
 
 				if (value < optimum) {
-
-					colour = "#29d1b3";
-					return colour;
+					color = "#29d1b3";
+					return color;
 				}
 
 				if (value > optimum) {
-
-					colour = "#fa3861";
-					return colour;
+					color = "#fa3861";
+					return color;
 				}
 			},
 
@@ -256,18 +253,18 @@
 		computed: {
 			markerStyles() {
 
-				var colour;
+				var color;
 
 				if (this.value < this.optimum) {
-					colour = "#29d1b3";
+					color = "#29d1b3";
 				}
 
 				else if (this.value > this.optimum) {
-					colour = "#fa3861";	
+					color = "#fa3861";	
 				}
 
 				return {
-					color: colour,
+					color: color,
 				};
 			},
 		},

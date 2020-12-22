@@ -9,7 +9,7 @@
             <span v-if="canarycheck.checkStatuses[0].Status == true">
               <IndicatorIcon
                 shape="heart"
-                colour="#336600"
+                color="#336600"
                 overlay=""
                 class="clickable-icon"
                 v-bind:title="canarycheck.name"
@@ -20,7 +20,7 @@
             <span v-else>
               <IndicatorIcon
                 shape="heart"
-                colour="#990000"
+                color="#990000"
                 overlay=""
                 v-bind:title="canarycheck.name"
                 class="clickable-icon"
@@ -32,7 +32,7 @@
           <span v-else>
             <IndicatorIcon
               shape="heart"
-              colour="#994c00"
+              color="#994c00"
               v-bind:title="canarycheck.name"
               overlay=""
               class="clickable-icon"
