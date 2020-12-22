@@ -100,5 +100,34 @@ func clusterProperties(cluster api.Cluster) []Property {
 }
 
 func clusterIndicators(cluster api.Cluster) []Indicator {
-	return []Indicator{}
+	indicators := []Indicator{
+		{
+			ID:             1,
+			IndicatorIcon:  "server.svg",
+			IndicatorIcons: serverIndicatorIcons(cluster),
+		},
+	}
+
+	return indicators
+}
+
+func serverIndicatorIcons(cluster api.Cluster) []IndicatorIcon {
+	icons := make([]IndicatorIcon, len(cluster.Kubernetes.Nodes))
+
+	for index, node := range cluster.Kubernetes.Nodes {
+		icon := IndicatorIcon{
+			ID:    index + 1,
+			Color: "#336600",
+			Shape: "square",
+		}
+
+		if len(node.Alerts) > 0 {
+			icon.Color = "#990000"
+			icon.Overlay = "mdi-bell"
+		}
+
+		icons[index] = icon
+	}
+
+	return icons
 }

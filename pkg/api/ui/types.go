@@ -34,6 +34,6 @@ type Indicator struct {
 type IndicatorIcon struct {
 	ID      int    `json:"id"`
 	Color   string `json:"color"`
-	Share   string `json:"shape"`
+	Shape   string `json:"shape"`
 	Overlay string `json:"overlay"`
 }
