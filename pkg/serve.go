@@ -18,6 +18,7 @@ var config = api.Config{}
 var providersMap = map[string]providers.ProviderFn{
 	"canary":     providers.NewCanary,
 	"kubernetes": providers.NewKubernetes,
+	"prometheus": providers.NewPrometheus,
 }
 
 var providersList []providers.Provider
