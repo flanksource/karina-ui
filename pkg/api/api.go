@@ -5,11 +5,12 @@ import (
 )
 
 type Cluster struct {
-	Name         string     `json:"name,omitempty"`
-	Kubernetes   Kubernetes `json:"kubernetes,omitempty"`
-	Properties   []Property `json:"properties,omitempty"`
-	CanaryChecks []Check    `json:"canaryChecks,omitempty"`
-	Alerts       []Alert    `json:"alerts,omitempty"`
+	Name         string            `json:"name,omitempty"`
+	Kubernetes   Kubernetes        `json:"kubernetes,omitempty"`
+	Properties   []Property        `json:"properties,omitempty"`
+	CanaryChecks []Check           `json:"canaryChecks,omitempty"`
+	Metrics      map[string]Metric `json:"metrics,omitempty"`
+	Alerts       []Alert           `json:"alerts,omitempty"`
 }
 
 type Property struct {
@@ -84,4 +85,9 @@ type Kubernetes struct {
 	KernelAlerts   []Alert `json:"kernelAlerts"`
 	OSAlerts       []Alert `json:"osAlerts"`
 	CRIAlerts      []Alert `json:"criAlerts"`
+}
+
+type Metric struct {
+	FloatValue float64 `json:"floatValue"`
+	Value      string  `json:"value"`
 }

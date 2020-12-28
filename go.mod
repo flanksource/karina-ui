@@ -9,6 +9,8 @@ require (
 	github.com/flanksource/kommons v0.1.6
 	github.com/go-yaml/yaml v2.1.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1
+	github.com/prometheus/client_golang v1.3.0
+	github.com/prometheus/common v0.7.0
 	github.com/spf13/cobra v1.0.0
 	golang.org/x/mod v0.1.1-0.20191105210325-c90efee705ee
 	gopkg.in/flanksource/yaml.v3 v3.1.1
