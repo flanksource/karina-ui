@@ -26,13 +26,13 @@ type Property struct {
 }
 
 type Indicator struct {
-	ID             int             `json:"id"`
+	ID             string          `json:"id"`
 	IndicatorIcon  string          `json:"indicator_icon_lg"`
 	IndicatorIcons []IndicatorIcon `json:"indicator_icons"`
 }
 
 type IndicatorIcon struct {
-	ID      int    `json:"id"`
+	ID      string `json:"id"`
 	Color   string `json:"color"`
 	Shape   string `json:"shape"`
 	Overlay string `json:"overlay"`

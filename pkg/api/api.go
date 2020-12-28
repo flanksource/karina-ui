@@ -72,17 +72,16 @@ type Config struct {
 }
 
 type Kubernetes struct {
-	CPU            int    `json:"cpu"`
-	Memory         int64  `json:"memory"`
-	Disk           int64  `json:"disk"`
-	KubeletVersion string `json:"kubeletVersion"`
-	KernelVersion  string `json:"kernelVersion"`
-	OSVersion      string `json:"osVersion"`
-	CRIVersion     string `json:"criVersion"`
-	Nodes          []Node `json:"nodes"`
-
-	KubeletAlerts []Alert `json:"kubeletAlerts"`
-	KernelAlerts  []Alert `json:"kernelAlerts"`
-	OSAlerts      []Alert `json:"osAlerts"`
-	CRIAlerts     []Alert `json:"criAlerts"`
+	CPU            int     `json:"cpu"`
+	Memory         int64   `json:"memory"`
+	Disk           int64   `json:"disk"`
+	KubeletVersion string  `json:"kubeletVersion"`
+	KernelVersion  string  `json:"kernelVersion"`
+	OSVersion      string  `json:"osVersion"`
+	CRIVersion     string  `json:"criVersion"`
+	Nodes          []Node  `json:"nodes"`
+	KubeletAlerts  []Alert `json:"kubeletAlerts"`
+	KernelAlerts   []Alert `json:"kernelAlerts"`
+	OSAlerts       []Alert `json:"osAlerts"`
+	CRIAlerts      []Alert `json:"criAlerts"`
 }

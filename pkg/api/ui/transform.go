@@ -37,12 +37,7 @@ func transformCluster(cluster api.Cluster, index int) (*Cluster, error) {
 }
 
 func clusterItemIcons(cluster api.Cluster) []ItemIcon {
-	itemIcons := []ItemIcon{
-		{Name: "", Icon: "git", Color: "#f8cecc", Label: "Change Config", Count: 5},
-		{Name: "", Icon: "git", Color: "#666666", Label: "Downgrade Version", Count: 2},
-		{Name: "", Icon: "git", Color: "#d5e8d4", Label: "Bump Replicas", Count: 0},
-		{Name: "", Icon: "git", Color: "#d5e8d4", Label: "Sample ", Count: 0},
-	}
+	itemIcons := []ItemIcon{}
 	return itemIcons
 }
 
@@ -102,7 +97,7 @@ func clusterProperties(cluster api.Cluster) []Property {
 func clusterIndicators(cluster api.Cluster) []Indicator {
 	indicators := []Indicator{
 		{
-			ID:             1,
+			ID:             "servers",
 			IndicatorIcon:  "server.svg",
 			IndicatorIcons: serverIndicatorIcons(cluster),
 		},
@@ -116,7 +111,7 @@ func serverIndicatorIcons(cluster api.Cluster) []IndicatorIcon {
 
 	for index, node := range cluster.Kubernetes.Nodes {
 		icon := IndicatorIcon{
-			ID:    index + 1,
+			ID:    node.Name,
 			Color: "#336600",
 			Shape: "square",
 		}
