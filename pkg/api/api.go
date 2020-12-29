@@ -88,6 +88,8 @@ type Kubernetes struct {
 }
 
 type Metric struct {
-	FloatValue float64 `json:"floatValue"`
-	Value      string  `json:"value"`
+	MinValue float64 `json:"min"`
+	MaxValue float64 `json:"max"`
+	Current  float64 `json:"current"`
+	Total    float64 `json:"total"`
 }

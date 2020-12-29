@@ -26,11 +26,13 @@ func Transform(clusters []api.Cluster) ([]Cluster, error) {
 
 func transformCluster(cluster api.Cluster, index int) (*Cluster, error) {
 	response := &Cluster{
-		ID:         index,
-		Name:       cluster.Name,
-		ItemIcons:  clusterItemIcons(cluster),
-		Properties: clusterProperties(cluster),
-		Indicators: clusterIndicators(cluster),
+		ID:           index,
+		Name:         cluster.Name,
+		ItemIcons:    clusterItemIcons(cluster),
+		Properties:   clusterProperties(cluster),
+		Indicators:   clusterIndicators(cluster),
+		CanaryChecks: cluster.CanaryChecks,
+		Metrics:      cluster.Metrics,
 	}
 
 	return response, nil

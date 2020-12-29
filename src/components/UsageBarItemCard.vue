@@ -33,6 +33,18 @@
 							:title="getTitle(optimum, min, max)"
 						/>
 					</div>
+
+					<div
+						class="marker"
+						v-bind:style="{marginLeft: `${getValue(marker, min, max)}%`}"
+						v-if="markerAvailable()"
+					>
+						<svg-icon
+							icon="triangle-marker"
+							:style="markerStyles"
+							:title="getTitle(marker, min, max)"
+						/>
+					</div>
 				</div>
 			</v-badge>
 
@@ -104,6 +116,18 @@
 							:title="getTitle(optimum, min, max)"
 						/>
 					</div>
+
+					<div
+						class="marker"
+						v-bind:style="{marginLeft: `${getValue(marker, min, max)}%`}"
+						v-if="markerAvailable()"
+					>
+						<svg-icon
+							icon="triangle-marker"
+							:style="markerStyles"
+							:title="getTitle(marker, min, max)"
+						/>
+					</div>
 				</div>
 			</v-badge>
 
@@ -163,109 +187,67 @@
 			min: Number,
 			max: Number,
 			optimum: Number,
+			marker: Number,
 			orientation: String,
 		},
 
-		methods : {
+		methods: {
 			getValue(value, min, max) {
-
-				var usageValue;
-
-				if (min < max) {
-
-					usageValue = (value/max) * 100;
-					return usageValue;
+				if (min <= max) {
+					return (value/max) * 100;
 				}
 
-				if (min > max) {
-
-					usageValue =  (value/min) *100;
-					return usageValue;
-				}
+				return (value/min) *100;
 			},
 
 			getOptimum(optimum, min, max) {
-
-				var optimumValue;
-
-				if (min < max) {
-
-					optimumValue = (optimum/max) * 100;
-					return optimumValue;
+				if (min <= max) {
+					return (optimum/max) * 100;
 				}
 
-				if (min > max) {
-
-					optimumValue =  (optimum/min) *100;
-					return optimumValue;
-				}
+				return  (optimum/min) *100;
 			},
 
 			getTitle(value, min, max){
-
-				var title;
-
-				if (min < max) {
-
-					title = value;
-					return title;
+				if (min <= max) {
+					return value
 				}
 
-				if (min > max) {
-
-					title =  value * -1;
-					return title;
-				}
+				return value * -1
 			},
 
 			getColor(value, optimum){
-				var color;
-
-				if (value < optimum) {
-					color = "#29d1b3";
-					return color;
+				if (value <= optimum) {
+					return "#29d1b3"
 				}
 
-				if (value > optimum) {
-					color = "#fa3861";
-					return color;
-				}
+				return "#fa3861";
 			},
 
 			getCollapsedTitle(value, optimum, min, max) {
-
-				var title;
-
-				if (min < max) {
-
-					title = ' value(' + value + ')' + ' optimum(' + optimum + ')';
-					return title;
+				if (min <= max) {
+					return ' value(' + value + ')' + ' optimum(' + optimum + ')';
 				}
 
-				if (min > max) {
+				return' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
+			},
 
-					title = ' value(' + value * -1 + ')' + ' optimum(' + optimum * -1 + ')';
-					return title;
-				}
-			}		
+			markerAvailable() {
+				return this.marker && this.marker > 0
+			},
 		},
 
 		computed: {
 			markerStyles() {
-
-				var color;
-
-				if (this.value < this.optimum) {
-					color = "#29d1b3";
-				}
-
-				else if (this.value > this.optimum) {
-					color = "#fa3861";	
+				if (this.value <= this.optimum) {
+					return {
+						color: "#29d1b3"
+					}
 				}
 
 				return {
-					color: color,
-				};
+					color: "#fa3861"
+				}
 			},
 		},
 	}

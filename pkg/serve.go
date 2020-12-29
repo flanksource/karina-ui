@@ -23,6 +23,8 @@ var providersMap = map[string]providers.ProviderFn{
 
 var providersList []providers.Provider
 
+var globalCache []byte = nil
+
 func ServeAPI(resp http.ResponseWriter, req *http.Request) {
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
@@ -50,6 +52,12 @@ func ServeAPI(resp http.ResponseWriter, req *http.Request) {
 }
 
 func ServeUIAPI(resp http.ResponseWriter, req *http.Request) {
+	if globalCache != nil {
+		resp.Header().Set("Access-Control-Allow-Origin", "*")
+		resp.Write(globalCache)
+		return
+	}
+
 	logger.Infof("🚀 Fetching data")
 	var clusters []api.Cluster
 	for name, clusterConfig := range config.Clusters {
@@ -79,6 +87,7 @@ func ServeUIAPI(resp http.ResponseWriter, req *http.Request) {
 	} else {
 		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		resp.Write(json)
+		globalCache = json
 	}
 }
 
