@@ -1,11 +1,15 @@
 package ui
 
+import "github.com/flanksource/karina-ui/pkg/api"
+
 type Cluster struct {
-	ID         int         `json:"id"`
-	Name       string      `json:"name"`
-	ItemIcons  []ItemIcon  `json:"itemicons"`
-	Properties []Property  `json:"properties"`
-	Indicators []Indicator `json:"indicators"`
+	ID           int                   `json:"id"`
+	Name         string                `json:"name"`
+	ItemIcons    []ItemIcon            `json:"itemicons"`
+	Properties   []Property            `json:"properties"`
+	Indicators   []Indicator           `json:"indicators"`
+	CanaryChecks []api.Check           `json:"canaryChecks"`
+	Metrics      map[string]api.Metric `json:"metrics"`
 }
 
 type ItemIcon struct {

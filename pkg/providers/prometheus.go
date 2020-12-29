@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/tls"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/flanksource/commons/logger"
@@ -15,21 +14,44 @@ import (
 	"github.com/prometheus/common/model"
 )
 
-var metrics = map[string]string{
-	"cpu":    "sum(rate(node_cpu_seconds_total{mode!=\"idle\",mode!=\"iowait\"}[5m]) * 100) BY (instance)",
-	"memory": "instance:node_memory_utilisation:ratio * 100",
-	"disk":   "100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"})",
+type MetricConfig struct {
+	Min     string
+	Max     string
+	Current string
+	Total   string
+}
+
+var metrics = map[string]MetricConfig{
+	"cpu_usage": MetricConfig{
+		Min:     "min(sum(rate(node_cpu_seconds_total{mode!=\"idle\",mode!=\"iowait\"}[5m]) * 100) BY (instance))",
+		Max:     "max(sum(rate(node_cpu_seconds_total{mode!=\"idle\",mode!=\"iowait\"}[5m]) * 100) BY (instance))",
+		Current: "avg(sum(rate(node_cpu_seconds_total{mode!=\"idle\",mode!=\"iowait\"}[5m]) * 100) BY (instance))",
+	},
+	"cpu_resources": MetricConfig{
+		Min:     "sum(kube_pod_container_resource_requests_cpu_cores)",
+		Max:     "sum(sum(kube_pod_container_resource_limits_cpu_cores))",
+		Current: "sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[5m]))",
+		Total:   "sum(kube_node_status_capacity_cpu_cores)",
+	},
+	"memory": MetricConfig{
+		Min:     "min(instance:node_memory_utilisation:ratio * 100)",
+		Max:     "max(instance:node_memory_utilisation:ratio * 100)",
+		Current: "avg(instance:node_memory_utilisation:ratio * 100)",
+	},
+	"memory_resources": MetricConfig{
+		Min:     "sum(kube_pod_container_resource_requests_memory_bytes)",
+		Max:     "sum(kube_pod_container_resource_limits_memory_bytes)",
+		Current: "sum(container_memory_working_set_bytes)",
+		Total:   "sum(kube_node_status_capacity_memory_bytes)",
+	},
+	"disk": MetricConfig{
+		Min:     "min(100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"}))",
+		Max:     "max(100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"}))",
+		Current: "avg(100 - ((node_filesystem_avail_bytes{mountpoint=\"/\",fstype!=\"rootfs\"} * 100) / node_filesystem_size_bytes{mountpoint=\"/\",fstype!=\"rootfs\"}))",
+	},
 }
 
 var defaultPrometheusDuration = 5 * time.Minute
-
-type Timeseries struct {
-	Time       float64 `json:"time"`
-	FloatValue float64 `json:"floatValue"`
-	Value      string  `json:"value"`
-}
-
-type InstanceTimeseries map[string]Timeseries
 
 type Prometheus struct {
 	clients map[string]prometheusapi.Client
@@ -61,6 +83,8 @@ func NewPrometheus(config api.Config) (Provider, error) {
 }
 
 func (p *Prometheus) Fetch(cluster *api.Cluster, config api.ClusterConfiguration) error {
+	var err error
+
 	client, _ := p.clients[cluster.Name]
 	v1api := v1.NewAPI(client)
 
@@ -68,43 +92,52 @@ func (p *Prometheus) Fetch(cluster *api.Cluster, config api.ClusterConfiguration
 		cluster.Metrics = map[string]api.Metric{}
 	}
 
-	for name, metric := range metrics {
-		instanceTimeseries, err := p.getMetric(v1api, metric, defaultPrometheusDuration)
+	for name, metricConfig := range metrics {
+		metric := api.Metric{}
+		metric.MinValue, err = p.getMetric(v1api, metricConfig.Min, defaultPrometheusDuration)
 		if err != nil {
-			logger.Errorf("failed to get metric for %s for cluster %s", name, cluster.Name)
+			logger.Errorf("failed to get metric for %s/min for cluster %s", name, cluster.Name)
 			continue
 		}
 
-		var count = len(instanceTimeseries)
-		var sum float64 = 0
-
-		for _, ts := range instanceTimeseries {
-			sum += ts.FloatValue
+		metric.MaxValue, err = p.getMetric(v1api, metricConfig.Max, defaultPrometheusDuration)
+		if err != nil {
+			logger.Errorf("failed to get metric for %s/max for cluster %s", name, cluster.Name)
+			continue
 		}
 
-		medium := sum / float64(count)
-
-		cluster.Metrics[name] = api.Metric{
-			FloatValue: medium,
-			Value:      strconv.FormatFloat(medium, 'f', 1, 64) + "%",
+		metric.Current, err = p.getMetric(v1api, metricConfig.Current, defaultPrometheusDuration)
+		if err != nil {
+			logger.Errorf("failed to get metric for %s/current for cluster %s", name, cluster.Name)
+			continue
 		}
+
+		if metricConfig.Total != "" {
+			metric.Total, err = p.getMetric(v1api, metricConfig.Total, defaultPrometheusDuration)
+			if err != nil {
+				logger.Errorf("failed to get metric for %s/average for cluster %s", name, cluster.Name)
+				continue
+			}
+		}
+
+		cluster.Metrics[name] = metric
 	}
 
 	return nil
 }
 
-func (p *Prometheus) getMetric(api v1.API, metric string, timeframe time.Duration) (InstanceTimeseries, error) {
+func (p *Prometheus) getMetric(api v1.API, metric string, timeframe time.Duration) (float64, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	rangeOptions := v1.Range{
 		Start: time.Now().Add(-1 * timeframe),
 		End:   time.Now(),
-		Step:  5 * time.Minute,
+		Step:  timeframe,
 	}
 	result, warnings, err := api.QueryRange(ctx, metric, rangeOptions)
 
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to get metric %s", metric)
+		return 0, errors.Wrapf(err, "failed to get metric %s", metric)
 	}
 	if len(warnings) > 0 {
 		logger.Infof("Warnings: %v", warnings)
@@ -114,31 +147,20 @@ func (p *Prometheus) getMetric(api v1.API, metric string, timeframe time.Duratio
 	matrix, ok := result.(model.Matrix)
 	if !ok {
 		logger.Errorf("Result is not a matrix")
-		return nil, errors.Errorf("Result is not a matrix")
+		return 0, errors.Errorf("Result is not a matrix")
 	}
 
 	if len(matrix) < 1 {
 		logger.Errorf("Matrix result is empty")
-		return InstanceTimeseries{}, nil
+		return 0, nil
 	}
 
-	results := InstanceTimeseries{}
-
-	for _, instanceMetric := range matrix {
-		instanceName := string(instanceMetric.Metric["instance"])
-		result := Timeseries{}
-		// TODO (toni) Take aggregate here ?
-		for _, t := range instanceMetric.Values {
-			result = Timeseries{
-				Time:       float64(t.Timestamp.Unix()),
-				FloatValue: float64(t.Value),
-				Value:      t.Value.String(),
-			}
-		}
-		results[instanceName] = result
+	if len(matrix[0].Values) < 1 {
+		logger.Errorf("Matrix values is empty")
+		return 0, nil
 	}
 
-	return results, nil
+	return float64(matrix[0].Values[0].Value), nil
 }
 
 func (p *Prometheus) Name() string {
