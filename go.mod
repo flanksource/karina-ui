@@ -16,6 +16,7 @@ require (
 	gopkg.in/flanksource/yaml.v3 v3.1.1
 	k8s.io/api v0.19.3
 	k8s.io/apimachinery v0.19.3
+	k8s.io/client-go v11.0.0+incompatible
 )
 
 replace (

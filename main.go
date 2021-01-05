@@ -63,6 +63,7 @@ func main() {
 	}
 	serve.Flags().IntVarP(&port, "port", "p", 8080, "Port to use for webserver")
 	serve.Flags().StringVar(&dist, "dist", "./dist/", "Web app folder")
+	serve.Flags().BoolVar(&pkg.DevMode, "dev", false, "Run in development mode")
 	root.AddCommand(serve)
 	root.SetUsageTemplate(root.UsageTemplate() + fmt.Sprintf("\nversion: %s\n ", version))
 	root.PersistentFlags().StringVar(&file, "config", "", "Specify a kubeconfig to use")
