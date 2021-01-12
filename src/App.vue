@@ -106,7 +106,34 @@ export default {
 
 
 <style scoped>
-  
+
+  /*TODO: import from icon.css*/
+  @font-face {
+    font-family: "karina-ui-icons";
+    src: local("icons.eot"), url("./assets/fonts/karina-ui-icons/icons.eot") format("embedded-opentype"),
+    local("icons.eot"), url("./assets/fonts/karina-ui-icons/icons.woff2") format("woff2"),
+    local("icons.eot"), url("./assets/fonts/karina-ui-icons/icons.woff") format("woff");
+  }
+
+  i[class^="icon-"]:before, i[class*=" icon-"]:before {
+    font-family: karina-ui-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .icon-triangle-marker:before {
+    content: "\f101";
+  }
+  .icon-memory:before {
+    content: "\f101";
+  }
+
+
   .left-pane {
     position: fixed;
     max-width: 8vw;

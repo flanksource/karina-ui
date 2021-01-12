@@ -32,6 +32,8 @@
 							:style="markerStyles"
 							:title="getTitle(optimum, min, max)"
 						/>
+						<i class="icon icon-triangle-marker"></i>
+						<p>HERE</p>
 					</div>
 
 					<div
@@ -319,5 +321,30 @@
 
 	.vertical-unit-max {
 		display: none;
+	}
+
+	@font-face {
+		font-family: "karina-ui-icons";
+		src: local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.eot") format("embedded-opentype"),
+		local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.woff2") format("woff2"),
+		local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.woff") format("woff");
+	}
+
+	i[class^="icon-"]:before, i[class*=" icon-"]:before {
+		font-family: karina-ui-icons !important;
+		font-style: normal;
+		font-weight: normal !important;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	.icon-triangle-marker:before {
+		content: "\f102";
+	}
+	.icon-memory:before {
+		content: "\f101";
 	}
 </style>
