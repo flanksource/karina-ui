@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?dc0731a537f999aebe7b552829a112ae#iefix") format("embedded-opentype"),
-url("./icons.woff2?dc0731a537f999aebe7b552829a112ae") format("woff2"),
-url("./icons.woff?dc0731a537f999aebe7b552829a112ae") format("woff");
+    src: url("./icons.eot?af6620a397a57ce17dec9ca540d2c204#iefix") format("embedded-opentype"),
+url("./icons.woff2?af6620a397a57ce17dec9ca540d2c204") format("woff2"),
+url("./icons.woff?af6620a397a57ce17dec9ca540d2c204") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -16,12 +16,27 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-cpu:before {
+.icon-cargo-ship-50:before {
     content: "\f101";
 }
-.icon-memory:before {
+.icon-cpu:before {
     content: "\f102";
 }
-.icon-triangle-marker:before {
+.icon-disk:before {
     content: "\f103";
+}
+.icon-kubernetes:before {
+    content: "\f104";
+}
+.icon-linux:before {
+    content: "\f105";
+}
+.icon-memory:before {
+    content: "\f106";
+}
+.icon-triangle-marker:before {
+    content: "\f107";
+}
+.icon-ubuntu:before {
+    content: "\f108";
 }

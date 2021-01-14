@@ -43,34 +43,20 @@ export default {
   font-size: 12px;
 }
 
-@font-face {
-  font-family: "karina-ui-icons";
-  src: local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.eot") format("embedded-opentype"),
-  local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.woff2") format("woff2"),
-  local("icons.eot"), url("../assets/fonts/karina-ui-icons/icons.woff") format("woff");
-}
-
-i[class^="icon-"]:before, i[class*=" icon-"]:before {
-  font-family: karina-ui-icons !important;
-  font-style: normal;
-  font-weight: normal !important;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+@import '../assets/fonts/karina-ui-icons/icons.css';
 
 
 
 .icon-cpu:before {
-    content: "\f101";
     color: #9a2812 !important;
 }
 .icon-memory:before {
-    content: "\f102";
     color: #336610 !important;
 }
+.icon-cargo-ship-50:before {
+    color: #98ccfc !important;
+
+}
+
 
 </style>

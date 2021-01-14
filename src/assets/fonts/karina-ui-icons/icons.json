@@ -1,5 +1,10 @@
 {
-    "cpu": 61697,
-    "memory": 61698,
-    "triangle-marker": 61699
+    "cargo-ship-50": 61697,
+    "cpu": 61698,
+    "disk": 61699,
+    "kubernetes": 61700,
+    "linux": 61701,
+    "memory": 61702,
+    "triangle-marker": 61703,
+    "ubuntu": 61704
 }
