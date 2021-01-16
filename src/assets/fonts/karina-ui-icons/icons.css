@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?af6620a397a57ce17dec9ca540d2c204#iefix") format("embedded-opentype"),
-url("./icons.woff2?af6620a397a57ce17dec9ca540d2c204") format("woff2"),
-url("./icons.woff?af6620a397a57ce17dec9ca540d2c204") format("woff");
+    src: url("./icons.eot?689a50fd7f38fcf70502874337f36f21#iefix") format("embedded-opentype"),
+url("./icons.woff2?689a50fd7f38fcf70502874337f36f21") format("woff2"),
+url("./icons.woff?689a50fd7f38fcf70502874337f36f21") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -16,27 +16,42 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-cargo-ship-50:before {
+.icon-canary-checker:before {
     content: "\f101";
 }
-.icon-cpu:before {
+.icon-cargo-ship-50:before {
     content: "\f102";
 }
-.icon-disk:before {
+.icon-cpu:before {
     content: "\f103";
 }
-.icon-kubernetes:before {
+.icon-disk:before {
     content: "\f104";
 }
-.icon-linux:before {
+.icon-grafana:before {
     content: "\f105";
 }
-.icon-memory:before {
+.icon-karma:before {
     content: "\f106";
 }
-.icon-triangle-marker:before {
+.icon-kibana:before {
     content: "\f107";
 }
-.icon-ubuntu:before {
+.icon-kubernetes:before {
     content: "\f108";
+}
+.icon-linux:before {
+    content: "\f109";
+}
+.icon-memory:before {
+    content: "\f10a";
+}
+.icon-prometheus:before {
+    content: "\f10b";
+}
+.icon-triangle-marker:before {
+    content: "\f10c";
+}
+.icon-ubuntu:before {
+    content: "\f10d";
 }

@@ -1,10 +1,15 @@
 {
-    "cargo-ship-50": 61697,
-    "cpu": 61698,
-    "disk": 61699,
-    "kubernetes": 61700,
-    "linux": 61701,
-    "memory": 61702,
-    "triangle-marker": 61703,
-    "ubuntu": 61704
+    "canary-checker": 61697,
+    "cargo-ship-50": 61698,
+    "cpu": 61699,
+    "disk": 61700,
+    "grafana": 61701,
+    "karma": 61702,
+    "kibana": 61703,
+    "kubernetes": 61704,
+    "linux": 61705,
+    "memory": 61706,
+    "prometheus": 61707,
+    "triangle-marker": 61708,
+    "ubuntu": 61709
 }
