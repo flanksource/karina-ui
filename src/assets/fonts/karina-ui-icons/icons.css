@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?689a50fd7f38fcf70502874337f36f21#iefix") format("embedded-opentype"),
-url("./icons.woff2?689a50fd7f38fcf70502874337f36f21") format("woff2"),
-url("./icons.woff?689a50fd7f38fcf70502874337f36f21") format("woff");
+    src: url("./icons.eot?900ede614ce904f9600c0abdaeee88e8#iefix") format("embedded-opentype"),
+url("./icons.woff2?900ede614ce904f9600c0abdaeee88e8") format("woff2"),
+url("./icons.woff?900ede614ce904f9600c0abdaeee88e8") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -16,42 +16,99 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-canary-checker:before {
+.icon-about-50:before {
     content: "\f101";
 }
-.icon-cargo-ship-50:before {
+.icon-approval-50:before {
     content: "\f102";
 }
-.icon-cpu:before {
+.icon-birdie:before {
     content: "\f103";
 }
-.icon-disk:before {
+.icon-bitbucket-50-2:before {
     content: "\f104";
 }
-.icon-grafana:before {
+.icon-bitbucket-50:before {
     content: "\f105";
 }
-.icon-karma:before {
+.icon-calendar-50:before {
     content: "\f106";
 }
-.icon-kibana:before {
+.icon-canary-checker:before {
     content: "\f107";
 }
-.icon-kubernetes:before {
+.icon-cancel-50:before {
     content: "\f108";
 }
-.icon-linux:before {
+.icon-cargo-ship-50:before {
     content: "\f109";
 }
-.icon-memory:before {
+.icon-cluster:before {
     content: "\f10a";
 }
-.icon-prometheus:before {
+.icon-commit:before {
     content: "\f10b";
 }
-.icon-triangle-marker:before {
+.icon-cpu:before {
     content: "\f10c";
 }
-.icon-ubuntu:before {
+.icon-disk:before {
     content: "\f10d";
+}
+.icon-git:before {
+    content: "\f10e";
+}
+.icon-grafana:before {
+    content: "\f10f";
+}
+.icon-heartline:before {
+    content: "\f110";
+}
+.icon-idea:before {
+    content: "\f111";
+}
+.icon-karma:before {
+    content: "\f112";
+}
+.icon-kibana:before {
+    content: "\f113";
+}
+.icon-kubernetes:before {
+    content: "\f114";
+}
+.icon-linux:before {
+    content: "\f115";
+}
+.icon-memory:before {
+    content: "\f116";
+}
+.icon-node:before {
+    content: "\f117";
+}
+.icon-prometheus:before {
+    content: "\f118";
+}
+.icon-ram:before {
+    content: "\f119";
+}
+.icon-server:before {
+    content: "\f11a";
+}
+.icon-smile:before {
+    content: "\f11b";
+}
+.icon-storage:before {
+    content: "\f11c";
+}
+.icon-triangle-marker:before {
+    content: "\f11d";
+}
+.icon-ubuntu:before {
+    content: "\f11e";
+}
+.icon-vmware-50:before {
+    content: "\f11f";
+}
+.icon-webhook-50:before {
+    content: "\f120";
 }

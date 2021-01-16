@@ -100,7 +100,7 @@ func clusterIndicators(cluster api.Cluster) []Indicator {
 	indicators := []Indicator{
 		{
 			ID:             "servers",
-			IndicatorIcon:  "server.svg",
+			IndicatorIcon:  "server",
 			IndicatorIcons: serverIndicatorIcons(cluster),
 		},
 	}

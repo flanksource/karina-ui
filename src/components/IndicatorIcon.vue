@@ -2,8 +2,8 @@
   <span v-if="shape == 'none'" class="parent" />
 
   <span v-else class="parent">
-    <svg-icon :icon="shape" :style="iconStyles" class="icon" :title="title" />
-
+<!--    <svg-icon :icon="shape" :style="iconStyles" class="icon" :title="title" />-->
+   <i :class="'icon-'+shape" :style="iconStyles" class="icon" :title="title" ></i>
     <v-icon color="white" class="overlay">
       {{ overlay }}
     </v-icon>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import SvgIcon from "./SVGIcon.vue";
+
 
 export default {
   name: "IndicatorIcon",
@@ -20,9 +20,6 @@ export default {
     hover: false,
   }),
 
-  components: {
-    SvgIcon,
-  },
 
   props: {
     id: String,
@@ -62,4 +59,7 @@ export default {
   left: 2px;
   font-size: 12px;
 }
+
+@import '../assets/fonts/karina-ui-icons/icons.css';
+
 </style>

@@ -21,10 +21,12 @@
 				class="vertical-marker"
 				v-bind:style="{marginLeft: `20%`}"
 			>
-				<svg-icon
-					icon="triangle-marker"
-					title="title"
-				/>
+<!--				<svg-icon-->
+<!--					icon="triangle-marker"-->
+<!--					title="title"-->
+<!--				/>-->
+				<i class="icon-triangle-marker" title="title"></i>
+
 			</div>
 		</div>
 	</div>
@@ -62,13 +64,10 @@
 </template>
 
 <script>
-	import SvgIcon from "./SVGIcon.vue";
+
 	
 	export default{
 
-		components: {
-			SvgIcon,
-		},
 
 		props: {
 			value: Number,
@@ -254,4 +253,6 @@
 	.vertical-unit-max {
 		display: none;
 	}
+	@import '../assets/fonts/karina-ui-icons/icons.css';
+
 </style>
