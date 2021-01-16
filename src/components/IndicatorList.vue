@@ -77,12 +77,13 @@
           <v-row no-gutters align="center" class="pl-3">
              <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
             <div class="parent">
-              <v-img
-                :aspect-ratio="1 / 1"
-                :src="require(`@/assets/svg/birdie.svg`)"
-                width="48"
-                class="icon"
-              />
+               <i class="icon-birdie"></i>
+<!--              <v-img-->
+<!--                :aspect-ratio="1 / 1"-->
+<!--                :src="require(`@/assets/svg/birdie.svg`)"-->
+<!--                width="48"-->
+<!--                class="icon"-->
+<!--              />-->
 
             <span 
                 v-if="getCanaryAlerts(canarychecks) > 0 && !listExpand"
@@ -274,12 +275,12 @@ export default {
   right: 3px;
   z-index: 3;
 }
-i {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
+/*i {*/
+/*  border: solid black;*/
+/*  border-width: 0 3px 3px 0;*/
+/*  display: inline-block;*/
+/*  padding: 3px;*/
+/*}*/
 .down {
   transform: rotate(45deg);
   margin-top: -3px;
@@ -293,4 +294,10 @@ i {
   margin-left: 15px;
 }
 
+@import '../assets/fonts/karina-ui-icons/icons.css';
+
+.icon-birdie:before {
+  color: #ffd838 !important;
+  font-size: 48px;
+}
 </style>
