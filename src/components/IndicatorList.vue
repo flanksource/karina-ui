@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-btn
+      <v-btn
       class="btn-expand"
       @click="selectMode"
       outlined
       x-small
     >
-      <i :class="{ 'up': listExpand, 'down': !listExpand  }"> </i>
+      <i :class="(listExpand? 'up' : 'down')+' outlined'"> </i>
     </v-btn>  
         
     <v-expansion-panels
@@ -276,12 +276,12 @@ export default {
   right: 3px;
   z-index: 3;
 }
-/*i {*/
-/*  border: solid black;*/
-/*  border-width: 0 3px 3px 0;*/
-/*  display: inline-block;*/
-/*  padding: 3px;*/
-/*}*/
+i.outlined {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
 .down {
   transform: rotate(45deg);
   margin-top: -3px;
