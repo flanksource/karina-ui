@@ -316,6 +316,9 @@ i.outlined {
 .icon-winter-50:before {
     color: #4788c7 !important;
 }
+.icon-threat:before {
+    color: #bf6561 !important;
+}
 
 
 .large-icon {
