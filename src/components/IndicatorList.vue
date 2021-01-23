@@ -313,6 +313,9 @@ i.outlined {
     color: #4788c7 !important;
 }
 
+.icon-winter-50:before {
+    color: #4788c7 !important;
+}
 
 
 .large-icon {
