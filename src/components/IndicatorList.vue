@@ -301,6 +301,16 @@ i.outlined {
   color: #ffd838 !important;
   font-size: 48px;
 }
+.icon-heartline:before {
+    color: #2f57d3 !important;
+}
+
+.icon-server:before {
+    color: #12378d !important;
+}
+
+
+
 .large-icon {
   font-size: 48px;
 }
