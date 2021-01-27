@@ -1,8 +1,8 @@
 @font-face {
     font-family: "icons";
-    src: url("./icons.eot?900ede614ce904f9600c0abdaeee88e8#iefix") format("embedded-opentype"),
-url("./icons.woff2?900ede614ce904f9600c0abdaeee88e8") format("woff2"),
-url("./icons.woff?900ede614ce904f9600c0abdaeee88e8") format("woff");
+    src: url("./icons.eot?a5a3b3f6884e2fd469b9c94d6d46fc6a#iefix") format("embedded-opentype"),
+url("./icons.woff2?a5a3b3f6884e2fd469b9c94d6d46fc6a") format("woff2"),
+url("./icons.woff?a5a3b3f6884e2fd469b9c94d6d46fc6a") format("woff");
 }
 
 i[class^="icon-"]:before, i[class*=" icon-"]:before {
@@ -43,72 +43,288 @@ i[class^="icon-"]:before, i[class*=" icon-"]:before {
 .icon-cargo-ship-50:before {
     content: "\f109";
 }
-.icon-cluster:before {
+.icon-cd-50:before {
     content: "\f10a";
 }
-.icon-commit:before {
+.icon-checked-50:before {
     content: "\f10b";
 }
-.icon-cpu:before {
+.icon-cluster:before {
     content: "\f10c";
 }
-.icon-disk:before {
+.icon-commit-git-50-2:before {
     content: "\f10d";
 }
-.icon-git:before {
+.icon-commit-git-50-3:before {
     content: "\f10e";
 }
-.icon-grafana:before {
+.icon-commit-git-50:before {
     content: "\f10f";
 }
-.icon-heartline:before {
+.icon-commit:before {
     content: "\f110";
 }
-.icon-idea:before {
+.icon-compare-git-50:before {
     content: "\f111";
 }
-.icon-karma:before {
+.icon-cpu:before {
     content: "\f112";
 }
-.icon-kibana:before {
+.icon-dashboard-50:before {
     content: "\f113";
 }
-.icon-kubernetes:before {
+.icon-disk:before {
     content: "\f114";
 }
-.icon-linux:before {
+.icon-do-not-disturb-50:before {
     content: "\f115";
 }
-.icon-memory:before {
+.icon-docker-50-2:before {
     content: "\f116";
 }
-.icon-node:before {
+.icon-docker-50-3:before {
     content: "\f117";
 }
-.icon-prometheus:before {
+.icon-ethernet-settings-50:before {
     content: "\f118";
 }
-.icon-ram:before {
+.icon-fires-50-2:before {
     content: "\f119";
 }
-.icon-server:before {
+.icon-fires-50:before {
     content: "\f11a";
 }
-.icon-smile:before {
+.icon-geography-50-2:before {
     content: "\f11b";
 }
-.icon-storage:before {
+.icon-geography-50-3:before {
     content: "\f11c";
 }
-.icon-triangle-marker:before {
+.icon-geography-50:before {
     content: "\f11d";
 }
-.icon-ubuntu:before {
+.icon-git-50:before {
     content: "\f11e";
 }
-.icon-vmware-50:before {
+.icon-git:before {
     content: "\f11f";
 }
-.icon-webhook-50:before {
+.icon-github-50-2:before {
     content: "\f120";
+}
+.icon-github-50-3:before {
+    content: "\f121";
+}
+.icon-github-50:before {
+    content: "\f122";
+}
+.icon-google-alerts-50:before {
+    content: "\f123";
+}
+.icon-grafana:before {
+    content: "\f124";
+}
+.icon-guarantee-50:before {
+    content: "\f125";
+}
+.icon-hdd-50:before {
+    content: "\f126";
+}
+.icon-heart:before {
+    content: "\f127";
+}
+.icon-heartline:before {
+    content: "\f128";
+}
+.icon-heavy-rain-50:before {
+    content: "\f129";
+}
+.icon-helm-icon-50:before {
+    content: "\f12a";
+}
+.icon-high-priority-50:before {
+    content: "\f12b";
+}
+.icon-hub-50:before {
+    content: "\f12c";
+}
+.icon-idea-50:before {
+    content: "\f12d";
+}
+.icon-idea:before {
+    content: "\f12e";
+}
+.icon-individual-server-50:before {
+    content: "\f12f";
+}
+.icon-karma:before {
+    content: "\f130";
+}
+.icon-kibana:before {
+    content: "\f131";
+}
+.icon-kubernetes:before {
+    content: "\f132";
+}
+.icon-linux:before {
+    content: "\f133";
+}
+.icon-memory:before {
+    content: "\f134";
+}
+.icon-motherboard-50:before {
+    content: "\f135";
+}
+.icon-new-document-50:before {
+    content: "\f136";
+}
+.icon-node:before {
+    content: "\f137";
+}
+.icon-octocat-50-2:before {
+    content: "\f138";
+}
+.icon-octocat-50:before {
+    content: "\f139";
+}
+.icon-ok-50:before {
+    content: "\f13a";
+}
+.icon-openconnect-50:before {
+    content: "\f13b";
+}
+.icon-openid-50:before {
+    content: "\f13c";
+}
+.icon-process-50:before {
+    content: "\f13d";
+}
+.icon-processor-50-2:before {
+    content: "\f13e";
+}
+.icon-prometheus:before {
+    content: "\f13f";
+}
+.icon-pull-request-50-2:before {
+    content: "\f140";
+}
+.icon-pull-request-50-3:before {
+    content: "\f141";
+}
+.icon-pull-request-50:before {
+    content: "\f142";
+}
+.icon-rain-50:before {
+    content: "\f143";
+}
+.icon-rainfall-50:before {
+    content: "\f144";
+}
+.icon-ram:before {
+    content: "\f145";
+}
+.icon-router-50:before {
+    content: "\f146";
+}
+.icon-safe:before {
+    content: "\f147";
+}
+.icon-security-ssl-50:before {
+    content: "\f148";
+}
+.icon-security-wi-fi-50:before {
+    content: "\f149";
+}
+.icon-server:before {
+    content: "\f14a";
+}
+.icon-ship-wheel-50:before {
+    content: "\f14b";
+}
+.icon-smile:before {
+    content: "\f14c";
+}
+.icon-snow-50:before {
+    content: "\f14d";
+}
+.icon-snow-storm-50:before {
+    content: "\f14e";
+}
+.icon-speech-bubble-50:before {
+    content: "\f14f";
+}
+.icon-square:before {
+    content: "\f150";
+}
+.icon-ssd-50:before {
+    content: "\f151";
+}
+.icon-storage:before {
+    content: "\f152";
+}
+.icon-storm-50:before {
+    content: "\f153";
+}
+.icon-stormy-weather-50:before {
+    content: "\f154";
+}
+.icon-summer-50-2:before {
+    content: "\f155";
+}
+.icon-summer-50:before {
+    content: "\f156";
+}
+.icon-tag-window-50:before {
+    content: "\f157";
+}
+.icon-threat:before {
+    content: "\f158";
+}
+.icon-tick-box-50:before {
+    content: "\f159";
+}
+.icon-toolbox-50:before {
+    content: "\f15a";
+}
+.icon-torrential-rain-50:before {
+    content: "\f15b";
+}
+.icon-triangle-marker:before {
+    content: "\f15c";
+}
+.icon-tsunami-50:before {
+    content: "\f15d";
+}
+.icon-ubuntu:before {
+    content: "\f15e";
+}
+.icon-unavailable-50:before {
+    content: "\f15f";
+}
+.icon-vip-50:before {
+    content: "\f160";
+}
+.icon-vmware-50:before {
+    content: "\f161";
+}
+.icon-webhook-50:before {
+    content: "\f162";
+}
+.icon-wet-50:before {
+    content: "\f163";
+}
+.icon-wind-50:before {
+    content: "\f164";
+}
+.icon-windy-weather-50:before {
+    content: "\f165";
+}
+.icon-winter-50-2:before {
+    content: "\f166";
+}
+.icon-winter-50:before {
+    content: "\f167";
+}
+.icon-workspace-50:before {
+    content: "\f168";
 }
