@@ -34,13 +34,3 @@ run app:
 ```bash
 KUBECONFIG=`pwd`/kubeconfig.yml go run main.go serve --dev
 ```
-# SVG Conversion
-
-## Steps
-
-SVGs in ./src/assets/svg/convertible/ don't crash font generation.
-
-```bash
-fantasticon  --normalize true ./src/assets/svg/webfont-icon-source/ -o ./src/assets/fonts/karina-ui-icons
-```
-

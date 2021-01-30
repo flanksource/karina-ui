@@ -2,7 +2,6 @@
   <span>
     <div v-if="count == 1">
       <v-badge bottom :content="count" offset-x="15" offset-y="20" overlap>
-<!--        <svg-icon :icon="icon" :style="iconStyles" class="icon" />-->
         <i :class="'icon-'+icon" :style="iconStyles" class="icon"></i>
       </v-badge>
     </div>
@@ -12,11 +11,8 @@
 </template>
 
 <script>
-
-
 export default {
   name: "ItemIcon",
-
 
   props: {
     id: String,

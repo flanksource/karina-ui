@@ -21,12 +21,6 @@
         <v-row no-gutters align="center" class="pl-3">
           <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
             <div class="parent">
-<!--              <v-img-->
-<!--                :aspect-ratio="1 / 1"-->
-<!--                :src="require(`@/assets/svg/${indicator.indicator_icon_lg}`)"-->
-<!--                width="48"-->
-<!--                class="icon"-->
-<!--              />-->
               <i :class="'icon-'+indicator.indicator_icon_lg+' icon large-icon'"></i>
 
               <span 
@@ -79,12 +73,6 @@
              <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
             <div class="parent">
                <i class="icon-birdie icon large-icon"></i>
-<!--              <v-img-->
-<!--                :aspect-ratio="1 / 1"-->
-<!--                :src="require(`@/assets/svg/birdie.svg`)"-->
-<!--                width="48"-->
-<!--                class="icon"-->
-<!--              />-->
 
             <span 
                 v-if="getCanaryAlerts(canarychecks) > 0 && !listExpand"
