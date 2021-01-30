@@ -1,6 +1,6 @@
 <template>
   <div>
-      <v-btn
+    <v-btn
       class="btn-expand"
       @click="selectMode"
       outlined
