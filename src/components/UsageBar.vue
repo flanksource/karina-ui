@@ -21,10 +21,6 @@
 				class="vertical-marker"
 				v-bind:style="{marginLeft: `20%`}"
 			>
-<!--				<svg-icon-->
-<!--					icon="triangle-marker"-->
-<!--					title="title"-->
-<!--				/>-->
 				<i class="icon-triangle-marker" title="title"></i>
 
 			</div>
@@ -53,11 +49,6 @@
 				class="marker"
 				v-bind:style="{marginLeft: `${getValue(optimum, min, max)}%`}"
 			>
-<!--				<svg-icon-->
-<!--					icon="triangle-marker"-->
-<!--					:style="markerStyles"-->
-<!--					:title="getTitle(optimum, min, max)"-->
-<!--				/>-->
 				<i class="icon-triangle-marker" :style="markerStyles"></i>
 			</div>
 		</div>

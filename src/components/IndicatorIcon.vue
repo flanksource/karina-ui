@@ -2,7 +2,6 @@
   <span v-if="shape == 'none'" class="parent" />
 
   <span v-else class="parent">
-<!--    <svg-icon :icon="shape" :style="iconStyles" class="icon" :title="title" />-->
    <i :class="'icon-'+shape" :style="iconStyles" class="icon" :title="title" ></i>
     <v-icon color="white" class="overlay">
       {{ overlay }}
