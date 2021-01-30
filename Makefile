@@ -10,6 +10,7 @@ all: build-api
 build-api:
 	go build -o bin/karina-ui main.go
 
+.PHONY: build-webfont
 build-webfont:
-#TODO: handle installation
+	which fantasticon || npm install -g fantasticon || exit 1
 	fantasticon  --normalize true ./src/assets/svg/webfont-icon-source/ -o ./src/assets/fonts/karina-ui-icons
