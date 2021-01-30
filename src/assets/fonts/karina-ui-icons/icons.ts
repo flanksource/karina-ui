@@ -16,7 +16,9 @@ export type IconsId =
   | "commit-git-50"
   | "commit"
   | "compare-git-50"
+  | "core"
   | "cpu"
+  | "dashboard-50-2"
   | "dashboard-50"
   | "disk"
   | "do-not-disturb-50"
@@ -46,11 +48,24 @@ export type IconsId =
   | "idea-50"
   | "idea"
   | "individual-server-50"
+  | "information-50"
+  | "input-50"
+  | "json-50-2"
+  | "json-50"
   | "karma"
   | "kibana"
   | "kubernetes"
+  | "light-rain-50"
   | "linux"
+  | "low-priority-50"
+  | "memory-slot-50-2"
+  | "memory-slot-50"
   | "memory"
+  | "merge-git-50-2"
+  | "merge-git-50-3"
+  | "merge-git-50-4"
+  | "merge-git-50-5"
+  | "merge-git-50"
   | "motherboard-50"
   | "new-document-50"
   | "node"
@@ -59,8 +74,11 @@ export type IconsId =
   | "ok-50"
   | "openconnect-50"
   | "openid-50"
+  | "private-50"
   | "process-50"
   | "processor-50-2"
+  | "processor-50-3"
+  | "processor-50"
   | "prometheus"
   | "pull-request-50-2"
   | "pull-request-50-3"
@@ -122,7 +140,9 @@ export type IconsKey =
   | "CommitGit_50"
   | "Commit"
   | "CompareGit_50"
+  | "Core"
   | "Cpu"
+  | "Dashboard_50_2"
   | "Dashboard_50"
   | "Disk"
   | "DoNotDisturb_50"
@@ -152,11 +172,24 @@ export type IconsKey =
   | "Idea_50"
   | "Idea"
   | "IndividualServer_50"
+  | "Information_50"
+  | "Input_50"
+  | "Json_50_2"
+  | "Json_50"
   | "Karma"
   | "Kibana"
   | "Kubernetes"
+  | "LightRain_50"
   | "Linux"
+  | "LowPriority_50"
+  | "MemorySlot_50_2"
+  | "MemorySlot_50"
   | "Memory"
+  | "MergeGit_50_2"
+  | "MergeGit_50_3"
+  | "MergeGit_50_4"
+  | "MergeGit_50_5"
+  | "MergeGit_50"
   | "Motherboard_50"
   | "NewDocument_50"
   | "Node"
@@ -165,8 +198,11 @@ export type IconsKey =
   | "Ok_50"
   | "Openconnect_50"
   | "Openid_50"
+  | "Private_50"
   | "Process_50"
   | "Processor_50_2"
+  | "Processor_50_3"
+  | "Processor_50"
   | "Prometheus"
   | "PullRequest_50_2"
   | "PullRequest_50_3"
@@ -228,7 +264,9 @@ export enum Icons {
   CommitGit_50 = "commit-git-50",
   Commit = "commit",
   CompareGit_50 = "compare-git-50",
+  Core = "core",
   Cpu = "cpu",
+  Dashboard_50_2 = "dashboard-50-2",
   Dashboard_50 = "dashboard-50",
   Disk = "disk",
   DoNotDisturb_50 = "do-not-disturb-50",
@@ -258,11 +296,24 @@ export enum Icons {
   Idea_50 = "idea-50",
   Idea = "idea",
   IndividualServer_50 = "individual-server-50",
+  Information_50 = "information-50",
+  Input_50 = "input-50",
+  Json_50_2 = "json-50-2",
+  Json_50 = "json-50",
   Karma = "karma",
   Kibana = "kibana",
   Kubernetes = "kubernetes",
+  LightRain_50 = "light-rain-50",
   Linux = "linux",
+  LowPriority_50 = "low-priority-50",
+  MemorySlot_50_2 = "memory-slot-50-2",
+  MemorySlot_50 = "memory-slot-50",
   Memory = "memory",
+  MergeGit_50_2 = "merge-git-50-2",
+  MergeGit_50_3 = "merge-git-50-3",
+  MergeGit_50_4 = "merge-git-50-4",
+  MergeGit_50_5 = "merge-git-50-5",
+  MergeGit_50 = "merge-git-50",
   Motherboard_50 = "motherboard-50",
   NewDocument_50 = "new-document-50",
   Node = "node",
@@ -271,8 +322,11 @@ export enum Icons {
   Ok_50 = "ok-50",
   Openconnect_50 = "openconnect-50",
   Openid_50 = "openid-50",
+  Private_50 = "private-50",
   Process_50 = "process-50",
   Processor_50_2 = "processor-50-2",
+  Processor_50_3 = "processor-50-3",
+  Processor_50 = "processor-50",
   Prometheus = "prometheus",
   PullRequest_50_2 = "pull-request-50-2",
   PullRequest_50_3 = "pull-request-50-3",
@@ -335,91 +389,109 @@ export const ICONS_CODEPOINTS: { [key in Icons]: string } = {
   [Icons.CommitGit_50]: "61711",
   [Icons.Commit]: "61712",
   [Icons.CompareGit_50]: "61713",
-  [Icons.Cpu]: "61714",
-  [Icons.Dashboard_50]: "61715",
-  [Icons.Disk]: "61716",
-  [Icons.DoNotDisturb_50]: "61717",
-  [Icons.Docker_50_2]: "61718",
-  [Icons.Docker_50_3]: "61719",
-  [Icons.EthernetSettings_50]: "61720",
-  [Icons.Fires_50_2]: "61721",
-  [Icons.Fires_50]: "61722",
-  [Icons.Geography_50_2]: "61723",
-  [Icons.Geography_50_3]: "61724",
-  [Icons.Geography_50]: "61725",
-  [Icons.Git_50]: "61726",
-  [Icons.Git]: "61727",
-  [Icons.Github_50_2]: "61728",
-  [Icons.Github_50_3]: "61729",
-  [Icons.Github_50]: "61730",
-  [Icons.GoogleAlerts_50]: "61731",
-  [Icons.Grafana]: "61732",
-  [Icons.Guarantee_50]: "61733",
-  [Icons.Hdd_50]: "61734",
-  [Icons.Heart]: "61735",
-  [Icons.Heartline]: "61736",
-  [Icons.HeavyRain_50]: "61737",
-  [Icons.HelmIcon_50]: "61738",
-  [Icons.HighPriority_50]: "61739",
-  [Icons.Hub_50]: "61740",
-  [Icons.Idea_50]: "61741",
-  [Icons.Idea]: "61742",
-  [Icons.IndividualServer_50]: "61743",
-  [Icons.Karma]: "61744",
-  [Icons.Kibana]: "61745",
-  [Icons.Kubernetes]: "61746",
-  [Icons.Linux]: "61747",
-  [Icons.Memory]: "61748",
-  [Icons.Motherboard_50]: "61749",
-  [Icons.NewDocument_50]: "61750",
-  [Icons.Node]: "61751",
-  [Icons.Octocat_50_2]: "61752",
-  [Icons.Octocat_50]: "61753",
-  [Icons.Ok_50]: "61754",
-  [Icons.Openconnect_50]: "61755",
-  [Icons.Openid_50]: "61756",
-  [Icons.Process_50]: "61757",
-  [Icons.Processor_50_2]: "61758",
-  [Icons.Prometheus]: "61759",
-  [Icons.PullRequest_50_2]: "61760",
-  [Icons.PullRequest_50_3]: "61761",
-  [Icons.PullRequest_50]: "61762",
-  [Icons.Rain_50]: "61763",
-  [Icons.Rainfall_50]: "61764",
-  [Icons.Ram]: "61765",
-  [Icons.Router_50]: "61766",
-  [Icons.Safe]: "61767",
-  [Icons.SecuritySsl_50]: "61768",
-  [Icons.SecurityWiFi_50]: "61769",
-  [Icons.Server]: "61770",
-  [Icons.ShipWheel_50]: "61771",
-  [Icons.Smile]: "61772",
-  [Icons.Snow_50]: "61773",
-  [Icons.SnowStorm_50]: "61774",
-  [Icons.SpeechBubble_50]: "61775",
-  [Icons.Square]: "61776",
-  [Icons.Ssd_50]: "61777",
-  [Icons.Storage]: "61778",
-  [Icons.Storm_50]: "61779",
-  [Icons.StormyWeather_50]: "61780",
-  [Icons.Summer_50_2]: "61781",
-  [Icons.Summer_50]: "61782",
-  [Icons.TagWindow_50]: "61783",
-  [Icons.Threat]: "61784",
-  [Icons.TickBox_50]: "61785",
-  [Icons.Toolbox_50]: "61786",
-  [Icons.TorrentialRain_50]: "61787",
-  [Icons.TriangleMarker]: "61788",
-  [Icons.Tsunami_50]: "61789",
-  [Icons.Ubuntu]: "61790",
-  [Icons.Unavailable_50]: "61791",
-  [Icons.Vip_50]: "61792",
-  [Icons.Vmware_50]: "61793",
-  [Icons.Webhook_50]: "61794",
-  [Icons.Wet_50]: "61795",
-  [Icons.Wind_50]: "61796",
-  [Icons.WindyWeather_50]: "61797",
-  [Icons.Winter_50_2]: "61798",
-  [Icons.Winter_50]: "61799",
-  [Icons.Workspace_50]: "61800",
+  [Icons.Core]: "61714",
+  [Icons.Cpu]: "61715",
+  [Icons.Dashboard_50_2]: "61716",
+  [Icons.Dashboard_50]: "61717",
+  [Icons.Disk]: "61718",
+  [Icons.DoNotDisturb_50]: "61719",
+  [Icons.Docker_50_2]: "61720",
+  [Icons.Docker_50_3]: "61721",
+  [Icons.EthernetSettings_50]: "61722",
+  [Icons.Fires_50_2]: "61723",
+  [Icons.Fires_50]: "61724",
+  [Icons.Geography_50_2]: "61725",
+  [Icons.Geography_50_3]: "61726",
+  [Icons.Geography_50]: "61727",
+  [Icons.Git_50]: "61728",
+  [Icons.Git]: "61729",
+  [Icons.Github_50_2]: "61730",
+  [Icons.Github_50_3]: "61731",
+  [Icons.Github_50]: "61732",
+  [Icons.GoogleAlerts_50]: "61733",
+  [Icons.Grafana]: "61734",
+  [Icons.Guarantee_50]: "61735",
+  [Icons.Hdd_50]: "61736",
+  [Icons.Heart]: "61737",
+  [Icons.Heartline]: "61738",
+  [Icons.HeavyRain_50]: "61739",
+  [Icons.HelmIcon_50]: "61740",
+  [Icons.HighPriority_50]: "61741",
+  [Icons.Hub_50]: "61742",
+  [Icons.Idea_50]: "61743",
+  [Icons.Idea]: "61744",
+  [Icons.IndividualServer_50]: "61745",
+  [Icons.Information_50]: "61746",
+  [Icons.Input_50]: "61747",
+  [Icons.Json_50_2]: "61748",
+  [Icons.Json_50]: "61749",
+  [Icons.Karma]: "61750",
+  [Icons.Kibana]: "61751",
+  [Icons.Kubernetes]: "61752",
+  [Icons.LightRain_50]: "61753",
+  [Icons.Linux]: "61754",
+  [Icons.LowPriority_50]: "61755",
+  [Icons.MemorySlot_50_2]: "61756",
+  [Icons.MemorySlot_50]: "61757",
+  [Icons.Memory]: "61758",
+  [Icons.MergeGit_50_2]: "61759",
+  [Icons.MergeGit_50_3]: "61760",
+  [Icons.MergeGit_50_4]: "61761",
+  [Icons.MergeGit_50_5]: "61762",
+  [Icons.MergeGit_50]: "61763",
+  [Icons.Motherboard_50]: "61764",
+  [Icons.NewDocument_50]: "61765",
+  [Icons.Node]: "61766",
+  [Icons.Octocat_50_2]: "61767",
+  [Icons.Octocat_50]: "61768",
+  [Icons.Ok_50]: "61769",
+  [Icons.Openconnect_50]: "61770",
+  [Icons.Openid_50]: "61771",
+  [Icons.Private_50]: "61772",
+  [Icons.Process_50]: "61773",
+  [Icons.Processor_50_2]: "61774",
+  [Icons.Processor_50_3]: "61775",
+  [Icons.Processor_50]: "61776",
+  [Icons.Prometheus]: "61777",
+  [Icons.PullRequest_50_2]: "61778",
+  [Icons.PullRequest_50_3]: "61779",
+  [Icons.PullRequest_50]: "61780",
+  [Icons.Rain_50]: "61781",
+  [Icons.Rainfall_50]: "61782",
+  [Icons.Ram]: "61783",
+  [Icons.Router_50]: "61784",
+  [Icons.Safe]: "61785",
+  [Icons.SecuritySsl_50]: "61786",
+  [Icons.SecurityWiFi_50]: "61787",
+  [Icons.Server]: "61788",
+  [Icons.ShipWheel_50]: "61789",
+  [Icons.Smile]: "61790",
+  [Icons.Snow_50]: "61791",
+  [Icons.SnowStorm_50]: "61792",
+  [Icons.SpeechBubble_50]: "61793",
+  [Icons.Square]: "61794",
+  [Icons.Ssd_50]: "61795",
+  [Icons.Storage]: "61796",
+  [Icons.Storm_50]: "61797",
+  [Icons.StormyWeather_50]: "61798",
+  [Icons.Summer_50_2]: "61799",
+  [Icons.Summer_50]: "61800",
+  [Icons.TagWindow_50]: "61801",
+  [Icons.Threat]: "61802",
+  [Icons.TickBox_50]: "61803",
+  [Icons.Toolbox_50]: "61804",
+  [Icons.TorrentialRain_50]: "61805",
+  [Icons.TriangleMarker]: "61806",
+  [Icons.Tsunami_50]: "61807",
+  [Icons.Ubuntu]: "61808",
+  [Icons.Unavailable_50]: "61809",
+  [Icons.Vip_50]: "61810",
+  [Icons.Vmware_50]: "61811",
+  [Icons.Webhook_50]: "61812",
+  [Icons.Wet_50]: "61813",
+  [Icons.Wind_50]: "61814",
+  [Icons.WindyWeather_50]: "61815",
+  [Icons.Winter_50_2]: "61816",
+  [Icons.Winter_50]: "61817",
+  [Icons.Workspace_50]: "61818",
 };
