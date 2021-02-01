@@ -7,7 +7,7 @@
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
+				<i :class="'icon icon-'+icon" :color="badgecolor" ></i>
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -27,11 +27,8 @@
 						class="marker"
 						v-bind:style="{marginLeft: `${getValue(optimum, min, max)}%`}"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							:style="markerStyles"
-							:title="getTitle(optimum, min, max)"
-						/>
+						<i class="icon icon-triangle-marker" :style="markerStyles"></i>
+
 					</div>
 
 					<div
@@ -39,11 +36,7 @@
 						v-bind:style="{marginLeft: `${getValue(marker, min, max)}%`}"
 						v-if="markerAvailable()"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							:style="markerStyles"
-							:title="getTitle(marker, min, max)"
-						/>
+						<i class="icon icon-triangle-marker" :style="markerStyles"></i>
 					</div>
 				</div>
 			</v-badge>
@@ -54,7 +47,7 @@
 				:content="content"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
+				<i :class="'icon icon-'+icon" :color="badgecolor" ></i>
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -74,10 +67,7 @@
 						class="vertical-marker"
 						v-bind:style="{marginLeft: `20%`}"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							title="title"
-						/>
+						<i class="icon icon-triangle-marker" ></i>
 					</div>
 				</div>
 			</v-badge>
@@ -90,7 +80,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
+				<i :class="'icon icon-'+icon" :color="badgecolor" ></i>
 				<div class="bar">
 					<span class="unit-min">{{min}}</span>
 					<span class="unit-max">{{max}}</span>
@@ -110,11 +100,7 @@
 						class="marker"
 						v-bind:style="{marginLeft: `${getValue(optimum, min, max)}%`}"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							:style="markerStyles"
-							:title="getTitle(optimum, min, max)"
-						/>
+						<i class="icon icon-triangle-marker" :style="markerStyles"></i>
 					</div>
 
 					<div
@@ -122,11 +108,7 @@
 						v-bind:style="{marginLeft: `${getValue(marker, min, max)}%`}"
 						v-if="markerAvailable()"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							:style="markerStyles"
-							:title="getTitle(marker, min, max)"
-						/>
+						<i class="icon icon-triangle-marker" :style="markerStyles"></i>
 					</div>
 				</div>
 			</v-badge>
@@ -138,7 +120,7 @@
 				color="white"
 				inline
 			>
-				<svg-icon :icon="icon" :hasFill="false" :color="badgecolor" />
+				<i :class="'icon icon-'+icon" :color="badgecolor" ></i>
 				<div class="vertical-bar">
 					<span class="vertical-unit-min">{{min}}</span>
 					<span class="vertical-unit-max">{{max}}</span>
@@ -158,10 +140,7 @@
 						class="vertical-marker"
 						v-bind:style="{marginLeft: `20%`}"
 					>
-						<svg-icon
-							icon="triangle-marker"
-							title="title"
-						/>
+						<i class="icon icon-triangle-marker" :style="markerStyles"></i>
 					</div>
 				</div>
 			</v-badge>
@@ -170,14 +149,11 @@
 </template>
 
 <script>
-	import SvgIcon from "./SVGIcon.vue";
+
 
 	export default{
 		name: "UsageBarItemCard",
 
-		components: {
-			"svg-icon": SvgIcon,
-		},
 
 		props: {
 			icon: String,
@@ -320,4 +296,7 @@
 	.vertical-unit-max {
 		display: none;
 	}
+
+	@import '../assets/fonts/karina-ui-icons/icons.css';
+
 </style>

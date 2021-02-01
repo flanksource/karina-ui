@@ -6,7 +6,7 @@
       outlined
       x-small
     >
-      <i :class="{ 'up': listExpand, 'down': !listExpand  }"> </i>
+      <i :class="(listExpand? 'up' : 'down')+' outlined'"> </i>
     </v-btn>  
         
     <v-expansion-panels
@@ -21,12 +21,7 @@
         <v-row no-gutters align="center" class="pl-3">
           <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
             <div class="parent">
-              <v-img
-                :aspect-ratio="1 / 1"
-                :src="require(`@/assets/svg/${indicator.indicator_icon_lg}`)"
-                width="48"
-                class="icon"
-              />
+              <i :class="'icon-'+indicator.indicator_icon_lg+' icon large-icon'"></i>
 
               <span 
                 v-if="getDemoAlerts(indicator.indicator_icons) > 0 && !listExpand"
@@ -77,12 +72,7 @@
           <v-row no-gutters align="center" class="pl-3">
              <v-col cols="2" xs="2" sm="2" md="2" lg="2" xl="2" class="">
             <div class="parent">
-              <v-img
-                :aspect-ratio="1 / 1"
-                :src="require(`@/assets/svg/birdie.svg`)"
-                width="48"
-                class="icon"
-              />
+               <i class="icon-birdie icon large-icon"></i>
 
             <span 
                 v-if="getCanaryAlerts(canarychecks) > 0 && !listExpand"
@@ -274,7 +264,7 @@ export default {
   right: 3px;
   z-index: 3;
 }
-i {
+i.outlined {
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
@@ -293,4 +283,33 @@ i {
   margin-left: 15px;
 }
 
+@import '../assets/fonts/karina-ui-icons/icons.css';
+
+.icon-birdie:before {
+  color: #ffd838 !important;
+  font-size: 48px;
+}
+.icon-heartline:before {
+    color: #2f57d3 !important;
+}
+
+.icon-server:before {
+    color: #12378d !important;
+}
+
+.icon-winter-50-2:before {
+    color: #4788c7 !important;
+}
+
+.icon-winter-50:before {
+    color: #4788c7 !important;
+}
+.icon-threat:before {
+    color: #bf6561 !important;
+}
+
+
+.large-icon {
+  font-size: 48px;
+}
 </style>

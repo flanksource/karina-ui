@@ -106,7 +106,10 @@ export default {
 
 
 <style scoped>
-  
+
+  @import './assets/fonts/karina-ui-icons/icons.css';
+
+
   .left-pane {
     position: fixed;
     max-width: 8vw;

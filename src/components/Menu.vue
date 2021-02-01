@@ -21,7 +21,7 @@
           target="menuFrame"
           @click="selectState('iframe')"
         >
-          <svg-icon :icon="menuItem.icon" class="icon" />
+            <i :class="'icon-'+menuItem.icon"></i>
           <v-list-item-title>{{menuItem.title}}</v-list-item-title>
         </v-list-item>
       </span>
@@ -30,14 +30,9 @@
 </template>
 
 <script>
-  import SvgIcon from "./SVGIcon.vue";
  
 export default {
   name: "Menu",
-
-  components: {
-    SvgIcon,
-  },
 
   props: {
     state: String,
@@ -89,4 +84,18 @@ export default {
   left: 0;
   padding-right: 5px;
 }
+@import '../assets/fonts/karina-ui-icons/icons.css';
+
+.icon-grafana:before {
+    color: #e5512b;
+}
+
+.icon-karma:before {
+    color: #3d9c8a;
+}
+
+.icon-prometheus:before {
+    color: #e5512b;
+}
+
 </style>

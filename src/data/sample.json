@@ -23,19 +23,19 @@
       "indicators": [
         { 
           "id": 1,
-          "indicator_icon_lg": "heartline.svg",
+          "indicator_icon_lg": "heartline",
           "indicator_icons": [
           ]
         },
         { 
           "id": 2,
-          "indicator_icon_lg": "cluster.svg",
+          "indicator_icon_lg": "cluster",
           "indicator_icons": [
           ]
         },
         { 
           "id": 3,
-          "indicator_icon_lg": "birdie.svg",
+          "indicator_icon_lg": "birdie",
           "indicator_icons": [
             {"id":1,"color":"#336600", "shape":"heart", "overlay":""},
             {"id":2,"color":"#336600", "shape":"heart", "overlay":""},
@@ -61,7 +61,7 @@
         },
         { 
           "id": 4,
-          "indicator_icon_lg": "idea.svg",
+          "indicator_icon_lg": "idea",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":"`"},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
@@ -71,7 +71,7 @@
         },
         { 
           "id": 5,
-          "indicator_icon_lg": "server.svg",
+          "indicator_icon_lg": "server",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":""},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
@@ -140,19 +140,19 @@
       "indicators": [
         { 
           "id": 1,
-          "indicator_icon_lg": "heartline.svg",
+          "indicator_icon_lg": "heartline",
           "indicator_icons": [
           ]
         },
         { 
           "id": 2,
-          "indicator_icon_lg": "cluster.svg",
+          "indicator_icon_lg": "cluster",
           "indicator_icons": [
           ]
         },
         { 
           "id": 3,
-          "indicator_icon_lg": "birdie.svg",
+          "indicator_icon_lg": "birdie",
           "indicator_icons": [
             {"id":1,"color":"#336600", "shape":"heart", "overlay":""},
             {"id":2,"color":"#336600", "shape":"heart", "overlay":""},
@@ -178,7 +178,7 @@
         },
         { 
           "id": 4,
-          "indicator_icon_lg": "idea.svg",
+          "indicator_icon_lg": "idea",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":"`"},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
@@ -188,7 +188,7 @@
         },
         { 
           "id": 5,
-          "indicator_icon_lg": "server.svg",
+          "indicator_icon_lg": "server",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":""},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
@@ -257,19 +257,19 @@
       "indicators": [
         { 
           "id": 1,
-          "indicator_icon_lg": "heartline.svg",
+          "indicator_icon_lg": "heartline",
           "indicator_icons": [
           ]
         },
         { 
           "id": 2,
-          "indicator_icon_lg": "cluster.svg",
+          "indicator_icon_lg": "cluster",
           "indicator_icons": [
           ]
         },
         { 
           "id": 3,
-          "indicator_icon_lg": "birdie.svg",
+          "indicator_icon_lg": "birdie",
           "indicator_icons": [
             {"id":1,"color":"#336600", "shape":"heart", "overlay":""},
             {"id":2,"color":"#336600", "shape":"heart", "overlay":""},
@@ -295,7 +295,7 @@
         },
         { 
           "id": 4,
-          "indicator_icon_lg": "idea.svg",
+          "indicator_icon_lg": "idea",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":"`"},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
@@ -305,7 +305,7 @@
         },
         { 
           "id": 5,
-          "indicator_icon_lg": "server.svg",
+          "indicator_icon_lg": "server",
           "indicator_icons": [
             {"id":1,"color":"#4d9900", "shape":"square", "overlay":""},
             {"id":2,"color":"#4d9900", "shape":"square", "overlay":""},
