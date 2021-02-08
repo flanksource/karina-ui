@@ -11,7 +11,7 @@
     >
       <Loader/>
     </div>
-    
+
     <div
       v-else-if="loading == false"
     >
@@ -28,12 +28,12 @@
             >
               <IframeView/>
             </span>
-       
-            <span 
+
+            <span
               v-if="state == 'native'"
-            > 
+            >
               <NativeView :clusters="clusters"/>
-            </span> 
+            </span>
           </v-col>
         </v-row>
       </v-main>
@@ -59,8 +59,8 @@ export default {
   data() {
     if (window.DEMO_MODE) {
       return {
-        clusters: stats.clusters,
-        loading: true,
+        clusters: stats,
+        loading: false,
         state: 'native'
       };
     } else {
@@ -80,25 +80,25 @@ export default {
   },
 
   beforeCreate () {
+    console.log(window.DEMO_MODE)
     if (!window.DEMO_MODE) {
-      /*
       this.$axios
-      .get("http://localhost:8080/api/ui")
-      .then(response => (this.clusters = response.data))
-      .catch(error => console.log(error))
-      .finally(() => (this.loading = false))  
-       */
-      this.$axios
-        .get("/api/ui")
+        .get("http://localhost:8080/api/ui")
         .then(response => (this.clusters = response.data))
         .catch(error => console.log(error))
-        .finally(() => (this.loading = false)); 
+        .finally(() => (this.loading = false))
+
+      // this.$axios
+      //   .get("/api/ui")
+      //   .then(response => (this.clusters = response.data))
+      //   .catch(error => console.log(error))
+      //   .finally(() => (this.loading = false));
 
     } else {
-      
-      setTimeout(() => (this.loading = false)
-        .bind(this), (3 * 1000))
-        .catch(error => console.log(error));
+      console.log(stats)
+      this.clusters = stats
+      this.loading = false
+      console.log("done")
     }
   }
 };
