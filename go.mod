@@ -4,15 +4,20 @@ go 1.14
 
 require (
 	github.com/Masterminds/semver v1.5.0
-	github.com/flanksource/canary-checker v0.11.7
+	github.com/coreos/go-semver v0.3.0 // indirect
+	github.com/docker/spdystream v0.0.0-20181023171402-6480d4af844c // indirect
+	github.com/emicklei/go-restful v2.11.1+incompatible // indirect
 	github.com/flanksource/commons v1.4.3
 	github.com/flanksource/kommons v0.1.6
-	github.com/go-yaml/yaml v2.1.0+incompatible // indirect
+	github.com/go-openapi/spec v0.19.4 // indirect
+	github.com/gregjones/httpcache v0.0.0-20181110185634-c63ab54fda8f // indirect
+	github.com/hashicorp/golang-lru v0.5.4 // indirect
+	github.com/imdario/mergo v0.3.9 // indirect
+	github.com/onsi/gomega v1.10.1 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/prometheus/client_golang v1.3.0
-	github.com/prometheus/common v0.7.0
+	github.com/prometheus/client_golang v1.11.1
+	github.com/prometheus/common v0.26.0
 	github.com/spf13/cobra v1.0.0
-	golang.org/x/mod v0.1.1-0.20191105210325-c90efee705ee
 	gopkg.in/flanksource/yaml.v3 v3.1.1
 	k8s.io/api v0.19.3
 	k8s.io/apimachinery v0.19.3
